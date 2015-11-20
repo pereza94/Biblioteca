@@ -21,7 +21,7 @@ public class ListadoSocios extends JDialog {
 	private JTable table;
 
 	/**
-	 * Launch the application.
+	 * Launch the application. Prueba!!!
 	 */
 	public static void main(String[] args) {
 		try {
