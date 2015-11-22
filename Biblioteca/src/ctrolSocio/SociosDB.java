@@ -19,9 +19,8 @@ public class SociosDB {
 
 
 	public static ArrayList<Socio>  buscarXDNI(int dni) {
-		System.out.println("llego");
 		ConexionDB con = new ConexionDB();
-		String query = ("select * from socio where (socio.dni="+dni+")"); 
+		String query = ("select * from socio where socio.dni="+dni+";"); 
 		con.start();
 		 ArrayList <Socio> lista = new ArrayList<>(0);
 		 try{
@@ -49,22 +48,21 @@ public class SociosDB {
 	
 	
 	public static ArrayList<Socio>  buscarXIdentidad(String iden) {
-		System.out.println("llego");
-		ConexionDB con = new ConexionDB();
-		String query = ("select * from socio where autor socio %"+iden+"_;"); 
-		con.start();
+		 ConexionDB con = new ConexionDB();
+		 String query = ("select * from socio where nombre like '"+iden.toUpperCase()+"%'"); 
+		 con.start();
 		 ArrayList <Socio> lista = new ArrayList<>(0);
 		 try{
-		 Statement st = con.getConexion().createStatement();
+		Statement st = con.getConexion().createStatement();
 		 ResultSet rs = st.executeQuery(query);
 		 while (rs.next()){
-	     Socio c = new Socio();
-		 c.setDniSocio( rs.getInt("dni"));
-		 c.setIdentidad(rs.getString("nombre"));
+		Socio c = new Socio();
+	     c.setDniSocio( rs.getInt("dni"));
+	     c.setIdentidad(rs.getString("nombre"));
 		 c.setDomicilio(rs.getString("direccion"));
 		 c.setSexo(rs.getString("sexo"));
 		 c.setTelefono(rs.getString("telefono"));
-		 //System.out.println(c.getDniSocio()+" "+c.getIdentidad());
+		// System.out.println(c.getDniSocio()+" "+c.getIdentidad());
 		 lista.add(c);
 		 }
 		 con.close();

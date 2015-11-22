@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JScrollPane;
@@ -19,8 +20,11 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.text.html.parser.Entity;
 
 import ctrolSocio.SociosDB;
+import entity.Socio;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class BuscarSocio extends JDialog {
 	private JTextField txBuscado;
@@ -95,21 +99,30 @@ public class BuscarSocio extends JDialog {
 			btnBucar.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
-					if(rdbtnDni.isSelected()==true){SociosDB.buscarXDNI(Integer.parseInt(txBuscado.getText()));
-					for(int x=0;x<SociosDB.buscarXDNI(Integer.parseInt(txBuscado.getText())).size();x++) {
+					if(rdbtnDni.isSelected()==true){;
+					int cant = SociosDB.buscarXDNI((Integer.parseInt(txBuscado.getText()))).size();
+					if(cant==0){ JOptionPane.showMessageDialog(null,"No se econtro ningun socio");}
+					else{
+					for(int x=0;x<=cant ;x++) {
 						entity.Socio s= new entity.Socio();
-						s = SociosDB.buscarXDNI(Integer.parseInt(txBuscado.getText())).get(x);
+						ArrayList<Socio> sl = SociosDB.buscarXDNI(Integer.parseInt(txBuscado.getText()));
+						s = sl.get(x);
 						modelo.addRow(new Object[]{s.getDniSocio(),s.getIdentidad(),s.getDomicilio(),s.getSexo(),s.getTelefono()});
 					}
 					}
-					if(rdbtnNombreYApellido.isSelected()==true){SociosDB.buscarXIdentidad(txBuscado.getText().toUpperCase());
-					for(int x=0;x<SociosDB.buscarXDNI(Integer.parseInt(txBuscado.getText())).size();x++) {
-						System.out.println(SociosDB.buscarXIdentidad(txBuscado.getText().toUpperCase()).get(x).getIdentidad());
-						//modelo.addRow(new Object[]{SociosDB.buscarXIdentidad(txBuscado.getText()).get(x).getDniSocio(),SociosDB.buscarXIdentidad(txBuscado.getText()).get(x).getIdentidad(),SociosDB.buscarXIdentidad(txBuscado.getText()).get(x).getDomicilio(),SociosDB.buscarXIdentidad(txBuscado.getText()).get(x).getSexo(),SociosDB.buscarXIdentidad(txBuscado.getText()).get(x).getTelefono()});
+					}
+					if(rdbtnNombreYApellido.isSelected()==true){
+						int cant =SociosDB.buscarXIdentidad(txBuscado.getText().toUpperCase()).size();
+						if(cant==0){ JOptionPane.showMessageDialog(null,"No se econtro ningun socio");}
+						else{
+						for(int x=0;x<=cant;x++){
+							ArrayList<Socio> sl = SociosDB.buscarXIdentidad(txBuscado.getText().toUpperCase());
+							entity.Socio s = new Socio();
+							s = sl.get(x);
+							modelo.addRow(new Object[]{s.getDniSocio(),s.getIdentidad(),s.getDomicilio(),s.getSexo(),s.getTelefono()});
 					}
 					}
-				
-				
+					}
 				
 				}
 			});
