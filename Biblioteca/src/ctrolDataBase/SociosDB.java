@@ -1,4 +1,4 @@
-package ctrolSocio;
+package ctrolDataBase;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -8,7 +8,6 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import control.ConexionDB;
 import entity.Autor;
 import entity.Socio;
 

@@ -1,4 +1,4 @@
-package socio;
+package interfaz;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -9,8 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-
-import ctrolSocio.SociosDB;
+import ctrolDataBase.SociosDB;
 
 import javax.swing.JScrollPane;
 import javax.swing.JList;

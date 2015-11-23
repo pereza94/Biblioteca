@@ -1,4 +1,4 @@
-package socio;
+package interfaz;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -8,7 +8,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import ctrolSocio.SociosDB;
+import ctrolDataBase.SociosDB;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;

@@ -1,4 +1,4 @@
-package socio;
+package interfaz;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -19,7 +19,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.html.parser.Entity;
 
-import ctrolSocio.SociosDB;
+import ctrolDataBase.SociosDB;
 import entity.Socio;
 
 import java.awt.event.MouseAdapter;
@@ -77,7 +77,7 @@ public class BuscarSocio extends JDialog {
 		
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(25, 108, 550, 254);
+		scrollPane.setBounds(25, 108, 632, 254);
 		getContentPane().add(scrollPane);
 		
 		table = new JTable();
@@ -130,7 +130,7 @@ public class BuscarSocio extends JDialog {
 				public void actionPerformed(ActionEvent arg0) {
 				}
 			});
-			btnBucar.setBounds(486, 28, 89, 23);
+			btnBucar.setBounds(532, 28, 89, 23);
 			getContentPane().add(btnBucar);
 		}
 		
