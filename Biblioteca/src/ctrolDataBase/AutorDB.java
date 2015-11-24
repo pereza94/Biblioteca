@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import entity.Autor;
+import entity.Libro;
 import entity.Socio;
 
 public class AutorDB {
@@ -108,6 +109,35 @@ public class AutorDB {
 		     c.setIdentidad(rs.getString("autor"));
 			 lista.add(c);
 			 //System.out.println(c.getDniSocio()+" "+c.getIdentidad());
+		 lista.add(c);
+		 }
+		 con.close();
+		 st.close();}
+		 catch(Exception e){
+		 lista=null;
+		 System.out.println("Error al obtener lista de datos");
+		 }
+		 return lista;
+	}
+	
+	
+	
+	public static ArrayList<Libro>  buscarLibroDeUnAutor(String a) {
+		ConexionDB con = new ConexionDB();
+		String query = ("select distinct a.autor,l.isbn,l.titulo, l.fpublicacion,l.editorial from autor a, autorLibro al, libro l where(al.idautor='"+a+"' and a.idautor=al.idautor and al.isbn=l.isbn);"); 
+		con.start();
+		 ArrayList <Libro> lista = new ArrayList<>(0);
+		 try{
+		 Statement st = con.getConexion().createStatement();
+		 System.out.println(query);
+		 ResultSet rs = st.executeQuery(query);
+		 while (rs.next()){
+	     Libro c = new Libro();
+		 c.setIsbn( rs.getString("isbn"));
+		 c.setAnio(rs.getDate("fpublicacion"));
+		 c.setTitulo(rs.getString("titulo"));
+		 c.setEditorial(rs.getString("editorial"));
+		 c.setAutor(rs.getString("autor"));
 		 lista.add(c);
 		 }
 		 con.close();

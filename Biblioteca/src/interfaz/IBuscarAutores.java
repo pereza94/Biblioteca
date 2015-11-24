@@ -33,6 +33,8 @@ import java.awt.Component;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class IBuscarAutores extends JDialog {
 
@@ -192,6 +194,27 @@ public class IBuscarAutores extends JDialog {
         JLabel lblBuscar_1 = new JLabel("Buscar por:");
         lblBuscar_1.setBounds(10, 76, 66, 14);
         panel.add(lblBuscar_1);
+        
+        JButton btnBuscarLibrosDe = new JButton("Buscar Libros de un Autor");
+        btnBuscarLibrosDe.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		IBuscarLibrosXAutor bla= new IBuscarLibrosXAutor();
+        		bla.setVisible(true);
+        	}
+        });
+        btnBuscarLibrosDe.setBackground(Color.LIGHT_GRAY);
+        btnBuscarLibrosDe.addKeyListener(new KeyAdapter() {
+        	@Override
+        	public void keyPressed(KeyEvent arg0) {
+        		IBuscarLibrosXAutor bla= new IBuscarLibrosXAutor();
+        		bla.setVisible(true);
+        	}
+        });
+        btnBuscarLibrosDe.setIcon(new ImageIcon(IBuscarAutores.class.getResource("/Images/Login/lupa (1).png")));
+        btnBuscarLibrosDe.setForeground(new Color(0, 0, 255));
+        btnBuscarLibrosDe.setBounds(238, 363, 222, 23);
+        panel.add(btnBuscarLibrosDe);
         btnAgregarAutor.addMouseListener(new MouseAdapter() {
         	@Override
         	public void mouseClicked(MouseEvent arg0) {
