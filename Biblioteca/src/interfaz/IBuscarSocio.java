@@ -1,12 +1,16 @@
 package interfaz;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -25,6 +29,10 @@ import entity.Socio;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import javax.swing.SwingConstants;
+import java.awt.SystemColor;
+import javax.swing.ImageIcon;
+import java.awt.Font;
 
 public class IBuscarSocio extends JDialog {
 	private JTextField txBuscado;
@@ -50,89 +58,146 @@ public class IBuscarSocio extends JDialog {
 	public IBuscarSocio() {
 		JRadioButton rdbtnDni;
 		
-		setBounds(100, 100, 744, 489);
+		JPanel panel = new JPanel();
+		panel.setForeground(new Color(0, 0, 128));
+		panel.setBounds(10, 11, 655, 406);
+		getContentPane().add(panel);
+		Border bordejpanel = new TitledBorder(new EtchedBorder(),"Buscar Libro");
+        panel.setBorder(bordejpanel);
+        panel.setLayout(null);
+        {
+        	txBuscado = new JTextField();
+        	txBuscado.setBounds(82, 38, 431, 20);
+        	panel.add(txBuscado);
+        	txBuscado.setColumns(10);
+        }
+        
+        rdbtnDni = new JRadioButton("D.N.I");
+        rdbtnDni.setForeground(new Color(0, 0, 128));
+        rdbtnDni.setBounds(134, 72, 109, 23);
+        panel.add(rdbtnDni);
+        buttonGroup.add(rdbtnDni);
+        
+        JRadioButton rdbtnNombreYApellido = new JRadioButton("Nombre y Apellido");
+        rdbtnNombreYApellido.setForeground(new Color(0, 0, 128));
+        rdbtnNombreYApellido.setBounds(294, 71, 136, 23);
+        panel.add(rdbtnNombreYApellido);
+        buttonGroup.add(rdbtnNombreYApellido);
+        
+        
+        JLabel lblBuscarPor = new JLabel("Buscar por:");
+        lblBuscarPor.setForeground(new Color(0, 0, 128));
+        lblBuscarPor.setBounds(31, 76, 66, 14);
+        panel.add(lblBuscarPor);
+        
+        
+        
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(10, 105, 632, 254);
+        panel.add(scrollPane);
+        
+        table = new JTable();
+        table.setModel(new DefaultTableModel(
+        	new Object[][] {
+        	},
+        	new String[] {
+        		"DNI", "Identidad", "Direcci\u00F3n", "Sexo", "Telefono"
+        	}
+        ));
+        DefaultTableModel modelo = (DefaultTableModel)table.getModel();
+        
+        
+        scrollPane.setViewportView(table);
+        
+        
+        {
+        	JButton btnBucar = new JButton("Buscar");
+        	btnBucar.setForeground(new Color(0, 0, 128));
+        	btnBucar.setBounds(533, 36, 89, 23);
+        	panel.add(btnBucar);
+        	
+        	JLabel lblBuscar = new JLabel("Buscar:");
+        	lblBuscar.setForeground(new Color(0, 0, 128));
+        	lblBuscar.setHorizontalAlignment(SwingConstants.RIGHT);
+        	lblBuscar.setBounds(20, 40, 52, 14);
+        	panel.add(lblBuscar);
+        	
+        	JButton button = new JButton("Nuevo Autor");
+        	button.addMouseListener(new MouseAdapter() {
+        		@Override
+        		public void mouseClicked(MouseEvent e) {
+        			INuevoSocio ns= new INuevoSocio();
+        			ns.setVisible(true);
+        		}
+        	});
+        	button.setIcon(new ImageIcon(IBuscarSocio.class.getResource("/Images/Login/red-sign-computer-green-icon-mark-symbol-cartoon.png")));
+        	button.setForeground(new Color(0, 102, 0));
+        	button.setBackground(SystemColor.activeCaptionBorder);
+        	button.setBounds(10, 372, 142, 24);
+        	panel.add(button);
+        	
+        	JButton button_1 = new JButton("Cerrar");
+        	button_1.addMouseListener(new MouseAdapter() {
+        		@Override
+        		public void mouseClicked(MouseEvent e) {
+        			dispose();
+        		}
+        	});
+        	button_1.setIcon(new ImageIcon(IBuscarSocio.class.getResource("/Images/Login/210px-Cruz_roja (1).png")));
+        	button_1.setVerticalTextPosition(SwingConstants.BOTTOM);
+        	button_1.setInheritsPopupMenu(true);
+        	button_1.setIgnoreRepaint(true);
+        	button_1.setHorizontalTextPosition(SwingConstants.LEFT);
+        	button_1.setForeground(new Color(165, 42, 42));
+        	button_1.setFont(new Font("Segoe Print", Font.BOLD, 11));
+        	button_1.setBackground(Color.LIGHT_GRAY);
+        	button_1.setBounds(538, 372, 105, 23);
+        	panel.add(button_1);
+        	
+        	JButton button_2 = new JButton("Limpiar Tabla");
+        	button_2.setIcon(new ImageIcon(IBuscarSocio.class.getResource("/Images/Login/8fc03fbe37e8ed0e1e784244c68f3fe8.png")));
+        	button_2.setBackground(Color.WHITE);
+        	button_2.setBounds(501, 82, 141, 23);
+        	panel.add(button_2);
+        	btnBucar.addMouseListener(new MouseAdapter() {
+        		@Override
+        		public void mouseClicked(MouseEvent arg0) {
+        			if(rdbtnDni.isSelected()==true){;
+        			int cant = SociosDB.buscarXDNI((Integer.parseInt(txBuscado.getText()))).size();
+        			if(cant==0){ JOptionPane.showMessageDialog(null,"No se econtro ningun socio");}
+        			else{
+        			for(int x=0;x<=cant ;x++) {
+        				entity.Socio s= new entity.Socio();
+        				ArrayList<Socio> sl = SociosDB.buscarXDNI(Integer.parseInt(txBuscado.getText()));
+        				s = sl.get(x);
+        				modelo.addRow(new Object[]{s.getDniSocio(),s.getIdentidad(),s.getDomicilio(),s.getSexo(),s.getTelefono()});
+        			}
+        			}
+        			}
+        			if(rdbtnNombreYApellido.isSelected()==true){
+        				int cant =SociosDB.buscarXIdentidad(txBuscado.getText().toUpperCase()).size();
+        				if(cant==0){ JOptionPane.showMessageDialog(null,"No se econtro ningun socio");}
+        				else{
+        				for(int x=0;x<=cant;x++){
+        					ArrayList<Socio> sl = SociosDB.buscarXIdentidad(txBuscado.getText().toUpperCase());
+        					entity.Socio s = new Socio();
+        					s = sl.get(x);
+        					modelo.addRow(new Object[]{s.getDniSocio(),s.getIdentidad(),s.getDomicilio(),s.getSexo(),s.getTelefono()});
+        			}
+        			}
+        			}
+        		
+        		}
+        	});
+        	btnBucar.addActionListener(new ActionListener() {
+        		public void actionPerformed(ActionEvent arg0) {
+        		}
+        	});
+        }
+		
+		
+		setBounds(100, 100, 683, 470);
 		getContentPane().setLayout(null);
-		{
-			txBuscado = new JTextField();
-			txBuscado.setBounds(10, 29, 431, 20);
-			getContentPane().add(txBuscado);
-			txBuscado.setColumns(10);
-		}
-		
-		rdbtnDni = new JRadioButton("D.N.I");
-		buttonGroup.add(rdbtnDni);
-		rdbtnDni.setBounds(112, 67, 109, 23);
-		getContentPane().add(rdbtnDni);
-		
-		JRadioButton rdbtnNombreYApellido = new JRadioButton("Nombre y Apellido");
-		buttonGroup.add(rdbtnNombreYApellido);
-		rdbtnNombreYApellido.setBounds(223, 67, 136, 23);
-		getContentPane().add(rdbtnNombreYApellido);
-		
-		
-		JLabel lblBuscarPor = new JLabel("Buscar por:");
-		lblBuscarPor.setBounds(10, 71, 66, 14);
-		getContentPane().add(lblBuscarPor);
-		
-		
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(25, 108, 632, 254);
-		getContentPane().add(scrollPane);
-		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"DNI", "Identidad", "Direcci\u00F3n", "Sexo", "Telefono"
-			}
-		));
-		DefaultTableModel modelo = (DefaultTableModel)table.getModel();
-		
-		
-		scrollPane.setViewportView(table);
-		
-		
-		{
-			JButton btnBucar = new JButton("Buscar");
-			btnBucar.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent arg0) {
-					if(rdbtnDni.isSelected()==true){;
-					int cant = SociosDB.buscarXDNI((Integer.parseInt(txBuscado.getText()))).size();
-					if(cant==0){ JOptionPane.showMessageDialog(null,"No se econtro ningun socio");}
-					else{
-					for(int x=0;x<=cant ;x++) {
-						entity.Socio s= new entity.Socio();
-						ArrayList<Socio> sl = SociosDB.buscarXDNI(Integer.parseInt(txBuscado.getText()));
-						s = sl.get(x);
-						modelo.addRow(new Object[]{s.getDniSocio(),s.getIdentidad(),s.getDomicilio(),s.getSexo(),s.getTelefono()});
-					}
-					}
-					}
-					if(rdbtnNombreYApellido.isSelected()==true){
-						int cant =SociosDB.buscarXIdentidad(txBuscado.getText().toUpperCase()).size();
-						if(cant==0){ JOptionPane.showMessageDialog(null,"No se econtro ningun socio");}
-						else{
-						for(int x=0;x<=cant;x++){
-							ArrayList<Socio> sl = SociosDB.buscarXIdentidad(txBuscado.getText().toUpperCase());
-							entity.Socio s = new Socio();
-							s = sl.get(x);
-							modelo.addRow(new Object[]{s.getDniSocio(),s.getIdentidad(),s.getDomicilio(),s.getSexo(),s.getTelefono()});
-					}
-					}
-					}
-				
-				}
-			});
-			btnBucar.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-				}
-			});
-			btnBucar.setBounds(532, 28, 89, 23);
-			getContentPane().add(btnBucar);
-		}
 		
 		
 		/*for(int x=0;x<SociosDB.buscarXDNI(Integer.parseInt(txBuscado.getText())).size();x++) {
