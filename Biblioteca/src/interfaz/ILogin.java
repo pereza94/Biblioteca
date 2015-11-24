@@ -31,7 +31,7 @@ import java.awt.Font;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 import javax.swing.JPasswordField;
 
-public class Login extends JFrame {
+public class ILogin extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txUSer;
@@ -45,7 +45,7 @@ public class Login extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login frame = new Login();
+					ILogin frame = new ILogin();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,7 +57,7 @@ public class Login extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Login() {
+	public ILogin() {
 		setTitle("Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 411, 264);
@@ -124,12 +124,12 @@ public class Login extends JFrame {
         btnAceptar.setInheritsPopupMenu(true);
         btnAceptar.setIgnoreRepaint(true);
         btnAceptar.setVerticalTextPosition(SwingConstants.BOTTOM);
-        btnAceptar.setIcon(new ImageIcon(Login.class.getResource("/Images/Login/checkok.jpg")));
+        btnAceptar.setIcon(new ImageIcon(ILogin.class.getResource("/Images/Login/checkok.jpg")));
         btnAceptar.setBounds(129, 164, 105, 23);
         panel.add(btnAceptar);
         
         JButton btnCerrar = new JButton("Cerrar");
-        btnCerrar.setIcon(new ImageIcon(Login.class.getResource("/Images/Login/210px-Cruz_roja (1).png")));
+        btnCerrar.setIcon(new ImageIcon(ILogin.class.getResource("/Images/Login/210px-Cruz_roja (1).png")));
         btnCerrar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
@@ -146,7 +146,7 @@ public class Login extends JFrame {
         panel.add(btnCerrar);
         
         JLabel label = DefaultComponentFactory.getInstance().createLabel("");
-        label.setIcon(new ImageIcon(Login.class.getResource("/Images/Login/logoFacu.png")));
+        label.setIcon(new ImageIcon(ILogin.class.getResource("/Images/Login/logoFacu.png")));
         label.setBounds(248, 79, 120, 45);
         panel.add(label);
         panel.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{txUSer, txtPsw, btnAceptar, btnCerrar}));

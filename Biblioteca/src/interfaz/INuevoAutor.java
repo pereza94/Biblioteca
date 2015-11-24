@@ -113,6 +113,7 @@ public class INuevoAutor extends JDialog {
 	        button_1.setIcon(new ImageIcon(INuevoAutor.class.getResource("/Images/Login/210px-Cruz_roja (1).png")));
 	        button_1.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent arg0) {
+	        		dispose();
 	        	}
 	        });
 	        button_1.setVerticalTextPosition(SwingConstants.BOTTOM);

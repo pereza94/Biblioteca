@@ -26,7 +26,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class BuscarSocio extends JDialog {
+public class IBuscarSocio extends JDialog {
 	private JTextField txBuscado;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JTable table;
@@ -36,7 +36,7 @@ public class BuscarSocio extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			BuscarSocio dialog = new BuscarSocio();
+			IBuscarSocio dialog = new IBuscarSocio();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -47,7 +47,7 @@ public class BuscarSocio extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public BuscarSocio() {
+	public IBuscarSocio() {
 		JRadioButton rdbtnDni;
 		
 		setBounds(100, 100, 744, 489);

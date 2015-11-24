@@ -28,7 +28,7 @@ import java.awt.Choice;
 import org.freixas.jcalendar.JCalendar;
 import org.freixas.jcalendar.JCalendarCombo;
 
-public class NuevoLibro extends JDialog {
+public class INuevoLibro extends JDialog {
 	private JTextField txISBN;
 	private JTextField txTexto;
 	private JTextField txAutor1;
@@ -44,7 +44,7 @@ public class NuevoLibro extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			NuevoLibro dialog = new NuevoLibro();
+			INuevoLibro dialog = new INuevoLibro();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -55,7 +55,7 @@ public class NuevoLibro extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public NuevoLibro() {
+	public INuevoLibro() {
 		setTitle("Nuevo Libro");
 		setBounds(100, 100, 529, 384);
 		getContentPane().setLayout(null);
@@ -119,7 +119,7 @@ public class NuevoLibro extends JDialog {
         		dispose();
         	}
         });
-        button_1.setIcon(new ImageIcon(NuevoLibro.class.getResource("/Images/Login/210px-Cruz_roja (1).png")));
+        button_1.setIcon(new ImageIcon(INuevoLibro.class.getResource("/Images/Login/210px-Cruz_roja (1).png")));
         button_1.setVerticalTextPosition(SwingConstants.BOTTOM);
         button_1.setInheritsPopupMenu(true);
         button_1.setIgnoreRepaint(true);
@@ -194,7 +194,7 @@ public class NuevoLibro extends JDialog {
         panel.add(calendarCombo);
        
         
-        btnNewButton.setIcon(new ImageIcon(NuevoLibro.class.getResource("/Images/Login/lupa (1).png")));
+        btnNewButton.setIcon(new ImageIcon(INuevoLibro.class.getResource("/Images/Login/lupa (1).png")));
         btnNewButton.setBounds(243, 123, 151, 23);
         panel.add(btnNewButton);
         
@@ -227,7 +227,7 @@ public class NuevoLibro extends JDialog {
         		
         	}
         });
-        button.setIcon(new ImageIcon(NuevoLibro.class.getResource("/Images/Login/checkok.jpg")));
+        button.setIcon(new ImageIcon(INuevoLibro.class.getResource("/Images/Login/checkok.jpg")));
         button.setVerticalTextPosition(SwingConstants.BOTTOM);
         button.setInheritsPopupMenu(true);
         button.setIgnoreRepaint(true);

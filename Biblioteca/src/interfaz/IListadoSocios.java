@@ -16,7 +16,7 @@ import javax.swing.JList;
 import javax.swing.JTable;
 import java.awt.Color;
 
-public class ListadoSocios extends JDialog {
+public class IListadoSocios extends JDialog {
 	private JTable table;
 
 	/**
@@ -24,7 +24,7 @@ public class ListadoSocios extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			ListadoSocios dialog = new ListadoSocios();
+			IListadoSocios dialog = new IListadoSocios();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -35,7 +35,7 @@ public class ListadoSocios extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ListadoSocios() {
+	public IListadoSocios() {
 		setBounds(100, 100, 619, 300);
 		getContentPane().setLayout(null);
 		{
