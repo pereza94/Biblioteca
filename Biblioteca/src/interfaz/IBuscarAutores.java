@@ -143,6 +143,17 @@ public class IBuscarAutores extends JDialog {
 		btnBuscar.setBounds(541, 28, 126, 23);
 		getContentPane().add(btnBuscar);
 		
+		JButton btnAgregarAutor = new JButton("Agregar Autor");
+		btnAgregarAutor.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				INuevoAutor n = new INuevoAutor();
+				n.setVisible(true);
+			}
+		});
+		btnAgregarAutor.setBounds(21, 361, 126, 23);
+		getContentPane().add(btnAgregarAutor);
+		
 		
 	
 	}
