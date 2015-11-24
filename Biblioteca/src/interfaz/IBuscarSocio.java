@@ -62,7 +62,7 @@ public class IBuscarSocio extends JDialog {
 		panel.setForeground(new Color(0, 0, 128));
 		panel.setBounds(10, 11, 655, 406);
 		getContentPane().add(panel);
-		Border bordejpanel = new TitledBorder(new EtchedBorder(),"Buscar Libro");
+		Border bordejpanel = new TitledBorder(new EtchedBorder(),"Buscar Socio");
         panel.setBorder(bordejpanel);
         panel.setLayout(null);
         {
@@ -122,19 +122,19 @@ public class IBuscarSocio extends JDialog {
         	lblBuscar.setBounds(20, 40, 52, 14);
         	panel.add(lblBuscar);
         	
-        	JButton button = new JButton("Nuevo Autor");
-        	button.addMouseListener(new MouseAdapter() {
+        	JButton btnNuevoSocio = new JButton("Nuevo Socio");
+        	btnNuevoSocio.addMouseListener(new MouseAdapter() {
         		@Override
         		public void mouseClicked(MouseEvent e) {
         			INuevoSocio ns= new INuevoSocio();
         			ns.setVisible(true);
         		}
         	});
-        	button.setIcon(new ImageIcon(IBuscarSocio.class.getResource("/Images/Login/red-sign-computer-green-icon-mark-symbol-cartoon.png")));
-        	button.setForeground(new Color(0, 102, 0));
-        	button.setBackground(SystemColor.activeCaptionBorder);
-        	button.setBounds(10, 372, 142, 24);
-        	panel.add(button);
+        	btnNuevoSocio.setIcon(new ImageIcon(IBuscarSocio.class.getResource("/Images/Login/red-sign-computer-green-icon-mark-symbol-cartoon.png")));
+        	btnNuevoSocio.setForeground(new Color(0, 102, 0));
+        	btnNuevoSocio.setBackground(SystemColor.activeCaptionBorder);
+        	btnNuevoSocio.setBounds(10, 372, 142, 24);
+        	panel.add(btnNuevoSocio);
         	
         	JButton button_1 = new JButton("Cerrar");
         	button_1.addMouseListener(new MouseAdapter() {
@@ -155,6 +155,16 @@ public class IBuscarSocio extends JDialog {
         	panel.add(button_1);
         	
         	JButton button_2 = new JButton("Limpiar Tabla");
+        	button_2.addMouseListener(new MouseAdapter() {
+        		@Override
+        		public void mouseClicked(MouseEvent e) {
+        			for (int i = 0; i < table.getRowCount(); i++) {
+       		           modelo.removeRow(i);
+       		           i-=1;
+       		   }
+        	
+        		}
+        	});
         	button_2.setIcon(new ImageIcon(IBuscarSocio.class.getResource("/Images/Login/8fc03fbe37e8ed0e1e784244c68f3fe8.png")));
         	button_2.setBackground(Color.WHITE);
         	button_2.setBounds(501, 82, 141, 23);
@@ -166,7 +176,7 @@ public class IBuscarSocio extends JDialog {
         			int cant = SociosDB.buscarXDNI((Integer.parseInt(txBuscado.getText()))).size();
         			if(cant==0){ JOptionPane.showMessageDialog(null,"No se econtro ningun socio");}
         			else{
-        			for(int x=0;x<=cant ;x++) {
+        			for(int x=0;x<cant ;x++) {
         				entity.Socio s= new entity.Socio();
         				ArrayList<Socio> sl = SociosDB.buscarXDNI(Integer.parseInt(txBuscado.getText()));
         				s = sl.get(x);
@@ -178,7 +188,7 @@ public class IBuscarSocio extends JDialog {
         				int cant =SociosDB.buscarXIdentidad(txBuscado.getText().toUpperCase()).size();
         				if(cant==0){ JOptionPane.showMessageDialog(null,"No se econtro ningun socio");}
         				else{
-        				for(int x=0;x<=cant;x++){
+        				for(int x=0;x<cant;x++){
         					ArrayList<Socio> sl = SociosDB.buscarXIdentidad(txBuscado.getText().toUpperCase());
         					entity.Socio s = new Socio();
         					s = sl.get(x);

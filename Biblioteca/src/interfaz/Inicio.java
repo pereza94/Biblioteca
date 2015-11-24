@@ -43,11 +43,11 @@ public class Inicio extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Nuevo Socio");
+		JButton btnNewButton = new JButton("Socio");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				INuevoSocio frame = new INuevoSocio();
+				IBuscarSocio frame = new IBuscarSocio();
 				frame.setVisible(true);
 			}
 		});
@@ -58,5 +58,27 @@ public class Inicio extends JFrame {
 		});
 		btnNewButton.setBounds(20, 26, 177, 23);
 		contentPane.add(btnNewButton);
+		
+		JButton btnLibro = new JButton("Libro");
+		btnLibro.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				IBuscarLibro bl = new IBuscarLibro();
+				bl.setVisible(true);
+			}
+		});
+		btnLibro.setBounds(244, 26, 146, 23);
+		contentPane.add(btnLibro);
+		
+		JButton btnAutor = new JButton("Autor");
+		btnAutor.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				IBuscarAutores ba = new IBuscarAutores();
+				ba.setVisible(true);
+			}
+		});
+		btnAutor.setBounds(20, 79, 177, 23);
+		contentPane.add(btnAutor);
 	}
 }
