@@ -1,22 +1,25 @@
 package entity;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Libro {
-	private Autor autor;
+	private String autor;
 	private String materia;
 	private String edicion;
-	private Integer anio;
+	private String editorial;
+	private Date anio;
+	private String titulo;
 	private String isbn;
 	private Reserva reservaEnLibro;
 	private List<Ejemplar> numEjemplar;
 	
-	public Autor getAutor() {
+	public String getAutor() {
 		return autor;
 	}
-	public void setAutor(Autor autor) {
-		this.autor = autor;
+	public void setAutor(String string) {
+		this.autor = string;
 	}
 	public String getMateria() {
 		return materia;
@@ -30,12 +33,7 @@ public class Libro {
 	public void setEdicion(String edicion) {
 		this.edicion = edicion;
 	}
-	public Integer getAnio() {
-		return anio;
-	}
-	public void setAnio(Integer anio) {
-		this.anio = anio;
-	}
+	
 	public String getIsbn() {
 		return isbn;
 	}
@@ -53,6 +51,24 @@ public class Libro {
 	}
 	public void setNumEjemplar(List<Ejemplar> numEjemplar) {
 		this.numEjemplar = numEjemplar;
+	}
+	public String getTitulo() {
+		return titulo;
+	}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+	public String getEditorial() {
+		return editorial;
+	}
+	public void setEditorial(String editorial) {
+		this.editorial = editorial;
+	}
+	public Date getAnio() {
+		return anio;
+	}
+	public void setAnio(Date anio) {
+		this.anio = anio;
 	}
 	
 	

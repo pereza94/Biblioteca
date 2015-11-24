@@ -203,7 +203,7 @@ public class INuevoLibro extends JDialog {
         	@Override
         	public void mouseClicked(MouseEvent e) {
         		String isbn =txISBN.getText();if(isbn.length()!= 10){JOptionPane.showMessageDialog(null, "El ISBN debe poseer 10(diez) caracteres");}
-        		String titulo =txTexto.getText();
+        		String titulo =txTexto.getText().toUpperCase();
         		//Date fecha = new ; System.out.println(""+fecha);
         		Calendar calendar = calendarCombo.getCalendar().getInstance();
         		calendar.set(Calendar.YEAR, calendarCombo.getCalendar().get(calendar.YEAR));
