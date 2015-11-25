@@ -29,8 +29,8 @@ public class AutorDB {
 	         System.out.println("Opened database successfully");
 
 	         stmt = c.createStatement();
-	         String sql = "INSERT INTO autor (autor) "
-	               + "VALUES ('"+identidad+"' );";
+	         String sql = "INSERT INTO autor (idautor,autor) "
+	               + "VALUES (NEXTVAL('sec_idautor'),'"+identidad+"' );";
 	         stmt.executeUpdate(sql);
 	         stmt.close();
 	         c.commit();
