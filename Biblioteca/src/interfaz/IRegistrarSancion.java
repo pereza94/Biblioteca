@@ -2,11 +2,15 @@ package interfaz;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
@@ -57,7 +61,7 @@ public class IRegistrarSancion extends JDialog {
         txDNI.setColumns(10);
        
         JPanel panel_1 = new JPanel();
-        panel_1.setBounds(48, 76, 444, 140);
+        panel_1.setBounds(48, 76, 453, 163);
         panel.add(panel_1);
         Border bordejpanel1 = new TitledBorder(new EtchedBorder(),"Datos Socios");
         panel_1.setBorder(bordejpanel1);
@@ -95,21 +99,29 @@ public class IRegistrarSancion extends JDialog {
         lblCSexo.setBounds(81, 112, 231, 14);
         panel_1.add(lblCSexo);
         
+        JLabel lblSancionesAnteriores = new JLabel("Sanciones Anteriores");
+        lblSancionesAnteriores.setBounds(10, 137, 124, 14);
+        panel_1.add(lblSancionesAnteriores);
+        
+        JLabel lblCSancionesAnterios = new JLabel("");
+        lblCSancionesAnterios.setBounds(160, 137, 46, 14);
+        panel_1.add(lblCSancionesAnterios);
+        
         JLabel lblCantidadDeDas = new JLabel("Cantidad de D\u00EDas");
-        lblCantidadDeDas.setBounds(48, 241, 101, 14);
+        lblCantidadDeDas.setBounds(89, 252, 101, 14);
         panel.add(lblCantidadDeDas);
         
         JSpinner spinner = new JSpinner();
         spinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-        spinner.setBounds(148, 238, 55, 20);
+        spinner.setBounds(189, 249, 55, 20);
         panel.add(spinner);
         
         JLabel lblFechaFinDe = new JLabel("Fecha Fin de la Sanci\u00F3n");
-        lblFechaFinDe.setBounds(257, 241, 147, 14);
+        lblFechaFinDe.setBounds(298, 252, 147, 14);
         panel.add(lblFechaFinDe);
         
         JLabel lblCFechaFin = new JLabel("");
-        lblCFechaFin.setBounds(393, 241, 124, 14);
+        lblCFechaFin.setBounds(413, 252, 124, 14);
         panel.add(lblCFechaFin);
         
         JButton btnVolver = new JButton("Volver");
@@ -122,12 +134,25 @@ public class IRegistrarSancion extends JDialog {
         btnVolver.setBounds(557, 335, 89, 23);
         panel.add(btnVolver);
         
+        DateFormat calendarCombo;
         JButton btnRegistrarSancin = new JButton("Registrar Sanci\u00F3n");
         btnRegistrarSancin.addMouseListener(new MouseAdapter() {
         	@Override
         	public void mouseClicked(MouseEvent e) {
         		int a = (int) spinner.getValue(); 
-        		
+        		int b = ctrolDataBase.SancionDB.obtenerNumeroSancion();
+        		System.out.print(b);
+				Calendar calendar = Calendar.getInstance();
+				java.sql.Date date = new java.sql.Date(calendar.getTime().getTime());
+				Date fechaHoy = date;
+				Calendar calendar2 = Calendar.getInstance();
+				calendar2.setTime(date); // Configuramos la fecha que se recibe
+				calendar2.add(Calendar.DAY_OF_YEAR, a);  // numero de días a añadir, o restar en caso de días<0
+				java.sql.Date datefin = new java.sql.Date(calendar2.getTime().getTime());
+				ctrolDataBase.SancionDB.insertarSancion(b, Integer.parseInt(txDNI.getText()),date,  datefin);
+				lblCFechaFin.setText(ctrolDataBase.EjemplarDB.convertirFechaString(datefin));
+				
+				JOptionPane.showMessageDialog(null, "Sanción Guardada");
         	}
         });
         btnRegistrarSancin.setBounds(393, 335, 144, 23);
@@ -148,6 +173,8 @@ public class IRegistrarSancion extends JDialog {
         		System.out.println(socio.getSexo());
         		if(socio.getSexo().equals("M") ){lblCSexo.setText("Masculino");}
         		else{lblCSexo.setText("Femenino");}
+        		
+        		lblCSancionesAnterios.setText(String.valueOf((ctrolDataBase.SancionDB.sancionesAnteriores(Integer.parseInt(txDNI.getText())))));
         		
         	}
         });
