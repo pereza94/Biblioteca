@@ -20,6 +20,10 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import entity.Socio;
+import java.awt.Color;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+import java.awt.SystemColor;
 
 public class IRegistrarSancion extends JDialog {
 	private JTextField txDNI;
@@ -42,25 +46,28 @@ public class IRegistrarSancion extends JDialog {
 	 */
 	public IRegistrarSancion() {
 		setBounds(100, 100, 704, 420);
+		getContentPane().setLayout(null);
 		
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(20, 11, 670, 411);
+		panel.setBounds(0, 0, 688, 381);
 		getContentPane().add(panel);
 		Border bordejpanel = new TitledBorder(new EtchedBorder(),"Registrar Sanción");
         panel.setBorder(bordejpanel);
         panel.setLayout(null);
         
         JLabel lblDni = new JLabel("DNI");
-        lblDni.setBounds(38, 25, 46, 14);
+        lblDni.setForeground(Color.BLUE);
+        lblDni.setBounds(139, 25, 46, 14);
         panel.add(lblDni);
         
         txDNI = new JTextField();
-        txDNI.setBounds(77, 22, 86, 20);
+        txDNI.setBounds(195, 22, 86, 20);
         panel.add(txDNI);
         txDNI.setColumns(10);
        
         JPanel panel_1 = new JPanel();
+        panel_1.setForeground(new Color(153, 204, 102));
         panel_1.setBounds(48, 76, 453, 163);
         panel.add(panel_1);
         Border bordejpanel1 = new TitledBorder(new EtchedBorder(),"Datos Socios");
@@ -68,46 +75,57 @@ public class IRegistrarSancion extends JDialog {
         panel_1.setLayout(null);
         
         JLabel lblIdentidad = new JLabel("Identidad");
+        lblIdentidad.setForeground(new Color(0, 128, 0));
         lblIdentidad.setBounds(10, 32, 79, 14);
         panel_1.add(lblIdentidad);
         
         JLabel lblLocalidad = new JLabel("Direcci\u00F3n");
+        lblLocalidad.setForeground(new Color(0, 128, 0));
         lblLocalidad.setBounds(10, 62, 80, 14);
         panel_1.add(lblLocalidad);
         
         JLabel lblTelefono = new JLabel("Telefono");
+        lblTelefono.setForeground(new Color(0, 128, 0));
         lblTelefono.setBounds(10, 87, 80, 14);
         panel_1.add(lblTelefono);
         
         JLabel lblSexo = new JLabel("Sexo");
+        lblSexo.setForeground(new Color(0, 128, 0));
         lblSexo.setBounds(10, 112, 80, 14);
         panel_1.add(lblSexo);
         
         JLabel lblCIDentidad = new JLabel("");
+        lblCIDentidad.setForeground(new Color(153, 204, 102));
         lblCIDentidad.setBounds(81, 32, 231, 14);
         panel_1.add(lblCIDentidad);
         
         JLabel lblCDirección = new JLabel("");
+        lblCDirección.setForeground(new Color(153, 204, 102));
         lblCDirección.setBounds(81, 62, 231, 14);
         panel_1.add(lblCDirección);
         
         JLabel lblCTelefono = new JLabel("");
+        lblCTelefono.setForeground(new Color(153, 204, 102));
         lblCTelefono.setBounds(81, 87, 231, 14);
         panel_1.add(lblCTelefono);
         
         JLabel lblCSexo = new JLabel("");
+        lblCSexo.setForeground(new Color(153, 204, 102));
         lblCSexo.setBounds(81, 112, 231, 14);
         panel_1.add(lblCSexo);
         
         JLabel lblSancionesAnteriores = new JLabel("Sanciones Anteriores");
+        lblSancionesAnteriores.setForeground(new Color(0, 128, 0));
         lblSancionesAnteriores.setBounds(10, 137, 124, 14);
         panel_1.add(lblSancionesAnteriores);
         
         JLabel lblCSancionesAnterios = new JLabel("");
+        lblCSancionesAnterios.setForeground(new Color(153, 204, 102));
         lblCSancionesAnterios.setBounds(160, 137, 46, 14);
         panel_1.add(lblCSancionesAnterios);
         
         JLabel lblCantidadDeDas = new JLabel("Cantidad de D\u00EDas");
+        lblCantidadDeDas.setForeground(new Color(153, 0, 0));
         lblCantidadDeDas.setBounds(89, 252, 101, 14);
         panel.add(lblCantidadDeDas);
         
@@ -117,14 +135,19 @@ public class IRegistrarSancion extends JDialog {
         panel.add(spinner);
         
         JLabel lblFechaFinDe = new JLabel("Fecha Fin de la Sanci\u00F3n");
+        lblFechaFinDe.setForeground(new Color(153, 0, 0));
         lblFechaFinDe.setBounds(298, 252, 147, 14);
         panel.add(lblFechaFinDe);
         
         JLabel lblCFechaFin = new JLabel("");
-        lblCFechaFin.setBounds(413, 252, 124, 14);
+        lblCFechaFin.setForeground(SystemColor.textHighlight);
+        lblCFechaFin.setHorizontalAlignment(SwingConstants.LEFT);
+        lblCFechaFin.setBounds(432, 252, 124, 14);
         panel.add(lblCFechaFin);
         
         JButton btnVolver = new JButton("Volver");
+        btnVolver.setBackground(Color.LIGHT_GRAY);
+        btnVolver.setForeground(new Color(51, 51, 204));
         btnVolver.addMouseListener(new MouseAdapter() {
         	@Override
         	public void mouseClicked(MouseEvent arg0) {
@@ -136,6 +159,9 @@ public class IRegistrarSancion extends JDialog {
         
         DateFormat calendarCombo;
         JButton btnRegistrarSancin = new JButton("Registrar Sanci\u00F3n");
+        btnRegistrarSancin.setBackground(Color.LIGHT_GRAY);
+        btnRegistrarSancin.setIcon(new ImageIcon(IRegistrarSancion.class.getResource("/Images/Login/checkok.jpg")));
+        btnRegistrarSancin.setForeground(new Color(0, 102, 0));
         btnRegistrarSancin.addMouseListener(new MouseAdapter() {
         	@Override
         	public void mouseClicked(MouseEvent e) {
@@ -155,12 +181,15 @@ public class IRegistrarSancion extends JDialog {
 				JOptionPane.showMessageDialog(null, "Sanción Guardada");
         	}
         });
-        btnRegistrarSancin.setBounds(393, 335, 144, 23);
+        btnRegistrarSancin.setBounds(351, 335, 186, 23);
         panel.add(btnRegistrarSancin);
         
         
         
         JButton btnBuscar = new JButton("Buscar");
+        btnBuscar.setBackground(Color.LIGHT_GRAY);
+        btnBuscar.setForeground(Color.BLUE);
+        btnBuscar.setIcon(new ImageIcon(IRegistrarSancion.class.getResource("/Images/Login/lupa (1).png")));
         btnBuscar.addMouseListener(new MouseAdapter() {
         	@Override
         	public void mouseClicked(MouseEvent e) {
@@ -178,7 +207,7 @@ public class IRegistrarSancion extends JDialog {
         		
         	}
         });
-        btnBuscar.setBounds(183, 21, 89, 23);
+        btnBuscar.setBounds(313, 21, 115, 23);
         panel.add(btnBuscar);
         
         
