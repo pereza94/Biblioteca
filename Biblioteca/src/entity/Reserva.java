@@ -4,6 +4,9 @@ import java.util.Date;
 
 public class Reserva {
 	private Date fechaRegistro;
+	private Date fechaFin;
+	private int dni;
+	private int codEjemplar;
 	private Integer numReserva;
 	private Socio socio;
 	
@@ -24,6 +27,24 @@ public class Reserva {
 	}
 	public void setSocio(Socio socio) {
 		this.socio = socio;
+	}
+	public Date getFechaFin() {
+		return fechaFin;
+	}
+	public void setFechaFin(Date fechaFin) {
+		this.fechaFin = fechaFin;
+	}
+	public int getDni() {
+		return dni;
+	}
+	public void setDni(int dni) {
+		this.dni = dni;
+	}
+	public int getCodEjemplar() {
+		return codEjemplar;
+	}
+	public void setCodEjemplar(int codEjemplar) {
+		this.codEjemplar = codEjemplar;
 	}
 	
 	

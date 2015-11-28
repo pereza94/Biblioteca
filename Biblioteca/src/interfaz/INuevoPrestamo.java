@@ -26,6 +26,9 @@ import org.freixas.jcalendar.JCalendarCombo;
 
 import entity.Ejemplar;
 import entity.Socio;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.Font;
+import java.awt.Cursor;
 
 public class INuevoPrestamo extends JDialog {
 	private JTextField txBuscado;
@@ -140,6 +143,18 @@ public class INuevoPrestamo extends JDialog {
         panel_1.setBorder(bordejpanel_1);
         panel_1.setLayout(null);
         
+        JCalendarCombo calendarCombo = new JCalendarCombo();
+        calendarCombo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        calendarCombo.setBackground(new Color(0, 153, 255));
+        calendarCombo.setForeground(Color.LIGHT_GRAY);
+        calendarCombo.setDayOfWeekFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
+        calendarCombo.setDayFont(new Font("Britannic Bold", Font.BOLD, 12));
+        calendarCombo.setEditable(true);
+        calendarCombo.setModel(new DefaultComboBoxModel(new String[] {"Viernes 27 de noviembre "}));
+        calendarCombo.setNullAllowed(false);
+        calendarCombo.setBounds(95, 137, 185, 20);
+        panel_1.add(calendarCombo);
+        
         JLabel lblDni = new JLabel("DNI");
         lblDni.setBounds(10, 32, 46, 14);
         panel_1.add(lblDni);
@@ -161,10 +176,6 @@ public class INuevoPrestamo extends JDialog {
         JLabel lblFechaLimite = new JLabel("Fecha Limite");
         lblFechaLimite.setBounds(10, 140, 75, 14);
         panel_1.add(lblFechaLimite);
-        
-        JCalendarCombo calendarCombo = new JCalendarCombo();
-        calendarCombo.setBounds(95, 137, 182, 20);
-        panel_1.add(calendarCombo);
        
         JPanel panel_2 = new JPanel();
         panel_2.setBounds(336, 314, 332, 214);

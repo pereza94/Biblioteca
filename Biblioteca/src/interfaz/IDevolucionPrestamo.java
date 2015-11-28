@@ -18,6 +18,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.border.BevelBorder;
+import java.awt.Color;
 
 public class IDevolucionPrestamo extends JDialog {
 
@@ -49,6 +51,7 @@ public class IDevolucionPrestamo extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			JPanel panel = new JPanel();
+			panel.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.GRAY, Color.LIGHT_GRAY, null, null));
 			panel.setBounds(10, 11, 395, 104);
 			contentPanel.add(panel);
 			panel.setLayout(null);

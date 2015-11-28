@@ -9,6 +9,9 @@ public class Prestamo {
 	private Date  fechaPrestamo;
 	private Date  fechaLimite;
 	private Date  fechaDevolución;
+	private int dniSocio;
+	private int numPrestamo;
+	private int numEjemplarDB;
 	
 	
 	public Socio getDni() {
@@ -40,6 +43,24 @@ public class Prestamo {
 	}
 	public void setFechaDevolución(Date fechaDevolución) {
 		this.fechaDevolución = fechaDevolución;
+	}
+	public int getDniSocio() {
+		return dniSocio;
+	}
+	public void setDniSocio(int dniSocio) {
+		this.dniSocio = dniSocio;
+	}
+	public int getNumPrestamo() {
+		return numPrestamo;
+	}
+	public void setNumPrestamo(int numPrestamo) {
+		this.numPrestamo = numPrestamo;
+	}
+	public int getNumEjemplarDB() {
+		return numEjemplarDB;
+	}
+	public void setNumEjemplarDB(int numEjemplarDB) {
+		this.numEjemplarDB = numEjemplarDB;
 	}
 
 	
