@@ -66,166 +66,166 @@ public class IBuscarAutores extends JDialog {
 		scrollPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		scrollPane.setBounds(28, 119, 643, 252);
 		getContentPane().add(scrollPane);
-		
-		
+
+
 		JPanel panel = new JPanel();
 		panel.setBounds(20, 11, 670, 411);
 		getContentPane().add(panel);
 		Border bordejpanel = new TitledBorder(new EtchedBorder(),"Nuevo Libro");
-        panel.setBorder(bordejpanel);
-        panel.setLayout(null);
-        
-        JLabel lblBuscar = new JLabel("Buscar");
-        lblBuscar.setBounds(3, 38, 48, 14);
-        panel.add(lblBuscar);
-        lblBuscar.setHorizontalAlignment(SwingConstants.RIGHT);
-        
-        txBuscar = new JTextField();
-        txBuscar.setBounds(61, 35, 453, 20);
-        panel.add(txBuscar);
-        txBuscar.setColumns(10);
-        
-        JRadioButton rdbtnIdAutor = new JRadioButton("ID Autor");
-        rdbtnIdAutor.setBounds(297, 72, 109, 23);
-        panel.add(rdbtnIdAutor);
-        buttonGroup.add(rdbtnIdAutor);
-        
-        JRadioButton rdbtnNombre = new JRadioButton("Nombre");
-        rdbtnNombre.setBounds(136, 72, 109, 23);
-        panel.add(rdbtnNombre);
-        buttonGroup.add(rdbtnNombre);
-        
-        JButton button = new JButton("Cerrar");
-        button.setBounds(555, 377, 105, 23);
-        panel.add(button);
-        button.addMouseListener(new MouseAdapter() {
-        	@Override
-        	public void mouseClicked(MouseEvent arg0) {
-        	dispose();
-        	}
-        });
-        
-        table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"ID Autor", "Identidad"
+		panel.setBorder(bordejpanel);
+		panel.setLayout(null);
+
+		JLabel lblBuscar = new JLabel("Buscar");
+		lblBuscar.setBounds(3, 38, 48, 14);
+		panel.add(lblBuscar);
+		lblBuscar.setHorizontalAlignment(SwingConstants.RIGHT);
+
+		txBuscar = new JTextField();
+		txBuscar.setBounds(61, 35, 453, 20);
+		panel.add(txBuscar);
+		txBuscar.setColumns(10);
+
+		JRadioButton rdbtnIdAutor = new JRadioButton("ID Autor");
+		rdbtnIdAutor.setBounds(297, 72, 109, 23);
+		panel.add(rdbtnIdAutor);
+		buttonGroup.add(rdbtnIdAutor);
+
+		JRadioButton rdbtnNombre = new JRadioButton("Nombre");
+		rdbtnNombre.setBounds(136, 72, 109, 23);
+		panel.add(rdbtnNombre);
+		buttonGroup.add(rdbtnNombre);
+
+		JButton button = new JButton("Cerrar");
+		button.setBounds(555, 377, 105, 23);
+		panel.add(button);
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				dispose();
 			}
-		));
+		});
+
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+						"ID Autor", "Identidad"
+				}
+				));
 		DefaultTableModel modelo = (DefaultTableModel)table.getModel();
-		
-		
+
+
 		scrollPane.setViewportView(table);
-        
-        
-        button.setIcon(new ImageIcon(IBuscarAutores.class.getResource("/Images/Login/210px-Cruz_roja (1).png")));
-        button.setVerticalTextPosition(SwingConstants.BOTTOM);
-        button.setInheritsPopupMenu(true);
-        button.setIgnoreRepaint(true);
-        button.setHorizontalTextPosition(SwingConstants.LEFT);
-        button.setForeground(new Color(165, 42, 42));
-        button.setFont(new Font("Segoe Print", Font.BOLD, 11));
-        button.setBackground(Color.LIGHT_GRAY);
-        
-        JButton btnBuscar = new JButton("Buscar");
-        btnBuscar.setBounds(519, 32, 126, 23);
-        panel.add(btnBuscar);
-        btnBuscar.addMouseListener(new MouseAdapter() {
-        	@Override
-        	public void mouseClicked(MouseEvent e) {
-        		if(rdbtnNombre.isSelected()){
-        			ArrayList<Autor> lista = ctrolDataBase.AutorDB.buscarXPatron(txBuscar.getText());
-        			int cant = lista.size();
-        			for(int x =0;x < cant;x++){
-        				Autor a =lista.get(x);
-        				int idAt = a.getIdAutor();
-        				String nombre = a.getIdentidad();
-        				modelo.addRow(new Object[]{idAt,nombre});
-        			}
-        			
-        		}
-        		if(rdbtnIdAutor.isSelected()){
-        			ArrayList<Autor> lista = ctrolDataBase.AutorDB.buscarXIdAutor(Integer.parseInt(txBuscar.getText()));
-        			int cant = lista.size();
-        				int x=0;
-        			    Autor a =lista.get(x);
-        				int idAt = a.getIdAutor();
-        				String nombre = a.getIdentidad();
-        				modelo.addRow(new Object[]{idAt,nombre});
-        			}
-        			
-        		}
-        	
-        });
-        btnBuscar.setBackground(new Color(192, 192, 192));
-        btnBuscar.setIcon(new ImageIcon(IBuscarAutores.class.getResource("/Images/Login/lupa (1).png")));
-        btnBuscar.setForeground(new Color(100, 149, 237));
-        
-        JButton btnAgregarAutor = new JButton("Nuevo Autor");
-        btnAgregarAutor.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent arg0) {
-        	}
-        });
-        btnAgregarAutor.setBackground(SystemColor.activeCaptionBorder);
-        btnAgregarAutor.setForeground(new Color(0, 102, 0));
-        btnAgregarAutor.setIcon(new ImageIcon(IBuscarAutores.class.getResource("/Images/Login/red-sign-computer-green-icon-mark-symbol-cartoon.png")));
-        btnAgregarAutor.setBounds(10, 377, 142, 24);
-        panel.add(btnAgregarAutor);
-        
-        JButton button_1 = new JButton("Limpiar Tabla");
-        button_1.addMouseListener(new MouseAdapter() {
-        	@Override
-        	public void mouseClicked(MouseEvent e) {
-        		 {
-      		       for (int i = 0; i < table.getRowCount(); i++) {
-      		           modelo.removeRow(i);
-      		           i-=1;
-      		   }
-      		       }
-      	
-        	}
-        });
-        button_1.setBounds(506, 85, 142, 23);
-        panel.add(button_1);
-        button_1.setIcon(new ImageIcon(IBuscarAutores.class.getResource("/Images/Login/8fc03fbe37e8ed0e1e784244c68f3fe8.png")));
-        button_1.setBackground(Color.WHITE);
-        
-        JLabel lblBuscar_1 = new JLabel("Buscar por:");
-        lblBuscar_1.setBounds(10, 76, 66, 14);
-        panel.add(lblBuscar_1);
-        
-        JButton btnBuscarLibrosDe = new JButton("Buscar Libros de un Autor");
-        btnBuscarLibrosDe.addMouseListener(new MouseAdapter() {
-        	@Override
-        	public void mouseClicked(MouseEvent e) {
-        		IBuscarLibrosXAutor bla= new IBuscarLibrosXAutor();
-        		bla.setVisible(true);
-        	}
-        });
-        btnBuscarLibrosDe.setBackground(Color.LIGHT_GRAY);
-        btnBuscarLibrosDe.addKeyListener(new KeyAdapter() {
-        	@Override
-        	public void keyPressed(KeyEvent arg0) {
-        		IBuscarLibrosXAutor bla= new IBuscarLibrosXAutor();
-        		bla.setVisible(true);
-        	}
-        });
-        btnBuscarLibrosDe.setIcon(new ImageIcon(IBuscarAutores.class.getResource("/Images/Login/lupa (1).png")));
-        btnBuscarLibrosDe.setForeground(new Color(0, 0, 255));
-        btnBuscarLibrosDe.setBounds(238, 363, 222, 23);
-        panel.add(btnBuscarLibrosDe);
-        btnAgregarAutor.addMouseListener(new MouseAdapter() {
-        	@Override
-        	public void mouseClicked(MouseEvent arg0) {
-        		INuevoAutor n = new INuevoAutor();
-        		n.setVisible(true);
-        	}
-        });
-		
-		
-		
-		
-	
+
+
+		button.setIcon(new ImageIcon(IBuscarAutores.class.getResource("/Images/Login/210px-Cruz_roja (1).png")));
+		button.setVerticalTextPosition(SwingConstants.BOTTOM);
+		button.setInheritsPopupMenu(true);
+		button.setIgnoreRepaint(true);
+		button.setHorizontalTextPosition(SwingConstants.LEFT);
+		button.setForeground(new Color(165, 42, 42));
+		button.setFont(new Font("Segoe Print", Font.BOLD, 11));
+		button.setBackground(Color.LIGHT_GRAY);
+
+		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.setBounds(519, 32, 126, 23);
+		panel.add(btnBuscar);
+		btnBuscar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(rdbtnNombre.isSelected()){
+					ArrayList<Autor> lista = ctrolDataBase.AutorDB.buscarXPatron(txBuscar.getText());
+					int cant = lista.size();
+					for(int x =0;x < cant;x++){
+						Autor a =lista.get(x);
+						int idAt = a.getIdAutor();
+						String nombre = a.getIdentidad();
+						modelo.addRow(new Object[]{idAt,nombre});
+					}
+
+				}
+				if(rdbtnIdAutor.isSelected()){
+					ArrayList<Autor> lista = ctrolDataBase.AutorDB.buscarXIdAutor(Integer.parseInt(txBuscar.getText()));
+					int cant = lista.size();
+					int x=0;
+					Autor a =lista.get(x);
+					int idAt = a.getIdAutor();
+					String nombre = a.getIdentidad();
+					modelo.addRow(new Object[]{idAt,nombre});
+				}
+
+			}
+
+		});
+		btnBuscar.setBackground(new Color(192, 192, 192));
+		btnBuscar.setIcon(new ImageIcon(IBuscarAutores.class.getResource("/Images/Login/lupa (1).png")));
+		btnBuscar.setForeground(new Color(100, 149, 237));
+
+		JButton btnAgregarAutor = new JButton("Nuevo Autor");
+		btnAgregarAutor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnAgregarAutor.setBackground(SystemColor.activeCaptionBorder);
+		btnAgregarAutor.setForeground(new Color(0, 102, 0));
+		btnAgregarAutor.setIcon(new ImageIcon(IBuscarAutores.class.getResource("/Images/Login/red-sign-computer-green-icon-mark-symbol-cartoon.png")));
+		btnAgregarAutor.setBounds(10, 377, 142, 24);
+		panel.add(btnAgregarAutor);
+
+		JButton button_1 = new JButton("Limpiar Tabla");
+		button_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				{
+					for (int i = 0; i < table.getRowCount(); i++) {
+						modelo.removeRow(i);
+						i-=1;
+					}
+				}
+
+			}
+		});
+		button_1.setBounds(506, 85, 142, 23);
+		panel.add(button_1);
+		button_1.setIcon(new ImageIcon(IBuscarAutores.class.getResource("/Images/Login/8fc03fbe37e8ed0e1e784244c68f3fe8.png")));
+		button_1.setBackground(Color.WHITE);
+
+		JLabel lblBuscar_1 = new JLabel("Buscar por:");
+		lblBuscar_1.setBounds(10, 76, 66, 14);
+		panel.add(lblBuscar_1);
+
+		JButton btnBuscarLibrosDe = new JButton("Buscar Libros de un Autor");
+		btnBuscarLibrosDe.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				IBuscarLibrosXAutor bla= new IBuscarLibrosXAutor();
+				bla.setVisible(true);
+			}
+		});
+		btnBuscarLibrosDe.setBackground(Color.LIGHT_GRAY);
+		btnBuscarLibrosDe.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				IBuscarLibrosXAutor bla= new IBuscarLibrosXAutor();
+				bla.setVisible(true);
+			}
+		});
+		btnBuscarLibrosDe.setIcon(new ImageIcon(IBuscarAutores.class.getResource("/Images/Login/lupa (1).png")));
+		btnBuscarLibrosDe.setForeground(new Color(0, 0, 255));
+		btnBuscarLibrosDe.setBounds(238, 363, 222, 23);
+		panel.add(btnBuscarLibrosDe);
+		btnAgregarAutor.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				INuevoAutor n = new INuevoAutor();
+				n.setVisible(true);
+			}
+		});
+
+
+
+
+
 	}
 }

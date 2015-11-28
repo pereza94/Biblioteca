@@ -14,7 +14,7 @@ public class Libro {
 	private String isbn;
 	private Reserva reservaEnLibro;
 	private List<Ejemplar> numEjemplar;
-	
+
 	public String getAutor() {
 		return autor;
 	}
@@ -33,7 +33,7 @@ public class Libro {
 	public void setEdicion(String edicion) {
 		this.edicion = edicion;
 	}
-	
+
 	public String getIsbn() {
 		return isbn;
 	}
@@ -70,8 +70,8 @@ public class Libro {
 	public void setAnio(Date anio) {
 		this.anio = anio;
 	}
-	
-	
-	
+
+
+
 
 }

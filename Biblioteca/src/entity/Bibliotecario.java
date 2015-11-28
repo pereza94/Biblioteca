@@ -22,6 +22,6 @@ public class Bibliotecario {
 	public void setSala(Integer sala) {
 		this.sala = sala;
 	}
-	
+
 
 }

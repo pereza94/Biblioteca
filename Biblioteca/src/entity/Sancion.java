@@ -22,8 +22,8 @@ public class Sancion {
 	public void setDniSocio(Socio dniSocio) {
 		this.dniSocio = dniSocio;
 	}
-	
-	
-	
+
+
+
 
 }

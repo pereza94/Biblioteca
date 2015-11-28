@@ -76,14 +76,14 @@ public class IDevolucionPrestamo extends JDialog {
 				lblCdiasDemora.setBounds(156, 63, 46, 14);
 				panel.add(lblCdiasDemora);
 			}
-			
-			
-				JLabel lblfechaCLimite = new JLabel("");
-				lblfechaCLimite.setBounds(104, 63, 157, 14);
-				panel.add(lblfechaCLimite);
-			
-			
-			
+
+
+			JLabel lblfechaCLimite = new JLabel("");
+			lblfechaCLimite.setBounds(104, 63, 157, 14);
+			panel.add(lblfechaCLimite);
+
+
+
 			{
 				JButton btnRegistrar = new JButton("Registrar");
 				btnRegistrar.addMouseListener(new MouseAdapter() {
@@ -95,18 +95,18 @@ public class IDevolucionPrestamo extends JDialog {
 						ctrolDataBase.PrestamoDB.RegistarDevolución((java.sql.Date) fechaHoy, Integer.parseInt(textField.getText()));
 						Prestamo p = ctrolDataBase.PrestamoDB.VerificarFechas((java.sql.Date) fechaHoy, Integer.parseInt(textField.getText()));
 						if(p.getFechaLimite()!=null){
-						if((p.getFechaLimite().after(fechaHoy)) || (p.getFechaLimite().equals(fechaHoy))){
-							JOptionPane.showMessageDialog(null, "Devolución Registrada");
-							String fecha = ctrolDataBase.EjemplarDB.convertirFechaString((java.sql.Date) p.getFechaLimite());
-							lblfechaCLimite.setText(fecha);
-							
-						}
-						else{
-							JOptionPane.showMessageDialog(null,"La fecha limite ha sido superada");
-							String fecha = ctrolDataBase.EjemplarDB.convertirFechaString((java.sql.Date) p.getFechaLimite());
-							lblfechaCLimite.setText(fecha);
-						
-						}
+							if((p.getFechaLimite().after(fechaHoy)) || (p.getFechaLimite().equals(fechaHoy))){
+								JOptionPane.showMessageDialog(null, "Devolución Registrada");
+								String fecha = ctrolDataBase.EjemplarDB.convertirFechaString((java.sql.Date) p.getFechaLimite());
+								lblfechaCLimite.setText(fecha);
+
+							}
+							else{
+								JOptionPane.showMessageDialog(null,"La fecha limite ha sido superada");
+								String fecha = ctrolDataBase.EjemplarDB.convertirFechaString((java.sql.Date) p.getFechaLimite());
+								lblfechaCLimite.setText(fecha);
+
+							}
 						}
 						else{JOptionPane.showMessageDialog(null,"No se encontro el prestamo Solicitado");}
 					}
@@ -114,8 +114,8 @@ public class IDevolucionPrestamo extends JDialog {
 				btnRegistrar.setBounds(212, 23, 89, 23);
 				panel.add(btnRegistrar);
 			}
-			
-			
+
+
 		}
 		{
 			JButton btnNewButton = new JButton("Volver");

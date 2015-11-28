@@ -65,94 +65,94 @@ public class ILogin extends JFrame {
 		contentPane.setBorder(UIManager.getBorder("Button.border"));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JPanel panel = new JPanel();
 		panel.setToolTipText("\r\n");
 		panel.setBounds(10, 11, 378, 198);
 		contentPane.add(panel);
 		Border bordejpanel = new TitledBorder(new EtchedBorder(),"Identificación de Bibliotecario");
-        panel.setBorder(bordejpanel);
-        panel.setLayout(null);
-        
-        JLabel lblUsuario = new JLabel("Usuario");
-        lblUsuario.setBounds(53, 79, 44, 14);
-        lblUsuario.setVerticalAlignment(SwingConstants.BOTTOM);
-        panel.add(lblUsuario);
-        
-        JLabel lblContrasea = new JLabel("Contrase\u00F1a");
-        lblContrasea.setBounds(10, 104, 87, 14);
-        lblContrasea.setHorizontalAlignment(SwingConstants.RIGHT);
-        panel.add(lblContrasea);
-        
-        txUSer = new JTextField();
-        txUSer.setBounds(107, 76, 129, 20);
-        panel.add(txUSer);
-        txUSer.setColumns(10);
-        
-        JLabel lblIngreseSuUsuario = new JLabel("Ingrese su usuario y contrase\u00F1a");
-        lblIngreseSuUsuario.setBounds(81, 37, 224, 14);
-        lblIngreseSuUsuario.setHorizontalAlignment(SwingConstants.CENTER);
-        lblIngreseSuUsuario.setForeground(Color.BLUE);
-        panel.add(lblIngreseSuUsuario);
-        
-        txtPsw = new JTextField();
-        txtPsw.setBounds(107, 101, 129, 20);
-        panel.add(txtPsw);
-        txtPsw.setColumns(10);
-        //txtPsw.setEchoChar('*');
-       
-        
-        JButton btnAceptar = new JButton("Aceptar");
-        btnAceptar.addMouseListener(new MouseAdapter() {
-        	@Override
-        	public void mouseClicked(MouseEvent arg0) {
-        		
-        		if (ctrolDataBase.LoginDB.login(txUSer.getText(),txtPsw.getText()) == true){JOptionPane.showMessageDialog(null,"Sus Datos son correctos");}
-        		else{
-        			Component frame = null;
+		panel.setBorder(bordejpanel);
+		panel.setLayout(null);
+
+		JLabel lblUsuario = new JLabel("Usuario");
+		lblUsuario.setBounds(53, 79, 44, 14);
+		lblUsuario.setVerticalAlignment(SwingConstants.BOTTOM);
+		panel.add(lblUsuario);
+
+		JLabel lblContrasea = new JLabel("Contrase\u00F1a");
+		lblContrasea.setBounds(10, 104, 87, 14);
+		lblContrasea.setHorizontalAlignment(SwingConstants.RIGHT);
+		panel.add(lblContrasea);
+
+		txUSer = new JTextField();
+		txUSer.setBounds(107, 76, 129, 20);
+		panel.add(txUSer);
+		txUSer.setColumns(10);
+
+		JLabel lblIngreseSuUsuario = new JLabel("Ingrese su usuario y contrase\u00F1a");
+		lblIngreseSuUsuario.setBounds(81, 37, 224, 14);
+		lblIngreseSuUsuario.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIngreseSuUsuario.setForeground(Color.BLUE);
+		panel.add(lblIngreseSuUsuario);
+
+		txtPsw = new JTextField();
+		txtPsw.setBounds(107, 101, 129, 20);
+		panel.add(txtPsw);
+		txtPsw.setColumns(10);
+		//txtPsw.setEchoChar('*');
+
+
+		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+
+				if (ctrolDataBase.LoginDB.login(txUSer.getText(),txtPsw.getText()) == true){JOptionPane.showMessageDialog(null,"Sus Datos son correctos");}
+				else{
+					Component frame = null;
 					JOptionPane.showMessageDialog(frame,
-        				    "Datos Incorrectos",
-        				    "Error inicio de sesión",
-        				    JOptionPane.ERROR_MESSAGE);
-        		}
-        	}
-        });
-        btnAceptar.setBackground(new Color(192, 192, 192));
-        btnAceptar.setFont(new Font("Segoe Print", Font.BOLD, 11));
-        btnAceptar.setHorizontalTextPosition(SwingConstants.RIGHT);
-        btnAceptar.setForeground(new Color(0, 100, 0));
-        btnAceptar.setInheritsPopupMenu(true);
-        btnAceptar.setIgnoreRepaint(true);
-        btnAceptar.setVerticalTextPosition(SwingConstants.BOTTOM);
-        btnAceptar.setIcon(new ImageIcon(ILogin.class.getResource("/Images/Login/checkok.jpg")));
-        btnAceptar.setBounds(129, 164, 105, 23);
-        panel.add(btnAceptar);
-        
-        JButton btnCerrar = new JButton("Cerrar");
-        btnCerrar.setIcon(new ImageIcon(ILogin.class.getResource("/Images/Login/210px-Cruz_roja (1).png")));
-        btnCerrar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		dispose();
-        	}
-        });
-        btnCerrar.setVerticalTextPosition(SwingConstants.BOTTOM);
-        btnCerrar.setInheritsPopupMenu(true);
-        btnCerrar.setIgnoreRepaint(true);
-        btnCerrar.setHorizontalTextPosition(SwingConstants.LEFT);
-        btnCerrar.setForeground(new Color(165, 42, 42));
-        btnCerrar.setFont(new Font("Segoe Print", Font.BOLD, 11));
-        btnCerrar.setBackground(Color.LIGHT_GRAY);
-        btnCerrar.setBounds(263, 164, 105, 23);
-        panel.add(btnCerrar);
-        
-        JLabel label = DefaultComponentFactory.getInstance().createLabel("");
-        label.setIcon(new ImageIcon(ILogin.class.getResource("/Images/Login/logoFacu.png")));
-        label.setBounds(248, 79, 120, 45);
-        panel.add(label);
-        panel.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{txUSer, txtPsw, btnAceptar, btnCerrar}));
-        
-        
-         
- 
+							"Datos Incorrectos",
+							"Error inicio de sesión",
+							JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+		btnAceptar.setBackground(new Color(192, 192, 192));
+		btnAceptar.setFont(new Font("Segoe Print", Font.BOLD, 11));
+		btnAceptar.setHorizontalTextPosition(SwingConstants.RIGHT);
+		btnAceptar.setForeground(new Color(0, 100, 0));
+		btnAceptar.setInheritsPopupMenu(true);
+		btnAceptar.setIgnoreRepaint(true);
+		btnAceptar.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnAceptar.setIcon(new ImageIcon(ILogin.class.getResource("/Images/Login/checkok.jpg")));
+		btnAceptar.setBounds(129, 164, 105, 23);
+		panel.add(btnAceptar);
+
+		JButton btnCerrar = new JButton("Cerrar");
+		btnCerrar.setIcon(new ImageIcon(ILogin.class.getResource("/Images/Login/210px-Cruz_roja (1).png")));
+		btnCerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnCerrar.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnCerrar.setInheritsPopupMenu(true);
+		btnCerrar.setIgnoreRepaint(true);
+		btnCerrar.setHorizontalTextPosition(SwingConstants.LEFT);
+		btnCerrar.setForeground(new Color(165, 42, 42));
+		btnCerrar.setFont(new Font("Segoe Print", Font.BOLD, 11));
+		btnCerrar.setBackground(Color.LIGHT_GRAY);
+		btnCerrar.setBounds(263, 164, 105, 23);
+		panel.add(btnCerrar);
+
+		JLabel label = DefaultComponentFactory.getInstance().createLabel("");
+		label.setIcon(new ImageIcon(ILogin.class.getResource("/Images/Login/logoFacu.png")));
+		label.setBounds(248, 79, 120, 45);
+		panel.add(label);
+		panel.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{txUSer, txtPsw, btnAceptar, btnCerrar}));
+
+
+
+
 	}
 }

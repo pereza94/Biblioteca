@@ -42,7 +42,7 @@ public class Inicio extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JButton btnNewButton = new JButton("Socio");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -53,12 +53,12 @@ public class Inicio extends JFrame {
 		});
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 			}
 		});
 		btnNewButton.setBounds(20, 26, 177, 23);
 		contentPane.add(btnNewButton);
-		
+
 		JButton btnLibro = new JButton("Libro");
 		btnLibro.addMouseListener(new MouseAdapter() {
 			@Override
@@ -69,7 +69,7 @@ public class Inicio extends JFrame {
 		});
 		btnLibro.setBounds(244, 26, 146, 23);
 		contentPane.add(btnLibro);
-		
+
 		JButton btnAutor = new JButton("Autor");
 		btnAutor.addMouseListener(new MouseAdapter() {
 			@Override

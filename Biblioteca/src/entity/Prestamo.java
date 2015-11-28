@@ -3,7 +3,7 @@ package entity;
 import java.util.Date;
 
 public class Prestamo {
-	
+
 	private Socio dni;
 	private Libro numEjemplar;
 	private Date  fechaPrestamo;
@@ -12,8 +12,8 @@ public class Prestamo {
 	private int dniSocio;
 	private int numPrestamo;
 	private int numEjemplarDB;
-	
-	
+
+
 	public Socio getDni() {
 		return dni;
 	}
@@ -63,6 +63,6 @@ public class Prestamo {
 		this.numEjemplarDB = numEjemplarDB;
 	}
 
-	
-	
+
+
 }

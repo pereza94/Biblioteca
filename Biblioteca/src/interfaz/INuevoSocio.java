@@ -62,77 +62,77 @@ public class INuevoSocio extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		
+
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setForeground(new Color(30, 144, 255));
 		lblNombre.setBounds(10, 72, 46, 14);
 		contentPanel.add(lblNombre);
-		
+
 		txNombre = new JTextField();
 		txNombre.setForeground(new Color(51, 51, 51));
 		txNombre.setBounds(111, 72, 298, 20);
 		contentPanel.add(txNombre);
 		txNombre.setColumns(10);
-		
+
 		JLabel lblApellido = new JLabel("Apellido");
 		lblApellido.setForeground(new Color(30, 144, 255));
 		lblApellido.setBounds(10, 109, 46, 14);
 		contentPanel.add(lblApellido);
-		
+
 		JLabel lblDni = new JLabel("D.N.I");
 		lblDni.setForeground(new Color(30, 144, 255));
 		lblDni.setBounds(142, 40, 35, 14);
 		contentPanel.add(lblDni);
-		
+
 		txDni = new JTextField();
 		txDni.setForeground(new Color(51, 51, 51));
 		txDni.setBounds(187, 37, 86, 20);
 		contentPanel.add(txDni);
 		txDni.setColumns(10);
-		
+
 		txApellido = new JTextField();
 		txApellido.setForeground(new Color(51, 51, 51));
 		txApellido.setBounds(111, 109, 298, 20);
 		contentPanel.add(txApellido);
 		txApellido.setColumns(10);
-		
+
 		JLabel lblDireccin = new JLabel("Direcci\u00F3n");
 		lblDireccin.setForeground(new Color(30, 144, 255));
 		lblDireccin.setBounds(10, 149, 73, 14);
 		contentPanel.add(lblDireccin);
-		
+
 		txDireccion = new JTextField();
 		txDireccion.setForeground(new Color(51, 51, 51));
 		txDireccion.setBounds(111, 149, 298, 20);
 		contentPanel.add(txDireccion);
 		txDireccion.setColumns(10);
-		
+
 		JLabel lblTelefono = new JLabel("Telefono");
 		lblTelefono.setForeground(new Color(30, 144, 255));
 		lblTelefono.setBounds(10, 192, 80, 14);
 		contentPanel.add(lblTelefono);
-		
+
 		txTelefono = new JTextField();
 		txTelefono.setForeground(new Color(51, 51, 51));
 		txTelefono.setBounds(111, 192, 298, 20);
 		contentPanel.add(txTelefono);
 		txTelefono.setColumns(10);
-		
+
 		JRadioButton rdbtnFemenino_1 = new JRadioButton("Femenino");
 		buttonGroup.add(rdbtnFemenino_1);
 		rdbtnFemenino_1.setBounds(111, 229, 109, 23);
 		contentPanel.add(rdbtnFemenino_1);
-		
+
 		JRadioButton rdbtnMasculino_1 = new JRadioButton("Masculino");
 		buttonGroup.add(rdbtnMasculino_1);
 		rdbtnMasculino_1.setBounds(296, 229, 109, 23);
 		contentPanel.add(rdbtnMasculino_1);
-		
+
 		JLabel lblSexo = new JLabel("Sexo");
 		lblSexo.setForeground(new Color(30, 144, 255));
 		lblSexo.setBounds(10, 233, 46, 14);
 		contentPanel.add(lblSexo);
-		
+
 		JButton btnAceptar = new JButton("Guardar");
 		btnAceptar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -143,21 +143,21 @@ public class INuevoSocio extends JDialog {
 				String telefono = txTelefono.getText().toUpperCase();
 				String s = null;
 				if (rdbtnMasculino_1.isSelected()){s = "M";}
-				
+
 				if(rdbtnFemenino_1.isSelected()){
-					 s = "F";
+					s = "F";
 				}
-			     SociosDB.insertarSocio(dni,identidad,direccion,telefono,s);
-			
+				SociosDB.insertarSocio(dni,identidad,direccion,telefono,s);
+
 			}});
-		
+
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
 		btnAceptar.setBounds(259, 307, 89, 23);
 		contentPanel.add(btnAceptar);
-		
+
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.addMouseListener(new MouseAdapter() {
 			@Override
@@ -167,32 +167,32 @@ public class INuevoSocio extends JDialog {
 		});
 		btnVolver.setBounds(358, 307, 89, 23);
 		contentPanel.add(btnVolver);
-		
+
 		JLabel label = new JLabel("*");
 		label.setForeground(new Color(30, 144, 255));
 		label.setBounds(416, 72, 15, 14);
 		contentPanel.add(label);
-		
+
 		JLabel label_1 = new JLabel("*");
 		label_1.setForeground(new Color(30, 144, 255));
 		label_1.setBounds(416, 109, 15, 14);
 		contentPanel.add(label_1);
-		
+
 		JLabel label_2 = new JLabel("*");
 		label_2.setForeground(new Color(30, 144, 255));
 		label_2.setBounds(416, 149, 15, 14);
 		contentPanel.add(label_2);
-		
+
 		JLabel label_3 = new JLabel("*");
 		label_3.setForeground(new Color(30, 144, 255));
 		label_3.setBounds(416, 195, 15, 14);
 		contentPanel.add(label_3);
-		
+
 		JLabel lblCampoObligatorio = new JLabel("(*) Campo Obligatorio");
 		lblCampoObligatorio.setForeground(new Color(30, 144, 255));
 		lblCampoObligatorio.setBounds(10, 316, 127, 14);
 		contentPanel.add(lblCampoObligatorio);
-		
-		
+
+
 	}
 }

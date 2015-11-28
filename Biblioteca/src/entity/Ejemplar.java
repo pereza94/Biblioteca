@@ -38,8 +38,8 @@ public class Ejemplar {
 	public void setFechaAlta(Date fechaAlta) {
 		this.fechaAlta = fechaAlta;
 	}
-	
-	
-	
+
+
+
 
 }

@@ -73,7 +73,7 @@ public class ReservaDB {
 		}
 		return lista;
 	}
-	
+
 	public static void insertarReserva(Date fechaInicio,Date fechaFin, int dni, int numEjemplar) {
 		Connection c = null;
 		Statement stmt = null;

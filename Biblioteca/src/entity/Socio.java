@@ -10,9 +10,9 @@ public class Socio {
 	private String telefono;
 	private List<Reserva> reservaEnSocio;
 	private List<Sancion> numSancion;
-	
-	
-	
+
+
+
 	public Integer getDniSocio() {
 		return dniSocio;
 	}
@@ -32,7 +32,7 @@ public class Socio {
 		this.domicilio = domicilio;
 	}
 
-	
+
 	public List<Sancion> getNumSancion() {
 		return numSancion;
 	}
@@ -57,6 +57,6 @@ public class Socio {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	
+
 
 }

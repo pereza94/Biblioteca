@@ -9,7 +9,7 @@ public class Reserva {
 	private int codEjemplar;
 	private Integer numReserva;
 	private Socio socio;
-	
+
 	public Date getFechaRegistro() {
 		return fechaRegistro;
 	}
@@ -46,6 +46,6 @@ public class Reserva {
 	public void setCodEjemplar(int codEjemplar) {
 		this.codEjemplar = codEjemplar;
 	}
-	
-	
+
+
 }

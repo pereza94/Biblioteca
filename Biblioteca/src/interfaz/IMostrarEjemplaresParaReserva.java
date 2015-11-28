@@ -28,7 +28,7 @@ import javax.swing.border.EtchedBorder;
 
 public class  IMostrarEjemplaresParaReserva extends JDialog {
 
-	
+
 
 	/**
 	 * Launch the application.
@@ -42,13 +42,13 @@ public class  IMostrarEjemplaresParaReserva extends JDialog {
 			e.printStackTrace();
 		}
 	}
-	
+
 
 	/**
 	 * Create the dialog.
 	 */
 	public IMostrarEjemplaresParaReserva(String isbn) {
-	
+
 		setBounds(100, 100, 458, 452);
 		getContentPane().setLayout(null);
 		{
@@ -73,19 +73,19 @@ public class  IMostrarEjemplaresParaReserva extends JDialog {
 			JTable table = new JTable();
 			table.setModel(new DefaultTableModel(
 					new Object[][] {
-						
+
 					},
 					new String[] {
 							"IDEjemplar", "FechaDevolución","Poseedor","Estado"
-							
+
 					}
 					));
 			table.addMouseListener(new MouseAdapter() {
 			});
 			DefaultTableModel modelo = (DefaultTableModel)table.getModel();
 			scrollPane.setViewportView(table);
-			
-			
+
+
 
 			JLabel lblEjemplaresPrestados = new JLabel("");
 			lblEjemplaresPrestados.setHorizontalAlignment(SwingConstants.CENTER);
@@ -142,7 +142,7 @@ public class  IMostrarEjemplaresParaReserva extends JDialog {
 		DefaultTableModel modelo = (DefaultTableModel)table.getModel();
 		scrollPane.setViewportView(table);
 
-	
+
 
 		JLabel lblNoDisponibles = new JLabel("");
 		lblNoDisponibles.setForeground(Color.RED);
@@ -177,21 +177,21 @@ public class  IMostrarEjemplaresParaReserva extends JDialog {
 
 		}
 		table.addMouseListener(new MouseAdapter() {
-				public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) {
 				int fila=table.getSelectedRow();
 				Integer valorCelda =  (Integer) table.getValueAt(fila,0);		
 				INuevaReserva.textIdEjemplar.setText(String.valueOf(valorCelda));
-				
+
 			}
-			
+
 		});
-		 
-		
-			
-			
+
+
+
+
 	}
 
-	
+
 
 
 

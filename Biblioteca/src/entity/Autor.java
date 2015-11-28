@@ -16,6 +16,6 @@ public class Autor {
 		Identidad = identidad;
 	} 
 
-	
-	
+
+
 }

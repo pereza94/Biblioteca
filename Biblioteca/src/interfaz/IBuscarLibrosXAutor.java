@@ -53,60 +53,60 @@ public class IBuscarLibrosXAutor extends JDialog {
 		panel.setBounds(20, 11, 670, 411);
 		getContentPane().add(panel);
 		Border bordejpanel = new TitledBorder(new EtchedBorder(),"Buscar Libros p/ Autor");
-        panel.setBorder(bordejpanel);
-        panel.setLayout(null);
-        
-        JLabel lblIdAutor = new JLabel("ID Autor");
-        lblIdAutor.setForeground(new Color(0, 0, 255));
-        lblIdAutor.setHorizontalAlignment(SwingConstants.RIGHT);
-        lblIdAutor.setBounds(170, 40, 58, 14);
-        panel.add(lblIdAutor);
-        
-        txBuscar = new JTextField();
-        txBuscar.setColumns(10);
-        txBuscar.setBounds(245, 37, 131, 20);
-        panel.add(txBuscar);
-       
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(10, 91, 613, 98);
-        panel.add(scrollPane);
+		panel.setBorder(bordejpanel);
+		panel.setLayout(null);
+
+		JLabel lblIdAutor = new JLabel("ID Autor");
+		lblIdAutor.setForeground(new Color(0, 0, 255));
+		lblIdAutor.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblIdAutor.setBounds(170, 40, 58, 14);
+		panel.add(lblIdAutor);
+
+		txBuscar = new JTextField();
+		txBuscar.setColumns(10);
+		txBuscar.setBounds(245, 37, 131, 20);
+		panel.add(txBuscar);
+
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 91, 613, 98);
+		panel.add(scrollPane);
 		scrollPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		
+
 		JTable table = new JTable();
 		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"ISBN", "Titulo","Editorial","F.Publicación"
-			}
-		));
+				new Object[][] {
+				},
+				new String[] {
+						"ISBN", "Titulo","Editorial","F.Publicación"
+				}
+				));
 		DefaultTableModel modelo = (DefaultTableModel)table.getModel();
-		
-        
-        
-        JButton btnBuscar = new JButton("Buscar");
-        btnBuscar.addMouseListener(new MouseAdapter() {
-        	@Override
-        	public void mouseClicked(MouseEvent e) {
-        		  	String titulo =txBuscar.getText();
-        			ArrayList<Libro> lista = ctrolDataBase.AutorDB.buscarLibroDeUnAutor(titulo);
-        			int cant = lista.size();
-        			for(int x=0; x<cant;x++){
-        				Libro l = lista.get(x);
-        				modelo.addRow(new Object[]{l.getIsbn(),l.getTitulo(),l.getEditorial(),l.getAnio()});
-        			}
-        		
-        		
-        	}
-        });
-        btnBuscar.setForeground(new Color(0, 0, 255));
-        btnBuscar.setBounds(400, 36, 89, 23);
-        panel.add(btnBuscar);
-        
-        
-		
+
+
+
+		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String titulo =txBuscar.getText();
+				ArrayList<Libro> lista = ctrolDataBase.AutorDB.buscarLibroDeUnAutor(titulo);
+				int cant = lista.size();
+				for(int x=0; x<cant;x++){
+					Libro l = lista.get(x);
+					modelo.addRow(new Object[]{l.getIsbn(),l.getTitulo(),l.getEditorial(),l.getAnio()});
+				}
+
+
+			}
+		});
+		btnBuscar.setForeground(new Color(0, 0, 255));
+		btnBuscar.setBounds(400, 36, 89, 23);
+		panel.add(btnBuscar);
+
+
+
 		scrollPane.setViewportView(table);
-		
+
 		JButton button = new JButton("Cerrar");
 		button.addMouseListener(new MouseAdapter() {
 			@Override
@@ -124,6 +124,6 @@ public class IBuscarLibrosXAutor extends JDialog {
 		button.setBackground(Color.LIGHT_GRAY);
 		button.setBounds(517, 230, 105, 23);
 		panel.add(button);
-        
+
 	}
 }

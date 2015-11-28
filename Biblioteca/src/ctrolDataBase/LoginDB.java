@@ -13,21 +13,21 @@ public class LoginDB {
 		ConexionDB con = new ConexionDB();
 		String query = ("select * from bibliotecario where bibliotecario.nombre='"+user+"' and bibliotecario.psw='"+password+"';"); 
 		con.start();
-		 try{
-			 System.out.println("paso1");
-		 Statement st = con.getConexion().createStatement();
-		 System.out.println(query);
-		 ResultSet rs = st.executeQuery(query);
-		 
-		 while (rs.next()){
-	     acierto = true;
-		 }
-		 con.close();
-		 st.close();}
-		 catch(Exception e){
-		  System.out.println("Error al obtener lista de datos");
-		 }
-		 return acierto;
-		 
+		try{
+			System.out.println("paso1");
+			Statement st = con.getConexion().createStatement();
+			System.out.println(query);
+			ResultSet rs = st.executeQuery(query);
+
+			while (rs.next()){
+				acierto = true;
+			}
+			con.close();
+			st.close();}
+		catch(Exception e){
+			System.out.println("Error al obtener lista de datos");
+		}
+		return acierto;
+
 	}
 }

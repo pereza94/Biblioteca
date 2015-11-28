@@ -46,24 +46,24 @@ public class IListadoSocios extends JDialog {
 				table = new JTable();
 				table.setForeground(Color.BLUE);
 				table.setModel(new DefaultTableModel(
-					new Object[][] {
-					},
-					new String[] {
-						"DNI", "Identidad", "Direcci\u00F3n", "Sexo", "Telefono"
-					}
-				));
+						new Object[][] {
+						},
+						new String[] {
+								"DNI", "Identidad", "Direcci\u00F3n", "Sexo", "Telefono"
+						}
+						));
 				scrollPane.setViewportView(table);
 			}
-		DefaultTableModel modelo = (DefaultTableModel)table.getModel();
-		
-		
-		for(int x=0;x<SociosDB.sociosTodos().size();x++) {
-			entity.Socio s = new entity.Socio();
-			s = SociosDB.sociosTodos().get(x); 
-			modelo.addRow(new Object[]{s.getDniSocio(),s.getIdentidad(),s.getDomicilio(),s.getSexo(),s.getTelefono()});
+			DefaultTableModel modelo = (DefaultTableModel)table.getModel();
+
+
+			for(int x=0;x<SociosDB.sociosTodos().size();x++) {
+				entity.Socio s = new entity.Socio();
+				s = SociosDB.sociosTodos().get(x); 
+				modelo.addRow(new Object[]{s.getDniSocio(),s.getIdentidad(),s.getDomicilio(),s.getSexo(),s.getTelefono()});
 			}
-		
-		
+
+
 		}
 	}
 
