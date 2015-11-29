@@ -12,6 +12,7 @@ import ctrolDataBase.SociosDB;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Toolkit;
@@ -137,18 +138,20 @@ public class INuevoSocio extends JDialog {
 		btnAceptar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Integer dni = Integer.parseInt(txDni.getText()) ;
-				String identidad = txApellido.getText().toUpperCase()+" "+txNombre.getText().toUpperCase();
-				String direccion = txDireccion.getText().toUpperCase();
-				String telefono = txTelefono.getText().toUpperCase();
-				String s = null;
-				if (rdbtnMasculino_1.isSelected()){s = "M";}
+				if(txDni.getText().length()==0 || txApellido.getText().length()==0 ||txNombre.getText().length()==0 || txNombre.getText().length()==0 || txDireccion.getText().length()==0 ||(rdbtnFemenino_1.isSelected()==false && rdbtnMasculino_1.isSelected()==false)){JOptionPane.showMessageDialog(null, "Todos los campos deben ser completados");}
+				else{
+					Integer dni = Integer.parseInt(txDni.getText()) ;
+					String identidad = txApellido.getText().toUpperCase()+" "+txNombre.getText().toUpperCase();
+					String direccion = txDireccion.getText().toUpperCase();
+					String telefono = txTelefono.getText().toUpperCase();
+					String s = null;
+					if (rdbtnMasculino_1.isSelected()){s = "M";}
 
-				if(rdbtnFemenino_1.isSelected()){
-					s = "F";
+					if(rdbtnFemenino_1.isSelected()){
+						s = "F";
+					}
+					SociosDB.insertarSocio(dni,identidad,direccion,telefono,s);
 				}
-				SociosDB.insertarSocio(dni,identidad,direccion,telefono,s);
-
 			}});
 
 		btnAceptar.addActionListener(new ActionListener() {

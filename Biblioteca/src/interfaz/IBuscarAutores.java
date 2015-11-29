@@ -80,10 +80,7 @@ public class IBuscarAutores extends JDialog {
 		panel.add(lblBuscar);
 		lblBuscar.setHorizontalAlignment(SwingConstants.RIGHT);
 
-		txBuscar = new JTextField();
-		txBuscar.setBounds(61, 35, 453, 20);
-		panel.add(txBuscar);
-		txBuscar.setColumns(10);
+		
 
 		JRadioButton rdbtnIdAutor = new JRadioButton("ID Autor");
 		rdbtnIdAutor.setBounds(297, 72, 109, 23);
@@ -114,7 +111,7 @@ public class IBuscarAutores extends JDialog {
 				}
 				));
 		DefaultTableModel modelo = (DefaultTableModel)table.getModel();
-
+		
 
 		scrollPane.setViewportView(table);
 
@@ -128,6 +125,34 @@ public class IBuscarAutores extends JDialog {
 		button.setFont(new Font("Segoe Print", Font.BOLD, 11));
 		button.setBackground(Color.LIGHT_GRAY);
 
+		rdbtnNombre.setSelected(true);	
+		
+		txBuscar = new JTextField();
+		txBuscar.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				for (int i = 0; i < table.getRowCount(); i++) {
+					modelo.removeRow(i);
+					i-=1;
+				}
+				if(rdbtnNombre.isSelected()){
+					ArrayList<Autor> lista = ctrolDataBase.AutorDB.buscarXPatron(txBuscar.getText());
+					int cant = lista.size();
+					for(int x =0;x < cant;x++){
+						Autor a =lista.get(x);
+						int idAt = a.getIdAutor();
+						String nombre = a.getIdentidad();
+						modelo.addRow(new Object[]{idAt,nombre});
+					}
+
+				}
+			}
+		});
+		txBuscar.setBounds(61, 35, 453, 20);
+		panel.add(txBuscar);
+		txBuscar.setColumns(10);
+		
+		
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.setBounds(519, 32, 126, 23);
 		panel.add(btnBuscar);
@@ -222,7 +247,28 @@ public class IBuscarAutores extends JDialog {
 				n.setVisible(true);
 			}
 		});
-
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int fila=table.getSelectedRow();
+				Integer valorCelda =  (Integer) table.getValueAt(fila,0);		
+				INuevoLibro.txAutor1NuevoLibro.setText(String.valueOf(valorCelda));
+				if(INuevoLibro.txAutor2NuevoLibro.isVisible()){
+					INuevoLibro.txAutor2NuevoLibro.setText(String.valueOf(valorCelda));
+				}
+				if(INuevoLibro.txAutor3NuevoLibro.isVisible()){
+					INuevoLibro.txAutor3NuevoLibro.setText(String.valueOf(valorCelda));
+				}
+				if(INuevoLibro.txAutor4NuevoLibro.isVisible()){
+					INuevoLibro.txAutor4NuevoLibro.setText(String.valueOf(valorCelda));
+				}
+				if(INuevoLibro.txAutor5NuevoLibro.isVisible()){
+					INuevoLibro.txAutor5NuevoLibro.setText(String.valueOf(valorCelda));
+				}
+			}
+		});
+		
+	
 
 
 

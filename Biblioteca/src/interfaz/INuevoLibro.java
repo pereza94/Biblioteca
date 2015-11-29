@@ -29,15 +29,16 @@ import org.freixas.jcalendar.JCalendar;
 import org.freixas.jcalendar.JCalendarCombo;
 
 public class INuevoLibro extends JDialog {
-	private JTextField txISBN;
-	private JTextField txTexto;
-	private JTextField txAutor1;
-	private JTextField txAutor2;
-	private JTextField txAutor3;
-	private JTextField txAutro3;
-	private JTextField txAutor5;
-	private JTextField txAutor4;
-	private JTextField txEditorial;
+	public static JTextField txISBNNuevoLibro;
+	public static JTextField txTextoNuevoLibro;
+	public static JTextField txAutor1NuevoLibro;
+	public static JTextField txAutor2NuevoLibro;
+	public static JTextField txAutor3NuevoLibro;
+	public static JTextField txAutro3NuevoLibro;
+	public static JTextField txAutor5NuevoLibro;
+	public static JTextField txAutor4NuevoLibro;
+	public static JTextField txEditorialNuevoLibro;
+	public static JTextField txTituloNuevoLibro;
 
 	/**
 	 * Launch the application.
@@ -72,20 +73,20 @@ public class INuevoLibro extends JDialog {
 		lblIsbn.setBounds(57, 24, 52, 14);
 		panel.add(lblIsbn);
 
-		txISBN = new JTextField();
-		txISBN.setBounds(119, 21, 86, 20);
-		panel.add(txISBN);
-		txISBN.setColumns(10);
+		txISBNNuevoLibro = new JTextField();
+		txISBNNuevoLibro.setBounds(119, 21, 86, 20);
+		panel.add(txISBNNuevoLibro);
+		txISBNNuevoLibro.setColumns(10);
 
 		JLabel lblTitulo = new JLabel("Titulo");
 		lblTitulo.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblTitulo.setBounds(10, 79, 59, 14);
 		panel.add(lblTitulo);
 
-		txTexto = new JTextField();
-		txTexto.setBounds(84, 76, 86, 20);
-		panel.add(txTexto);
-		txTexto.setColumns(10);
+		txTituloNuevoLibro = new JTextField();
+		txTituloNuevoLibro.setBounds(84, 76, 86, 20);
+		panel.add(txTituloNuevoLibro);
+		txTituloNuevoLibro.setColumns(10);
 
 		JLabel lblAo = new JLabel("Fecha Publicaci\u00F3n");
 		lblAo.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -97,10 +98,10 @@ public class INuevoLibro extends JDialog {
 		lblIdAutor.setBounds(10, 127, 59, 14);
 		panel.add(lblIdAutor);
 
-		txAutor1 = new JTextField();
-		txAutor1.setBounds(84, 124, 86, 20);
-		panel.add(txAutor1);
-		txAutor1.setColumns(10);
+		txAutor1NuevoLibro = new JTextField();
+		txAutor1NuevoLibro.setBounds(84, 124, 86, 20);
+		panel.add(txAutor1NuevoLibro);
+		txAutor1NuevoLibro.setColumns(10);
 
 		JButton btnNewButton = new JButton("Buscar Autores");
 		btnNewButton.addMouseListener(new MouseAdapter() {
@@ -130,32 +131,32 @@ public class INuevoLibro extends JDialog {
 		button_1.setBounds(301, 238, 105, 23);
 		panel.add(button_1);
 
-		txAutor2 = new JTextField();
-		txAutor2.setBounds(84, 154, 86, 20);
-		panel.add(txAutor2);
-		txAutor2.setColumns(10);
-		txAutor2.setVisible(false);txAutor2.setText("0");
+		txAutor2NuevoLibro = new JTextField();
+		txAutor2NuevoLibro.setBounds(84, 154, 86, 20);
+		panel.add(txAutor2NuevoLibro);
+		txAutor2NuevoLibro.setColumns(10);
+		txAutor2NuevoLibro.setVisible(false);txAutor2NuevoLibro.setText("0");
 
-		txAutor3 = new JTextField();
-		txAutor3.setBounds(84, 185, 86, 20);
-		panel.add(txAutor3);
-		txAutor3.setColumns(10);
-		txAutor3.setVisible(false);
-		txAutor3.setText("0");
+		txAutor3NuevoLibro = new JTextField();
+		txAutor3NuevoLibro.setBounds(84, 185, 86, 20);
+		panel.add(txAutor3NuevoLibro);
+		txAutor3NuevoLibro.setColumns(10);
+		txAutor3NuevoLibro.setVisible(false);
+		txAutor3NuevoLibro.setText("0");
 
-		txAutor4 = new JTextField();
-		txAutor4.setBounds(188, 154, 86, 20);
-		panel.add(txAutor4);
-		txAutor4.setColumns(10);
-		txAutor4.setVisible(false);
-		txAutor4.setText("0");
+		txAutor4NuevoLibro = new JTextField();
+		txAutor4NuevoLibro.setBounds(188, 154, 86, 20);
+		panel.add(txAutor4NuevoLibro);
+		txAutor4NuevoLibro.setColumns(10);
+		txAutor4NuevoLibro.setVisible(false);
+		txAutor4NuevoLibro.setText("0");
 
-		txAutor5 = new JTextField();
-		txAutor5.setBounds(188, 185, 86, 20);
-		panel.add(txAutor5);
-		txAutor5.setColumns(10);
-		txAutor5.setVisible(false);
-		txAutor5.setText("0");
+		txAutor5NuevoLibro = new JTextField();
+		txAutor5NuevoLibro.setBounds(188, 185, 86, 20);
+		panel.add(txAutor5NuevoLibro);
+		txAutor5NuevoLibro.setColumns(10);
+		txAutor5NuevoLibro.setVisible(false);
+		txAutor5NuevoLibro.setText("0");
 
 
 		JButton button_2 = new JButton("+");
@@ -166,10 +167,10 @@ public class INuevoLibro extends JDialog {
 			public void mouseClicked(MouseEvent arg0) {
 				switch (x) {
 				case 2:
-					txAutor2.setVisible(true);x++;break;
-				case 3:txAutor3.setVisible(true);x++;break; 
-				case 4: txAutor4.setVisible(true);x++;break;
-				case 5: txAutor5.setVisible(true);x++;break;
+					txAutor2NuevoLibro.setVisible(true);x++;break;
+				case 3:txAutor3NuevoLibro.setVisible(true);x++;break; 
+				case 4: txAutor4NuevoLibro.setVisible(true);x++;break;
+				case 5: txAutor5NuevoLibro.setVisible(true);x++;break;
 				}
 
 
@@ -184,10 +185,10 @@ public class INuevoLibro extends JDialog {
 		lblEditorial.setBounds(239, 24, 59, 14);
 		panel.add(lblEditorial);
 
-		txEditorial = new JTextField();
-		txEditorial.setBounds(308, 21, 86, 20);
-		panel.add(txEditorial);
-		txEditorial.setColumns(10);
+		txEditorialNuevoLibro = new JTextField();
+		txEditorialNuevoLibro.setBounds(308, 21, 86, 20);
+		panel.add(txEditorialNuevoLibro);
+		txEditorialNuevoLibro.setColumns(10);
 
 		JCalendarCombo calendarCombo = new JCalendarCombo();
 		calendarCombo.setBounds(300, 76, 183, 20);
@@ -202,8 +203,8 @@ public class INuevoLibro extends JDialog {
 		button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String isbn =txISBN.getText();if(isbn.length()!= 10){JOptionPane.showMessageDialog(null, "El ISBN debe poseer 10(diez) caracteres");}
-				String titulo =txTexto.getText().toUpperCase();
+				String isbn =txISBNNuevoLibro.getText();if(isbn.length()!= 10){JOptionPane.showMessageDialog(null, "El ISBN debe poseer 10(diez) caracteres");}
+				String titulo =txTituloNuevoLibro.getText().toUpperCase();
 				//Date fecha = new ; System.out.println(""+fecha);
 				Calendar calendar = calendarCombo.getCalendar().getInstance();
 				calendar.set(Calendar.YEAR, calendarCombo.getCalendar().get(calendar.YEAR));
@@ -211,18 +212,18 @@ public class INuevoLibro extends JDialog {
 				calendar.set(Calendar.MONTH, calendarCombo.getCalendar().get(Calendar.MONTH) + 1); // Assuming you wanted May 1st
 				java.sql.Date date = new java.sql.Date(calendar.getTime().getTime());
 				int numpaginas = 0;
-				int idau1 =Integer.parseInt(txAutor1.getText());
-				int idau2 =Integer.parseInt(txAutor2.getText());
-				int idau3 =Integer.parseInt(txAutor3.getText());
-				int idau4 =Integer.parseInt(txAutor4.getText());
-				int idau5 =Integer.parseInt(txAutor5.getText());
-				String editorial = txEditorial.getText();
+				int idau1 =Integer.parseInt(txAutor1NuevoLibro.getText());
+				int idau2 =Integer.parseInt(txAutor2NuevoLibro.getText());
+				int idau3 =Integer.parseInt(txAutor3NuevoLibro.getText());
+				int idau4 =Integer.parseInt(txAutor4NuevoLibro.getText());
+				int idau5 =Integer.parseInt(txAutor5NuevoLibro.getText());
+				String editorial = txEditorialNuevoLibro.getText();
 				ctrolDataBase.LibroDB.insertarLibro(isbn, titulo, date, numpaginas, editorial);
 				ctrolDataBase.LibroDB.insertarLibroAutor(isbn, idau1);
-				if(Integer.parseInt(txAutor2.getText())!=0){ctrolDataBase.LibroDB.insertarLibroAutor(isbn, idau2);}
-				if(Integer.parseInt(txAutor3.getText())!=0){ctrolDataBase.LibroDB.insertarLibroAutor(isbn, idau3);}
-				if(Integer.parseInt(txAutor4.getText())!=0){ctrolDataBase.LibroDB.insertarLibroAutor(isbn, idau4);}
-				if(Integer.parseInt(txAutor5.getText())!=0){ctrolDataBase.LibroDB.insertarLibroAutor(isbn, idau5);}
+				if(Integer.parseInt(txAutor2NuevoLibro.getText())!=0){ctrolDataBase.LibroDB.insertarLibroAutor(isbn, idau2);}
+				if(Integer.parseInt(txAutor3NuevoLibro.getText())!=0){ctrolDataBase.LibroDB.insertarLibroAutor(isbn, idau3);}
+				if(Integer.parseInt(txAutor4NuevoLibro.getText())!=0){ctrolDataBase.LibroDB.insertarLibroAutor(isbn, idau4);}
+				if(Integer.parseInt(txAutor5NuevoLibro.getText())!=0){ctrolDataBase.LibroDB.insertarLibroAutor(isbn, idau5);}
 
 
 			}

@@ -33,6 +33,8 @@ import javax.swing.SwingConstants;
 import java.awt.SystemColor;
 import javax.swing.ImageIcon;
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class IBuscarSocio extends JDialog {
 	private JTextField txBuscado;
@@ -66,10 +68,7 @@ public class IBuscarSocio extends JDialog {
 		panel.setBorder(bordejpanel);
 		panel.setLayout(null);
 		{
-			txBuscado = new JTextField();
-			txBuscado.setBounds(82, 38, 431, 20);
-			panel.add(txBuscado);
-			txBuscado.setColumns(10);
+			
 		}
 
 		rdbtnDni = new JRadioButton("D.N.I");
@@ -165,6 +164,35 @@ public class IBuscarSocio extends JDialog {
 
 				}
 			});
+			rdbtnNombreYApellido.setSelected(true);
+			
+			txBuscado = new JTextField();
+			txBuscado.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyReleased(KeyEvent e) {
+					for (int i = 0; i < table.getRowCount(); i++) {
+						modelo.removeRow(i);
+						i-=1;
+					}
+					if(rdbtnNombreYApellido.isSelected()==true){
+						int cant =SociosDB.buscarXIdentidad(txBuscado.getText().toUpperCase()).size();
+						if(cant==0){ JOptionPane.showMessageDialog(null,"No se econtro ningun socio");}
+						else{
+							for(int x=0;x<cant;x++){
+								ArrayList<Socio> sl = SociosDB.buscarXIdentidad(txBuscado.getText().toUpperCase());
+								entity.Socio s = new Socio();
+								s = sl.get(x);
+								modelo.addRow(new Object[]{s.getDniSocio(),s.getIdentidad(),s.getDomicilio(),s.getSexo(),s.getTelefono()});
+							}
+						}
+					}
+
+				}
+			});
+			txBuscado.setBounds(82, 38, 431, 20);
+			panel.add(txBuscado);
+			txBuscado.setColumns(10);
+			
 			button_2.setIcon(new ImageIcon(IBuscarSocio.class.getResource("/Images/Login/8fc03fbe37e8ed0e1e784244c68f3fe8.png")));
 			button_2.setBackground(Color.WHITE);
 			button_2.setBounds(501, 82, 141, 23);
@@ -199,10 +227,7 @@ public class IBuscarSocio extends JDialog {
 
 				}
 			});
-			btnBucar.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-				}
-			});
+			
 		}
 
 
