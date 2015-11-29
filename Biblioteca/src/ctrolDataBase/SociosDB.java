@@ -133,5 +133,31 @@ public class SociosDB {
 		JOptionPane.showMessageDialog(null,"Socio añadido correctamente");
 	}
 
+	
+	public static void ModificarSocio(int dni,String identidad, String direccion, String telefono, String sexo) {
+		Connection c = null;
+		Statement stmt = null;
+		try {
+			Class.forName("org.postgresql.Driver");
+			c = DriverManager
+					.getConnection("jdbc:postgresql://localhost:5432/TP Final",
+							"postgres", "ale123");
+			c.setAutoCommit(false);
+			System.out.println("Opened database successfully");
+
+			stmt = c.createStatement();
+			String sql = "update socio set nombre='"+identidad+"',direccion='"+direccion+"',sexo='"+sexo+"',telefono="+telefono+"   where dni="+dni+";";
+			stmt.executeUpdate(sql);
+			stmt.close();
+			c.commit();
+			c.close();
+		} catch (Exception e) {
+			System.err.println( e.getClass().getName()+": "+ e.getMessage() );
+			JOptionPane.showMessageDialog(null, e.getMessage()); 
+			System.exit(0);
+		}
+		JOptionPane.showMessageDialog(null,"Socio modificado correctamente");
+	}
+	
 
 }

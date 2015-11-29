@@ -197,6 +197,20 @@ public class IBuscarSocio extends JDialog {
 			button_2.setBackground(Color.WHITE);
 			button_2.setBounds(501, 82, 141, 23);
 			panel.add(button_2);
+			
+			JButton btnModificarSocio = new JButton("Modificar Socio");
+			btnModificarSocio.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					ISocioMoficar ms = new ISocioMoficar();
+					ms.setVisible(true);
+				}
+			});
+			btnModificarSocio.setIcon(new ImageIcon(IBuscarSocio.class.getResource("/Images/Login/documento-de-modificar-el-archivo-de-papel-icono-4468-96 (1).png")));
+			btnModificarSocio.setForeground(Color.BLUE);
+			btnModificarSocio.setBackground(SystemColor.activeCaptionBorder);
+			btnModificarSocio.setBounds(173, 373, 150, 24);
+			panel.add(btnModificarSocio);
 			btnBucar.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
