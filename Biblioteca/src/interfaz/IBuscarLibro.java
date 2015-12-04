@@ -36,6 +36,8 @@ import java.awt.Color;
 import java.awt.SystemColor;
 import java.awt.Font;
 import java.awt.ComponentOrientation;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class IBuscarLibro extends JDialog {
 
@@ -85,10 +87,7 @@ public class IBuscarLibro extends JDialog {
 		lblBuscar.setForeground(Color.BLUE);
 		panel.add(lblBuscar);
 
-		txBuscar = new JTextField();
-		txBuscar.setBounds(66, 23, 274, 20);
-		panel.add(txBuscar);
-		txBuscar.setColumns(10);
+		
 
 		JRadioButton rdbtnIsbn = new JRadioButton("ISBN");
 		rdbtnIsbn.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
@@ -235,6 +234,58 @@ public class IBuscarLibro extends JDialog {
 
 
 
+		txBuscar = new JTextField();
+		txBuscar.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				for (int i = 0; i < table.getRowCount(); i++) {
+					modelo.removeRow(i);
+					i-=1;
+				}
+				if(rdbtnIsbn.isSelected()){
+				String titulo =txBuscar.getText();
+				ArrayList<Libro> lista = ctrolDataBase.LibroDB.buscarXISBN(titulo);
+				int cant = lista.size();
+				if(cant==0)
+				{	
+					ArrayList<Libro> lista1 = ctrolDataBase.LibroDB.buscarXISBNSAutor(titulo);
+					int cantS = lista1.size();
+					for(int x=0; x<cantS;x++){
+						Libro l = lista1.get(x);
+						modelo.addRow(new Object[]{l.getIsbn(),l.getTitulo(),l.getEditorial(),l.getAnio(),l.getAutor()});}
+				}
+				for(int x=0; x<cant;x++){
+					Libro l = lista.get(x);
+					
+						
+				}
+				}
+			
+			if (rdbtnTitulo.isSelected()){
+				String titulo1 =txBuscar.getText().toUpperCase();
+				ArrayList<Libro> lista1 = ctrolDataBase.LibroDB.buscarXTitulo(titulo1);
+				int cant1 = lista1.size();
+				if(cant1==0)
+				{	
+					ArrayList<Libro> lista11 = ctrolDataBase.LibroDB.buscarXTituloSinAutor(titulo1);
+					int cantS = lista11.size();
+					for(int x=0; x<cantS;x++){
+						Libro l = lista11.get(x);
+						modelo.addRow(new Object[]{l.getIsbn(),l.getTitulo(),l.getEditorial(),l.getAnio(),l.getAutor()});}
+				}
+				for(int x=0; x<cant1;x++){
+					Libro l = lista1.get(x);
+					modelo.addRow(new Object[]{l.getIsbn(),l.getTitulo(),l.getEditorial(),l.getAnio(),l.getAutor()});
+				}
+			}
+		
+			}
+		});
+		txBuscar.setBounds(66, 23, 274, 20);
+		panel.add(txBuscar);
+		txBuscar.setColumns(10);
+		
+		
 	}
 
 

@@ -135,28 +135,28 @@ public class INuevoLibro extends JDialog {
 		txAutor2NuevoLibro.setBounds(84, 154, 86, 20);
 		panel.add(txAutor2NuevoLibro);
 		txAutor2NuevoLibro.setColumns(10);
-		txAutor2NuevoLibro.setVisible(false);txAutor2NuevoLibro.setText("0");
+		txAutor2NuevoLibro.setVisible(false);txAutor2NuevoLibro.setText("ID Autor");
 
 		txAutor3NuevoLibro = new JTextField();
 		txAutor3NuevoLibro.setBounds(84, 185, 86, 20);
 		panel.add(txAutor3NuevoLibro);
 		txAutor3NuevoLibro.setColumns(10);
 		txAutor3NuevoLibro.setVisible(false);
-		txAutor3NuevoLibro.setText("0");
+		txAutor3NuevoLibro.setText("ID Autor");
 
 		txAutor4NuevoLibro = new JTextField();
 		txAutor4NuevoLibro.setBounds(188, 154, 86, 20);
 		panel.add(txAutor4NuevoLibro);
 		txAutor4NuevoLibro.setColumns(10);
 		txAutor4NuevoLibro.setVisible(false);
-		txAutor4NuevoLibro.setText("0");
+		txAutor4NuevoLibro.setText("ID Autor");
 
 		txAutor5NuevoLibro = new JTextField();
 		txAutor5NuevoLibro.setBounds(188, 185, 86, 20);
 		panel.add(txAutor5NuevoLibro);
 		txAutor5NuevoLibro.setColumns(10);
 		txAutor5NuevoLibro.setVisible(false);
-		txAutor5NuevoLibro.setText("0");
+		txAutor5NuevoLibro.setText("ID Autor");
 
 
 		JButton button_2 = new JButton("+");
@@ -213,17 +213,13 @@ public class INuevoLibro extends JDialog {
 				java.sql.Date date = new java.sql.Date(calendar.getTime().getTime());
 				int numpaginas = 0;
 				int idau1 =Integer.parseInt(txAutor1NuevoLibro.getText());
-				int idau2 =Integer.parseInt(txAutor2NuevoLibro.getText());
-				int idau3 =Integer.parseInt(txAutor3NuevoLibro.getText());
-				int idau4 =Integer.parseInt(txAutor4NuevoLibro.getText());
-				int idau5 =Integer.parseInt(txAutor5NuevoLibro.getText());
 				String editorial = txEditorialNuevoLibro.getText();
 				ctrolDataBase.LibroDB.insertarLibro(isbn, titulo, date, numpaginas, editorial);
 				ctrolDataBase.LibroDB.insertarLibroAutor(isbn, idau1);
-				if(Integer.parseInt(txAutor2NuevoLibro.getText())!=0){ctrolDataBase.LibroDB.insertarLibroAutor(isbn, idau2);}
-				if(Integer.parseInt(txAutor3NuevoLibro.getText())!=0){ctrolDataBase.LibroDB.insertarLibroAutor(isbn, idau3);}
-				if(Integer.parseInt(txAutor4NuevoLibro.getText())!=0){ctrolDataBase.LibroDB.insertarLibroAutor(isbn, idau4);}
-				if(Integer.parseInt(txAutor5NuevoLibro.getText())!=0){ctrolDataBase.LibroDB.insertarLibroAutor(isbn, idau5);}
+				if(!(txAutor2NuevoLibro.getText()).equals("ID Autor")){int idau2 =Integer.parseInt(txAutor2NuevoLibro.getText());ctrolDataBase.LibroDB.insertarLibroAutor(isbn, idau2);}
+				if(!(txAutor3NuevoLibro.getText()).equals("ID Autor")){int idau3 =Integer.parseInt(txAutor3NuevoLibro.getText());ctrolDataBase.LibroDB.insertarLibroAutor(isbn, idau3);}
+				if(!(txAutor4NuevoLibro.getText()).equals("ID Autor")){int idau4 =Integer.parseInt(txAutor4NuevoLibro.getText());ctrolDataBase.LibroDB.insertarLibroAutor(isbn, idau4);}
+				if(!(txAutor5NuevoLibro.getText()).equals("ID Autor")){int idau5 =Integer.parseInt(txAutor5NuevoLibro.getText());ctrolDataBase.LibroDB.insertarLibroAutor(isbn, idau5);}
 
 
 			}
