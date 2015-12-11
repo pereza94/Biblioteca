@@ -1,16 +1,19 @@
 package interfaz;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.border.EmptyBorder;
+
+import UpperEssential.UpperEssentialLookAndFeel;
 
 public class Inicio extends JFrame {
 
@@ -43,6 +46,12 @@ public class Inicio extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		try {
+			UIManager.setLookAndFeel(new UpperEssentialLookAndFeel());
+		} catch (UnsupportedLookAndFeelException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		JButton btnNewButton = new JButton("Socio");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override

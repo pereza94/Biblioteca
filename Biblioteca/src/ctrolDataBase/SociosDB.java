@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import entity.Autor;
+import entity.Libro;
 import entity.Socio;
 
 
@@ -158,6 +159,36 @@ public class SociosDB {
 		}
 		JOptionPane.showMessageDialog(null,"Socio modificado correctamente");
 	}
+	
+	
+	public static ArrayList<Socio>  BusquedaSocio(String s) {
+		ConexionDB con = new ConexionDB();
+		String query = ("(select Distinct l.dni,l.nombre,l.direccion,l.sexo,l.telefono from socio l where (l.nombre like '"+s+"%'));"); 
+		con.start();
+		ArrayList <Socio> lista = new ArrayList<>(0);
+		try{
+			Statement st = con.getConexion().createStatement();
+			System.out.println("---->"+query);
+			ResultSet rs = st.executeQuery(query);
+			while (rs.next()){
+				Socio c = new Socio();
+				c.setDniSocio(rs.getInt("dni"));
+				c.setIdentidad(rs.getString("nombre"));
+				c.setDomicilio(rs.getString("direccion"));
+				c.setSexo(rs.getString("sexo"));
+				c.setTelefono(rs.getString("telefono"));
+				lista.add(c);
+			}
+			con.close();
+			st.close();}
+		catch(Exception e){
+			lista=null;
+			System.out.println("Error al obtener lista de datos");
+		}
+		return lista;
+	}
+
+	
 	
 
 }

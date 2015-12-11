@@ -193,6 +193,60 @@ public class LibroDB {
 		}
 		return lista;
 	}
+	
+	public static void ModificarLibro(String isbn, String titulo,String editorial, Date fechaPublicaion ) {
+		Connection c = null;
+		Statement stmt = null;
+		try {
+			Class.forName("org.postgresql.Driver");
+			c = DriverManager
+					.getConnection("jdbc:postgresql://localhost:5432/TP Final",
+							"postgres", "ale123");
+			c.setAutoCommit(false);
+			System.out.println("Opened database successfully");
+
+			stmt = c.createStatement();
+			String sql = "update libro set titulo='"+titulo+"',fpublicacion='"+fechaPublicaion+"',editorial='"+editorial+"'   where isbn='"+isbn+"';";
+			System.out.println(sql);
+			stmt.executeUpdate(sql);
+			stmt.close();
+			c.commit();
+			c.close();
+		} catch (Exception e) {
+			System.err.println( e.getClass().getName()+": "+ e.getMessage() );
+			JOptionPane.showMessageDialog(null, e.getMessage()); 
+			System.exit(0);
+		}
+		JOptionPane.showMessageDialog(null,"Libro modificado correctamente");
+	}
+	
+	
+	public static void EliminarAutorLibro(String isbn ) {
+		Connection c = null;
+		Statement stmt = null;
+		try {
+			Class.forName("org.postgresql.Driver");
+			c = DriverManager
+					.getConnection("jdbc:postgresql://localhost:5432/TP Final",
+							"postgres", "ale123");
+			c.setAutoCommit(false);
+			System.out.println("Opened database successfully");
+
+			stmt = c.createStatement();
+			String sql = "delete from  autorlibro where isbn='"+isbn+"';";
+			System.out.println(sql);
+			stmt.executeUpdate(sql);
+			stmt.close();
+			c.commit();
+			c.close();
+		} catch (Exception e) {
+			System.err.println( e.getClass().getName()+": "+ e.getMessage() );
+			JOptionPane.showMessageDialog(null, e.getMessage());
+			System.exit(0);
+		}
+	}
+	
+	
 
 
 }

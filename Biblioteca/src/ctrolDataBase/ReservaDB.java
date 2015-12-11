@@ -97,6 +97,58 @@ public class ReservaDB {
 		}
 
 	}
+	
+	
+	
+	public static ArrayList<Reserva>  reservasActivas() {
+		ConexionDB con = new ConexionDB();
+		String query = ("select distinct * from reserva where (fechalimite > now());"); 
+		con.start();
+		ArrayList <Reserva> lista = new ArrayList<>(0);
+		try{
+			Statement st = con.getConexion().createStatement();
+			ResultSet rs = st.executeQuery(query);
+			while (rs.next()){
+				Reserva c = new Reserva();
+				c.setFechaFin(rs.getDate("fechalimite"));
+				c.setDni(rs.getInt("dni"));
+				c.setCodEjemplar(rs.getInt("numidenejemplar"));
+				c.setFechaRegistro(rs.getDate("fechaInicio"));
+				lista.add(c);
+			}
+			con.close();
+			st.close();}
+		catch(Exception e){
+			lista=null;
+			System.out.println("Error al obtener lista de datos");
+		}
+		return lista;
+	}
+	
+	
+	public static void eliminarReserva(java.util.Date fehaInicio,java.util.Date fehaFin, int dni, int numEjemplar) {
+		Connection c = null;
+		Statement stmt = null;
+		try {
+			Class.forName("org.postgresql.Driver");
+			c = DriverManager
+					.getConnection("jdbc:postgresql://localhost:5432/TP Final",
+							"postgres", "ale123");
+			c.setAutoCommit(false);
+			stmt = c.createStatement();
+			String sql = ("delete from reserva where (fechainicio='"+fehaInicio+"' and fechalimite='"+fehaFin+"' and dni="+dni+")" );
+			System.out.println(sql);
+			stmt.executeUpdate(sql);
+			stmt.close();
+			c.commit();
+			c.close();
+		} catch (Exception e) {
+			System.err.println( e.getClass().getName()+": "+ e.getMessage() );
+			JOptionPane.showMessageDialog(null, e.getMessage()); 
+			System.exit(0);
+		}
+
+	}
 
 
 }

@@ -148,6 +148,31 @@ public class AutorDB {
 		}
 		return lista;
 	}
+	
+	
+	
+	public static ArrayList<Autor>  CodAutores(String a) {
+		ConexionDB con = new ConexionDB();
+		String query = ("select distinct idautor from autorlibro where (isbn='"+a+"');"); 
+		con.start();
+		ArrayList <Autor> lista = new ArrayList<>(0);
+		try{
+			Statement st = con.getConexion().createStatement();
+			System.out.println(query);
+			ResultSet rs = st.executeQuery(query);
+			while (rs.next()){
+				Autor autor = new Autor();
+				autor.setIdAutor(rs.getInt("idautor"));
+				lista.add(autor);
+			}
+			con.close();
+			st.close();}
+		catch(Exception e){
+			lista=null;
+			System.out.println("Error al obtener lista de datos");
+		}
+		return lista;
+	}
 
 
 }
