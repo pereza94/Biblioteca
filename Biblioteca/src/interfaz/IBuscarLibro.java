@@ -286,6 +286,20 @@ public class IBuscarLibro extends JDialog {
 		txBuscar.setColumns(10);
 		
 		
+		table.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				int fila=table.getSelectedRow();
+				String valorCelda =  (String) table.getValueAt(fila,0);	
+				if(!UIPrincipañ.np.isActive()){
+					INuevoPrestamo.txBuscado.setText(valorCelda);
+					dispose();
+				}
+
+			}
+
+		});
+		
+		
 	}
 
 

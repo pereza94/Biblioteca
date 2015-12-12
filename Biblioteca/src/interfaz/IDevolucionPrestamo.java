@@ -9,6 +9,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import ctrolDataBase.PrestamoDB;
 import entity.Prestamo;
 
 import javax.swing.JLabel;
@@ -16,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.border.BevelBorder;
@@ -109,6 +111,33 @@ public class IDevolucionPrestamo extends JDialog {
 							}
 						}
 						else{JOptionPane.showMessageDialog(null,"No se encontro el prestamo Solicitado");}
+						ArrayList<Prestamo> listaPrestamo= PrestamoDB.PrestamosVigentes();
+						int cant=listaPrestamo.size();
+						for (int i = 0; i < UIPrincipañ.table.getRowCount(); i++) {
+							UIPrincipañ.modelo.removeRow(i);
+							i-=1;
+						}
+						for(int x=0;x< cant;x++) {
+							Prestamo pe = new Prestamo();
+							pe = listaPrestamo.get(x); 
+							Calendar calendar1 = Calendar.getInstance();
+							java.sql.Date date1 = new java.sql.Date(calendar1.getTime().getTime());
+							Date fechaHoy1 = date1;
+							if(pe.getFechaLimite().after(fechaHoy1))
+							{
+								Color c= new Color(51,102,0);
+								UIPrincipañ.table.setForeground(c);
+								UIPrincipañ.modelo.addRow(new Object[]{pe.getFechaPrestamo(),pe.getNumEjemplarDB(),pe.getFechaLimite(),pe.getDniSocio()});
+							
+							}
+							if(pe.getFechaLimite().before(fechaHoy1))
+							{
+							UIPrincipañ.table.setForeground(Color.red);	
+							UIPrincipañ.modelo.addRow(new Object[]{pe.getFechaPrestamo(),pe.getNumEjemplarDB(),pe.getFechaLimite(),pe.getDniSocio()});
+						
+							}
+							}
+						dispose();
 					}
 				});
 				btnRegistrar.setBounds(212, 23, 89, 23);

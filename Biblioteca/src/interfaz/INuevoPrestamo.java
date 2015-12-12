@@ -2,12 +2,15 @@ package interfaz;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -24,14 +27,13 @@ import javax.swing.table.DefaultTableModel;
 
 import org.freixas.jcalendar.JCalendarCombo;
 
+import ctrolDataBase.PrestamoDB;
 import entity.Ejemplar;
+import entity.Prestamo;
 import entity.Socio;
-import javax.swing.DefaultComboBoxModel;
-import java.awt.Font;
-import java.awt.Cursor;
 
 public class INuevoPrestamo extends JDialog {
-	private JTextField txBuscado;
+	public static JTextField txBuscado;
 	private JTextField txDni;
 	private JTextField txIDEJemplar;
 
@@ -52,7 +54,7 @@ public class INuevoPrestamo extends JDialog {
 	 * Create the dialog.
 	 */
 	public INuevoPrestamo() {
-		setBounds(100, 100, 882, 600);
+		setBounds(100, 100, 674, 632);
 		getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
@@ -63,6 +65,7 @@ public class INuevoPrestamo extends JDialog {
 		panel.setLayout(null);
 
 		JLabel lblLibro = new JLabel("ISBN");
+		lblLibro.setForeground(Color.BLUE);
 		lblLibro.setBounds(10, 27, 59, 14);
 		panel.add(lblLibro);
 
@@ -75,6 +78,7 @@ public class INuevoPrestamo extends JDialog {
 
 
 		JButton btnBuscarIsbn = new JButton("Buscar Libro");
+		btnBuscarIsbn.setForeground(Color.BLUE);
 		btnBuscarIsbn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -86,6 +90,7 @@ public class INuevoPrestamo extends JDialog {
 		panel.add(btnBuscarIsbn);
 
 		JScrollPane scrollPane = new JScrollPane();
+		
 		scrollPane.setBounds(10, 68, 613, 196);
 		panel.add(scrollPane);
 		scrollPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
@@ -100,11 +105,20 @@ public class INuevoPrestamo extends JDialog {
 				));
 		DefaultTableModel modelo = (DefaultTableModel)table.getModel();
 
-
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				int fila=table.getSelectedRow();
+				Integer valorCelda =  (Integer) table.getValueAt(fila,0);
+				txIDEJemplar.setText(String.valueOf(valorCelda));
+			}
+		});
+		
 		scrollPane.setViewportView(table);
 
 
 		JButton btnBuscarEjempalr = new JButton("Buscar Ejemplar");
+		btnBuscarEjempalr.setForeground(Color.BLUE);
 		btnBuscarEjempalr.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -122,6 +136,7 @@ public class INuevoPrestamo extends JDialog {
 		panel.add(btnBuscarEjempalr);
 
 		JButton btnLimpiarTabla = new JButton("Limpiar Tabla");
+		btnLimpiarTabla.setForeground(Color.BLUE);
 		btnLimpiarTabla.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -156,6 +171,7 @@ public class INuevoPrestamo extends JDialog {
 		panel_1.add(calendarCombo);
 
 		JLabel lblDni = new JLabel("DNI");
+		lblDni.setForeground(Color.BLUE);
 		lblDni.setBounds(10, 32, 46, 14);
 		panel_1.add(lblDni);
 
@@ -170,15 +186,18 @@ public class INuevoPrestamo extends JDialog {
 		txIDEJemplar.setColumns(10);
 
 		JLabel lblIdEjemplar = new JLabel("ID Ejemplar");
+		lblIdEjemplar.setForeground(Color.BLUE);
 		lblIdEjemplar.setBounds(10, 85, 75, 14);
 		panel_1.add(lblIdEjemplar);
 
 		JLabel lblFechaLimite = new JLabel("Fecha Limite");
+		lblFechaLimite.setForeground(Color.BLUE);
 		lblFechaLimite.setBounds(10, 140, 75, 14);
 		panel_1.add(lblFechaLimite);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(336, 314, 332, 214);
+		panel_2.setForeground(Color.BLUE);
+		panel_2.setBounds(336, 314, 306, 214);
 		getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 		Border bordejpanel_2 = new TitledBorder(new EtchedBorder(),"Datos Socio");
@@ -186,14 +205,17 @@ public class INuevoPrestamo extends JDialog {
 		panel_2.setLayout(null);
 
 		JLabel lblIdentidad = new JLabel("Identidad");
+		lblIdentidad.setForeground(Color.BLUE);
 		lblIdentidad.setBounds(10, 24, 100, 14);
 		panel_2.add(lblIdentidad);
 
 		JLabel lblDireccin = new JLabel("Direcci\u00F3n");
+		lblDireccin.setForeground(Color.BLUE);
 		lblDireccin.setBounds(10, 65, 100, 14);
 		panel_2.add(lblDireccin);
 
 		JLabel lblTelefono = new JLabel("Telefono");
+		lblTelefono.setForeground(Color.BLUE);
 		lblTelefono.setBounds(10, 106, 100, 14);
 		panel_2.add(lblTelefono);
 
@@ -210,6 +232,7 @@ public class INuevoPrestamo extends JDialog {
 		panel_2.add(lblCTelefono);
 
 		JButton btnValidar = new JButton("Validar");
+		btnValidar.setForeground(Color.BLUE);
 		btnValidar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -228,6 +251,7 @@ public class INuevoPrestamo extends JDialog {
 		panel_1.add(btnValidar);
 
 		JButton btnResgitrarprestamo = new JButton("ResgitrarPrestamo");
+		btnResgitrarprestamo.setForeground(Color.BLUE);
 		btnResgitrarprestamo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -243,31 +267,71 @@ public class INuevoPrestamo extends JDialog {
 				Calendar calendar2 = calendarCombo.getCalendar().getInstance();
 				calendar2.set(Calendar.YEAR, calendarCombo.getCalendar().get(calendar.YEAR));
 				calendar2.set(Calendar.DAY_OF_MONTH, calendarCombo.getCalendar().get(Calendar.DAY_OF_MONTH));
-				calendar2.set(Calendar.MONTH, calendarCombo.getCalendar().get(Calendar.MONTH) + 1); // Assuming you wanted May 1st
+				calendar2.set(Calendar.MONTH, calendarCombo.getCalendar().get(Calendar.MONTH) ); // Assuming you wanted May 1st
 				java.sql.Date fechalimite = new java.sql.Date(calendar2.getTime().getTime());
-
+				System.out.println("----> "+ fechalimite);
 				ctrolDataBase.PrestamoDB.nuevoPrestamo((java.sql.Date) fechaHoy,Integer.parseInt(txIDEJemplar.getText()) , fechalimite, null, Integer.parseInt(txDni.getText()));
-				JOptionPane.showMessageDialog(null, "Prestamo almacenado");
+				dispose();
+				
+				
+				ArrayList<Prestamo> listaPrestamo= PrestamoDB.PrestamosVigentes();
+				int cant=listaPrestamo.size();
+				for (int i = 0; i < UIPrincipañ.table.getRowCount(); i++) {
+					UIPrincipañ.modelo.removeRow(i);
+					i-=1;
+				}
+				for(int x=0;x< cant;x++) {
+					Prestamo pe = new Prestamo();
+					pe = listaPrestamo.get(x); 
+					Calendar calendar1 = Calendar.getInstance();
+					java.sql.Date date1 = new java.sql.Date(calendar1.getTime().getTime());
+					Date fechaHoy1 = date1;
+					if(pe.getFechaLimite().after(fechaHoy1))
+					{
+						Color c= new Color(51,102,0);
+						UIPrincipañ.table.setForeground(c);
+						UIPrincipañ.modelo.addRow(new Object[]{pe.getFechaPrestamo(),pe.getNumEjemplarDB(),pe.getFechaLimite(),pe.getDniSocio()});
+					
+					}
+					if(pe.getFechaLimite().before(fechaHoy1))
+					{
+					UIPrincipañ.table.setForeground(Color.red);	
+					UIPrincipañ.modelo.addRow(new Object[]{pe.getFechaPrestamo(),pe.getNumEjemplarDB(),pe.getFechaLimite(),pe.getDniSocio()});
+				
+					}
+					}
+
 			}
 		});
-		btnResgitrarprestamo.setBounds(436, 538, 142, 23);
+		btnResgitrarprestamo.setBounds(341, 547, 175, 23);
 		getContentPane().add(btnResgitrarprestamo);
 
 		JButton btnVolver = new JButton("Volver");
+		btnVolver.setForeground(Color.BLUE);
 		btnVolver.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
 			}
 		});
-		btnVolver.setBounds(642, 538, 89, 23);
+		btnVolver.setBounds(547, 547, 89, 23);
 		getContentPane().add(btnVolver);
 
 		JButton btnRegistrarDevolucin = new JButton("Registrar Devoluci\u00F3n");
-		btnRegistrarDevolucin.setBounds(280, 538, 146, 23);
+		btnRegistrarDevolucin.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				IDevolucionPrestamo dp = new IDevolucionPrestamo();
+				dp.setVisible(true);
+				
+				
+			}
+		});
+		btnRegistrarDevolucin.setForeground(Color.BLUE);
+		btnRegistrarDevolucin.setBounds(156, 547, 175, 23);
 		getContentPane().add(btnRegistrarDevolucin);
 
-
+		
 
 	}
 }
