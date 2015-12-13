@@ -181,6 +181,7 @@ public class  IMostrarEjemplaresParaReserva extends JDialog {
 				int fila=table.getSelectedRow();
 				Integer valorCelda =  (Integer) table.getValueAt(fila,0);		
 				INuevaReserva.textIdEjemplar.setText(String.valueOf(valorCelda));
+				dispose();
 
 			}
 

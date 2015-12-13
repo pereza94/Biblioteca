@@ -80,7 +80,7 @@ public class IBuscarAutores extends JDialog {
 		panel.add(lblBuscar);
 		lblBuscar.setHorizontalAlignment(SwingConstants.RIGHT);
 
-		
+
 
 		JRadioButton rdbtnIdAutor = new JRadioButton("ID Autor");
 		rdbtnIdAutor.setBounds(297, 72, 109, 23);
@@ -111,7 +111,7 @@ public class IBuscarAutores extends JDialog {
 				}
 				));
 		DefaultTableModel modelo = (DefaultTableModel)table.getModel();
-		
+
 
 		scrollPane.setViewportView(table);
 
@@ -125,8 +125,8 @@ public class IBuscarAutores extends JDialog {
 		button.setFont(new Font("Segoe Print", Font.BOLD, 11));
 		button.setBackground(Color.LIGHT_GRAY);
 
-		rdbtnNombre.setSelected(true);	
-		
+		rdbtnNombre.setSelected(true);
+
 		txBuscar = new JTextField();
 		txBuscar.addKeyListener(new KeyAdapter() {
 			@Override
@@ -151,8 +151,8 @@ public class IBuscarAutores extends JDialog {
 		txBuscar.setBounds(61, 35, 453, 20);
 		panel.add(txBuscar);
 		txBuscar.setColumns(10);
-		
-		
+
+
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.setBounds(519, 32, 126, 23);
 		panel.add(btnBuscar);
@@ -250,28 +250,55 @@ public class IBuscarAutores extends JDialog {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+
 				int fila=table.getSelectedRow();
-				Integer valorCelda =  (Integer) table.getValueAt(fila,0);		
+				Integer valorCelda =  (Integer) table.getValueAt(fila,0);
+				if (UIOpcionLibro.nl.isVisible()){
+				if(INuevoLibro.txAutor1NuevoLibro.isVisible() && !INuevoLibro.txAutor2NuevoLibro.isVisible() && !INuevoLibro.txAutor3NuevoLibro.isVisible() && !INuevoLibro.txAutor4NuevoLibro.isVisible() && !INuevoLibro.txAutor5NuevoLibro.isVisible()){
 				INuevoLibro.txAutor1NuevoLibro.setText(String.valueOf(valorCelda));
-				if(INuevoLibro.txAutor2NuevoLibro.isVisible()){
+				}
+				if(INuevoLibro.txAutor2NuevoLibro.isVisible() && INuevoLibro.txAutor1NuevoLibro.isVisible() && !INuevoLibro.txAutor3NuevoLibro.isVisible() && !INuevoLibro.txAutor4NuevoLibro.isVisible() && !INuevoLibro.txAutor5NuevoLibro.isVisible()){
 					INuevoLibro.txAutor2NuevoLibro.setText(String.valueOf(valorCelda));
 				}
-				if(INuevoLibro.txAutor3NuevoLibro.isVisible()){
+				if(INuevoLibro.txAutor3NuevoLibro.isVisible()&& INuevoLibro.txAutor2NuevoLibro.isVisible() && INuevoLibro.txAutor1NuevoLibro.isVisible() && !INuevoLibro.txAutor4NuevoLibro.isVisible() && !INuevoLibro.txAutor5NuevoLibro.isVisible()){
 					INuevoLibro.txAutor3NuevoLibro.setText(String.valueOf(valorCelda));
 				}
-				if(INuevoLibro.txAutor4NuevoLibro.isVisible()){
+				if(INuevoLibro.txAutor4NuevoLibro.isVisible()&& INuevoLibro.txAutor2NuevoLibro.isVisible() && INuevoLibro.txAutor3NuevoLibro.isVisible() && INuevoLibro.txAutor1NuevoLibro.isVisible() && !INuevoLibro.txAutor5NuevoLibro.isVisible()){
 					INuevoLibro.txAutor4NuevoLibro.setText(String.valueOf(valorCelda));
 				}
-				if(INuevoLibro.txAutor5NuevoLibro.isVisible()){
+				if(INuevoLibro.txAutor5NuevoLibro.isVisible() && INuevoLibro.txAutor4NuevoLibro.isVisible() && INuevoLibro.txAutor3NuevoLibro.isVisible() && INuevoLibro.txAutor2NuevoLibro.isVisible() && INuevoLibro.txAutor1NuevoLibro.isVisible()){
 					INuevoLibro.txAutor5NuevoLibro.setText(String.valueOf(valorCelda));
 				}
+				dispose();
+				}
+
+				if (UIOpcionLibro.ml.isVisible()){
+					if(ILibroModificar.txAutor1NuevoLibro.isVisible()){
+					INuevoLibro.txAutor1NuevoLibro.setText("");
+					INuevoLibro.txAutor1NuevoLibro.setText(String.valueOf(valorCelda));
+					System.out.println("entro ---->>"+valorCelda);
+					}
+					if(ILibroModificar.txAutor2NuevoLibro.isVisible() && ILibroModificar.txAutor1NuevoLibro.isVisible() && !ILibroModificar.txAutor3NuevoLibro.isVisible() && !ILibroModificar.txAutor4NuevoLibro.isVisible() && !ILibroModificar.txAutor5NuevoLibro.isVisible()){
+						INuevoLibro.txAutor2NuevoLibro.setText(String.valueOf(valorCelda));
+					}
+					if(ILibroModificar.txAutor3NuevoLibro.isVisible()&& ILibroModificar.txAutor2NuevoLibro.isVisible() && ILibroModificar.txAutor1NuevoLibro.isVisible() && !ILibroModificar.txAutor4NuevoLibro.isVisible() && !ILibroModificar.txAutor5NuevoLibro.isVisible()){
+						INuevoLibro.txAutor3NuevoLibro.setText(String.valueOf(valorCelda));
+					}
+					if(ILibroModificar.txAutor4NuevoLibro.isVisible()&& ILibroModificar.txAutor2NuevoLibro.isVisible() && ILibroModificar.txAutor3NuevoLibro.isVisible() && ILibroModificar.txAutor1NuevoLibro.isVisible() && !ILibroModificar.txAutor5NuevoLibro.isVisible()){
+						INuevoLibro.txAutor4NuevoLibro.setText(String.valueOf(valorCelda));
+					}
+					if(ILibroModificar.txAutor5NuevoLibro.isVisible() && ILibroModificar.txAutor4NuevoLibro.isVisible() && ILibroModificar.txAutor3NuevoLibro.isVisible() && ILibroModificar.txAutor2NuevoLibro.isVisible() && ILibroModificar.txAutor1NuevoLibro.isVisible()){
+						INuevoLibro.txAutor5NuevoLibro.setText(String.valueOf(valorCelda));
+					}
+					}
+
+
+				dispose();
 			}
 		});
-		
-	
-
-
-
-
 	}
 }
+
+
+
+

@@ -36,7 +36,7 @@ public class ILogin extends JFrame {
 	private JPanel contentPane;
 	private JTextField txUSer;
 	private JPasswordField txPassword;
-	private JTextField txtPsw;
+	private JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
@@ -60,7 +60,7 @@ public class ILogin extends JFrame {
 	public ILogin() {
 		setTitle("Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 411, 264);
+		setBounds(100, 100, 411, 309);
 		contentPane = new JPanel();
 		contentPane.setBorder(UIManager.getBorder("Button.border"));
 		setContentPane(contentPane);
@@ -95,19 +95,15 @@ public class ILogin extends JFrame {
 		lblIngreseSuUsuario.setForeground(Color.BLUE);
 		panel.add(lblIngreseSuUsuario);
 
-		txtPsw = new JTextField();
-		txtPsw.setBounds(107, 101, 129, 20);
-		panel.add(txtPsw);
-		txtPsw.setColumns(10);
-		//txtPsw.setEchoChar('*');
-
-
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-
-				if (ctrolDataBase.LoginDB.login(txUSer.getText(),txtPsw.getText()) == true){JOptionPane.showMessageDialog(null,"Sus Datos son correctos");}
+					System.out.println("psw --->"+passwordField.getText());
+				if (ctrolDataBase.LoginDB.login(txUSer.getText(),passwordField.getText()) == true){
+					dispose();
+					UIPrincipañ ip = new UIPrincipañ();
+					ip.setVisible(true);}
 				else{
 					Component frame = null;
 					JOptionPane.showMessageDialog(frame,
@@ -149,7 +145,15 @@ public class ILogin extends JFrame {
 		label.setIcon(new ImageIcon(ILogin.class.getResource("/Images/Login/logoFacu.png")));
 		label.setBounds(248, 79, 120, 45);
 		panel.add(label);
-		panel.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{txUSer, txtPsw, btnAceptar, btnCerrar}));
+		//txtPsw.setEchoChar('*');
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(107, 104, 129, 20);
+		panel.add(passwordField);
+		passwordField.setEchoChar('*');
+		panel.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{txUSer, btnAceptar, btnCerrar}));
+		
+		
 
 
 

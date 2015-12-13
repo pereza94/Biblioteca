@@ -70,7 +70,7 @@ public class INuevaReserva extends JDialog {
 
 			}
 		});
-		btnBuscarLibros.setBounds(224, 25, 132, 23);
+		btnBuscarLibros.setBounds(224, 25, 156, 23);
 		panel.add(btnBuscarLibros);
 
 		JLabel lblFechaInicio = new JLabel("Fecha Inicio");
@@ -121,7 +121,7 @@ public class INuevaReserva extends JDialog {
 
 			}
 		});
-		btnRegistrarReserva.setBounds(253, 257, 127, 23);
+		btnRegistrarReserva.setBounds(253, 257, 156, 23);
 		panel.add(btnRegistrarReserva);
 
 		JLabel lblIsbn = new JLabel("ISBN");
@@ -143,7 +143,7 @@ public class INuevaReserva extends JDialog {
 
 			}
 		});
-		btnBuscarLibro.setBounds(366, 25, 132, 23);
+		btnBuscarLibro.setBounds(394, 25, 132, 23);
 		panel.add(btnBuscarLibro);
 
 
