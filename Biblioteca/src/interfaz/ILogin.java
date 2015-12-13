@@ -37,9 +37,10 @@ public class ILogin extends JFrame {
 	private JTextField txUSer;
 	private JPasswordField txPassword;
 	private JPasswordField passwordField;
+	public static UIPrincipañ ip;
 
 	/**
-	 * Launch the application.
+	 * Launch the application.0
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -60,7 +61,7 @@ public class ILogin extends JFrame {
 	public ILogin() {
 		setTitle("Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 411, 309);
+		setBounds(100, 100, 411, 254);
 		contentPane = new JPanel();
 		contentPane.setBorder(UIManager.getBorder("Button.border"));
 		setContentPane(contentPane);
@@ -102,7 +103,7 @@ public class ILogin extends JFrame {
 					System.out.println("psw --->"+passwordField.getText());
 				if (ctrolDataBase.LoginDB.login(txUSer.getText(),passwordField.getText()) == true){
 					dispose();
-					UIPrincipañ ip = new UIPrincipañ();
+					ip = new UIPrincipañ();
 					ip.setVisible(true);}
 				else{
 					Component frame = null;

@@ -72,7 +72,7 @@ public class AutorDB {
 
 	public static ArrayList<Autor>  buscarXPatron(String iden) {
 		ConexionDB con = new ConexionDB();
-		String query = ("select * from autor where autor like '"+iden.toUpperCase()+"%'"); 
+		String query = ("(select * from autor where autor like '"+iden.toUpperCase()+"%')order by autor asc"); 
 		con.start();
 		ArrayList <Autor> lista = new ArrayList<>(0);
 		try{

@@ -58,6 +58,30 @@ public class SancionDB {
 
 		return a;
 	}
+	
+	public static int SancionVigente(int dni){
+		ConexionDB con = new ConexionDB();
+		int a = 0;
+		String query = ("(select count(*) from sancion s where s.dni ="+dni+" and fechafin>now());"); 
+		System.out.println(query);
+		con.start();
+		try{
+
+			Statement st = con.getConexion().createStatement();
+			ResultSet rs = st.executeQuery(query);
+			rs.next();
+			a= rs.getInt(1);
+		}
+		catch(Exception e){
+			a=0;
+			System.out.println("Error al obtener lista de datos");
+		}
+
+		con.close();
+
+
+		return a;
+	}
 
 
 

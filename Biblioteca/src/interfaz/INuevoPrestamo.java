@@ -28,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 import org.freixas.jcalendar.JCalendarCombo;
 
 import ctrolDataBase.PrestamoDB;
+import ctrolDataBase.SancionDB;
 import entity.Ejemplar;
 import entity.Prestamo;
 import entity.Socio;
@@ -75,8 +76,6 @@ public class INuevoPrestamo extends JDialog {
 		txBuscado.setColumns(10);
 
 
-
-
 		JButton btnBuscarIsbn = new JButton("Buscar Libro");
 		btnBuscarIsbn.setForeground(Color.BLUE);
 		btnBuscarIsbn.addMouseListener(new MouseAdapter() {
@@ -86,7 +85,7 @@ public class INuevoPrestamo extends JDialog {
 				bl.setVisible(true);
 			}
 		});
-		btnBuscarIsbn.setBounds(315, 23, 111, 23);
+		btnBuscarIsbn.setBounds(175, 23, 111, 23);
 		panel.add(btnBuscarIsbn);
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -132,7 +131,7 @@ public class INuevoPrestamo extends JDialog {
 
 			}
 		});
-		btnBuscarEjempalr.setBounds(175, 23, 130, 23);
+		btnBuscarEjempalr.setBounds(296, 23, 130, 23);
 		panel.add(btnBuscarEjempalr);
 
 		JButton btnLimpiarTabla = new JButton("Limpiar Tabla");
@@ -230,6 +229,13 @@ public class INuevoPrestamo extends JDialog {
 		JLabel lblCTelefono = new JLabel("");
 		lblCTelefono.setBounds(86, 106, 179, 14);
 		panel_2.add(lblCTelefono);
+		
+		JLabel lblSocioSancionado = new JLabel("El socio se encuentra sancionado");
+		lblSocioSancionado.setFont(new Font("Thames", Font.PLAIN, 13));
+		lblSocioSancionado.setForeground(new Color(255, 0, 0));
+		lblSocioSancionado.setBounds(47, 151, 229, 14);
+		lblSocioSancionado.setVisible(false);
+		panel_2.add(lblSocioSancionado);
 
 		JButton btnValidar = new JButton("Validar");
 		btnValidar.setForeground(Color.BLUE);
@@ -237,14 +243,26 @@ public class INuevoPrestamo extends JDialog {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 
-				ArrayList<Socio> ls =ctrolDataBase.SociosDB.buscarXDNI(Integer.parseInt(txDni.getText()));
-				if(ls.isEmpty()){JOptionPane.showMessageDialog(null, "El DNI, no se corresponde con ningun socio");}
+				if(txDni.getText().length()==0){ISocioNoEncontrado sne = new ISocioNoEncontrado();
+				sne.setVisible(true);}
 				else{
-					Socio s= ls.get(0);
-					lblCIdentidad.setText(s.getIdentidad());
-					lblCTelefono.setText(s.getTelefono());
-					lblCDireccion.setText(s.getDomicilio());
+					ArrayList<Socio> ls =ctrolDataBase.SociosDB.buscarXDNI(Integer.parseInt(txDni.getText()));
+					try {
+						Socio s= ls.get(0);
+						lblCIdentidad.setText(s.getIdentidad());
+						lblCTelefono.setText(s.getTelefono());
+						lblCDireccion.setText(s.getDomicilio());
+					} catch (Exception e) {
+						// TODO: handle exception
+						ISocioNoEncontrado sne = new ISocioNoEncontrado();
+						sne.setVisible(true);
+					}
+					
 				}
+				int a = SancionDB.SancionVigente(Integer.valueOf(txDni.getText()));
+				if(a!=0){lblSocioSancionado.setVisible(true);}else{lblSocioSancionado.setVisible(false);}
+				
+			
 			}
 		});
 		btnValidar.setBounds(207, 180, 89, 23);

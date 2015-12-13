@@ -71,7 +71,7 @@ public class IBuscarAutores extends JDialog {
 		JPanel panel = new JPanel();
 		panel.setBounds(20, 11, 670, 411);
 		getContentPane().add(panel);
-		Border bordejpanel = new TitledBorder(new EtchedBorder(),"Nuevo Libro");
+		Border bordejpanel = new TitledBorder(new EtchedBorder(),"Buscar Autor");
 		panel.setBorder(bordejpanel);
 		panel.setLayout(null);
 

@@ -221,7 +221,7 @@ public class INuevoLibro extends JDialog {
 				if(!(txAutor4NuevoLibro.getText()).equals("ID Autor")){int idau4 =Integer.parseInt(txAutor4NuevoLibro.getText());ctrolDataBase.LibroDB.insertarLibroAutor(isbn, idau4);}
 				if(!(txAutor5NuevoLibro.getText()).equals("ID Autor")){int idau5 =Integer.parseInt(txAutor5NuevoLibro.getText());ctrolDataBase.LibroDB.insertarLibroAutor(isbn, idau5);}
 
-
+				dispose();
 			}
 		});
 		button.setIcon(new ImageIcon(INuevoLibro.class.getResource("/Images/Login/checkok.jpg")));

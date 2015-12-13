@@ -294,10 +294,10 @@ public class IBuscarLibro extends JDialog {
 					INuevoPrestamo.txBuscado.setText(valorCelda);
 					dispose();
 				}
-				if (!UIOpcionReserva.nr.isActive()){
+				/*if (!UIOpcionReserva.nr.isActive()){
 					INuevaReserva.txISBNaBuscar.setText(valorCelda);
 					dispose();
-				}
+				}*/
 
 			}
 

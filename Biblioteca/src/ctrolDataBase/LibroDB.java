@@ -77,7 +77,7 @@ public class LibroDB {
 
 	public static ArrayList<Libro>  buscarXISBN(String isbn) {
 		ConexionDB con = new ConexionDB();
-		String query = ("select distinct  l.isbn,l.titulo,l.fpublicacion,l.paginas,l.editorial,a.autor from libro l,autorLibro al,autor a where (l.isbn='"+isbn+"' and al.isbn='"+isbn+"' and a.idautor=al.idautor);"); 
+		String query = ("select distinct  l.isbn,l.titulo,l.fpublicacion,l.paginas,l.editorial,a.autor from libro l,autorLibro al,autor a where (l.isbn='"+isbn+"' and al.isbn='"+isbn+"' and a.idautor=al.idautor)order by l.titulo asc;"); 
 		con.start();
 		ArrayList <Libro> lista = new ArrayList<>(0);
 		try{
@@ -113,6 +113,7 @@ public class LibroDB {
 	public static ArrayList<Libro>  buscarXISBNSAutor(String isbn) {
 		ConexionDB con = new ConexionDB();
 		String query = ("select distinct  l.isbn,l.titulo,l.fpublicacion,l.paginas,l.editorial from libro l where (l.isbn='"+isbn+"');"); 
+		System.out.println(query);
 		con.start();
 		ArrayList <Libro> lista = new ArrayList<>(0);
 		try{
@@ -143,7 +144,7 @@ public class LibroDB {
 
 	public static ArrayList<Libro>  buscarXTitulo(String s) {
 		ConexionDB con = new ConexionDB();
-		String query = ("(select Distinct l.isbn,l.titulo,l.fpublicacion,l.paginas,l.editorial,a.autor from libro l, autorLibro al,autor a where (l.titulo like '"+s+"%' and al.isbn=l.isbn and al.idautor=a.idautor));"); 
+		String query = ("(select Distinct l.isbn,l.titulo,l.fpublicacion,l.paginas,l.editorial,a.autor from libro l, autorLibro al,autor a where (l.titulo like '"+s+"%' and al.isbn=l.isbn and al.idautor=a.idautor))order by l.titulo asc;"); 
 		con.start();
 		ArrayList <Libro> lista = new ArrayList<>(0);
 		try{
@@ -170,7 +171,7 @@ public class LibroDB {
 
 	public static ArrayList<Libro>  buscarXTituloSinAutor(String s) {
 		ConexionDB con = new ConexionDB();
-		String query = ("(select Distinct l.isbn,l.titulo,l.fpublicacion,l.paginas,l.editorial from libro l, autorLibro al,autor a where (l.titulo like '"+s+"%' ));"); 
+		String query = ("(select Distinct l.isbn,l.titulo,l.fpublicacion,l.paginas,l.editorial from libro l, autorLibro al,autor a where (l.titulo like '"+s+"%' ))order by l.titulo asc;"); 
 		con.start();
 		ArrayList <Libro> lista = new ArrayList<>(0);
 		try{
