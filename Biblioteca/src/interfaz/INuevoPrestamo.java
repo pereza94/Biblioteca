@@ -123,7 +123,11 @@ public class INuevoPrestamo extends JDialog {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				ArrayList<Ejemplar> le = ctrolDataBase.PrestamoDB.EjemplaresDisponibles(txBuscado.getText());
-				if(le.isEmpty()){JOptionPane.showMessageDialog(null, "No se enuentran ejemplares disponibles");}
+				if(le.isEmpty()){
+					IPreguntaReserva pr = new IPreguntaReserva();
+					pr.setLocationRelativeTo(null);
+					pr.setVisible(true);
+				}
 				for (int x=0; x<le.size();x++){
 					Ejemplar e = le.get(x);
 					modelo.addRow(new Object[]{e.getNumInventario(),e.getFechaAlta(),e.getCodUbicaion(),e.getIsbn()});
@@ -165,7 +169,7 @@ public class INuevoPrestamo extends JDialog {
 		calendarCombo.setDayOfWeekFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
 		calendarCombo.setDayFont(new Font("Britannic Bold", Font.BOLD, 12));
 		calendarCombo.setEditable(true);
-		calendarCombo.setModel(new DefaultComboBoxModel(new String[] {"Viernes 27 de noviembre "}));
+		calendarCombo.setModel(new DefaultComboBoxModel(new String[] {"Seleccione una fecha"}));
 		calendarCombo.setNullAllowed(false);
 		calendarCombo.setBounds(95, 137, 185, 20);
 		panel_1.add(calendarCombo);

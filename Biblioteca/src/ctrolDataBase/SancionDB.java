@@ -163,7 +163,31 @@ public class SancionDB {
 		return lista;
 	}
 	
+	public static void eliminarSancion(int dni, java.util.Date fechaInicio, java.util.Date fechaFin) {
+		Connection c = null;
+		Statement stmt = null;
+		try {
+			Class.forName("org.postgresql.Driver");
+			c = DriverManager
+					.getConnection("jdbc:postgresql://localhost:5432/TP Final",
+							"postgres", "ale123");
+			c.setAutoCommit(false);
+			stmt = c.createStatement();
+			String sql = ("delete from sancion where (fechainicio='"+fechaInicio+"' and fechafin='"+fechaFin+"' and dni="+dni+")" );
+			System.out.println(sql);
+			stmt.executeUpdate(sql);
+			stmt.close();
+			c.commit();
+			c.close();
+		} catch (Exception e) {
+			System.err.println( e.getClass().getName()+": "+ e.getMessage() );
+			JOptionPane.showMessageDialog(null, e.getMessage()); 
+			System.exit(0);
+		}
+
+	}
 
 
+	
 
 }

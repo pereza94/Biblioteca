@@ -290,14 +290,10 @@ public class IBuscarLibro extends JDialog {
 			public void mouseClicked(MouseEvent e) {
 				int fila=table.getSelectedRow();
 				String valorCelda =  (String) table.getValueAt(fila,0);	
-				if(!UIPrincipañ.np.isActive()){
 					INuevoPrestamo.txBuscado.setText(valorCelda);
 					dispose();
-				}
-				/*if (!UIOpcionReserva.nr.isActive()){
 					INuevaReserva.txISBNaBuscar.setText(valorCelda);
 					dispose();
-				}*/
 
 			}
 

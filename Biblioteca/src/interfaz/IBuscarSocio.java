@@ -248,7 +248,18 @@ public class IBuscarSocio extends JDialog {
 		setBounds(100, 100, 683, 470);
 		getContentPane().setLayout(null);
 
+		
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
 
+				int fila=table.getSelectedRow();
+				Integer valorCelda =  (Integer) table.getValueAt(fila,0);
+				ILibrosPorSocio.txDni.setText(String.valueOf(valorCelda));
+				dispose();
+			}
+		});
+		
 		/*for(int x=0;x<SociosDB.buscarXDNI(Integer.parseInt(txBuscado.getText())).size();x++) {
 			//modelo.addRow(new Object[]{SociosDB.buscarXDNI(Integer.parseInt(txBuscado.getText())).get(x).getDniSocio(),SociosDB.buscarXDNI(Integer.parseInt(txBuscado.getText())).get(x).getIdentidad(),SociosDB.buscarXDNI(Integer.parseInt(txBuscado.getText())).get(x).getDomicilio(),SociosDB.buscarXDNI(Integer.parseInt(txBuscado.getText())),SociosDB.buscarXDNI(Integer.parseInt(txBuscado.getText())).get(x).getTelefono()});
 			}

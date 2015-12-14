@@ -177,6 +177,26 @@ public class EjemplarDB {
 		}
 		return c;
 	}
+	
+	public static String  ObtenerTitulo(int buscado) {
+		ConexionDB con = new ConexionDB();
+		String c = null;
+		String query = ("select distinct l.titulo from ejemplar2 e , libro l where(e.idinventario='"+buscado+"' and e.isbn=l.isbn);"); 
+		System.out.println(query);
+		con.start();
+		try{
+			Statement st = con.getConexion().createStatement();
+			ResultSet rs = st.executeQuery(query);
+			while (rs.next()){
+				c=rs.getString("titulo");
+			}
+			con.close();
+			st.close();}
+		catch(Exception e){
+			System.out.println("Error al obtener lista de datos");
+		}
+		return c;
+	}
 
 
 
