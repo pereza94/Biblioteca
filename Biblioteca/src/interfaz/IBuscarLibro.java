@@ -117,12 +117,17 @@ public class IBuscarLibro extends JDialog {
 
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
-				new Object[][] {
-				},
-				new String[] {
-						"ISBN", "Titulo","Editorial","F.Publicación","Autor/es"
-				}
-				));
+			new Object[][] {
+			},
+			new String[] {
+				"ISBN", "Titulo", "Editorial", "F.Publicaci\u00F3n", "Autor/es"
+			}
+		));
+		table.getColumnModel().getColumn(0).setPreferredWidth(45);
+		table.getColumnModel().getColumn(1).setPreferredWidth(172);
+		table.getColumnModel().getColumn(2).setPreferredWidth(68);
+		table.getColumnModel().getColumn(3).setPreferredWidth(73);
+		table.getColumnModel().getColumn(4).setPreferredWidth(111);
 		DefaultTableModel modelo = (DefaultTableModel)table.getModel();
 
 

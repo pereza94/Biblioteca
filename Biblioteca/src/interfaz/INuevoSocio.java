@@ -150,8 +150,12 @@ public class INuevoSocio extends JDialog {
 		btnAceptar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				if(txDni.getText().length()==0 || txApellido.getText().length()==0 ||txNombre.getText().length()==0 || txNombre.getText().length()==0 || txDireccion.getText().length()==0 ||(rdbtnFemenino_1.isSelected()==false && rdbtnMasculino_1.isSelected()==false)){JOptionPane.showMessageDialog(null, "Todos los campos deben ser completados");}
-				else{
+				if(txDni.getText().length()==0 || txApellido.getText().length()==0 ||txNombre.getText().length()==0 || txNombre.getText().length()==0 || txDireccion.getText().length()==0 ||(rdbtnFemenino_1.isSelected()==false && rdbtnMasculino_1.isSelected()==false)){
+					JOptionPane.setDefaultLocale(null);
+					JOptionPane.showMessageDialog(null, "Todos los campos deben ser completados");
+					}
+				else
+				{
 					Integer dni = Integer.parseInt(txDni.getText()) ;
 					String identidad = txApellido.getText().toUpperCase()+" "+txNombre.getText().toUpperCase();
 					String direccion = txDireccion.getText().toUpperCase();
@@ -163,6 +167,8 @@ public class INuevoSocio extends JDialog {
 						s = "F";
 					}
 					SociosDB.insertarSocio(dni,identidad,direccion,telefono,s);
+					JOptionPane.showMessageDialog(null,"Socio añadido correctamente");
+					dispose();
 				}
 			}});
 

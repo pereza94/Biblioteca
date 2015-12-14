@@ -180,9 +180,7 @@ public class SancionDB {
 			c.commit();
 			c.close();
 		} catch (Exception e) {
-			System.err.println( e.getClass().getName()+": "+ e.getMessage() );
-			JOptionPane.showMessageDialog(null, e.getMessage()); 
-			System.exit(0);
+			JOptionPane.showMessageDialog(null, "Por favor elija un sanción a eliminar"); 
 		}
 
 	}

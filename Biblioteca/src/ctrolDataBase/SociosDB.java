@@ -129,9 +129,8 @@ public class SociosDB {
 		} catch (Exception e) {
 			System.err.println( e.getClass().getName()+": "+ e.getMessage() );
 			JOptionPane.showMessageDialog(null, e.getMessage()); 
-			System.exit(0);
 		}
-		JOptionPane.showMessageDialog(null,"Socio añadido correctamente");
+		
 	}
 
 	
