@@ -97,12 +97,17 @@ public class IBuscarSocio extends JDialog {
 
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
-				new Object[][] {
-				},
-				new String[] {
-						"DNI", "Identidad", "Direcci\u00F3n", "Sexo", "Telefono"
-				}
-				));
+			new Object[][] {
+			},
+			new String[] {
+				"DNI", "Identidad", "Direcci\u00F3n", "Sexo", "Telefono"
+			}
+		));
+		table.getColumnModel().getColumn(0).setPreferredWidth(50);
+		table.getColumnModel().getColumn(1).setPreferredWidth(203);
+		table.getColumnModel().getColumn(2).setPreferredWidth(140);
+		table.getColumnModel().getColumn(3).setPreferredWidth(34);
+		table.getColumnModel().getColumn(4).setPreferredWidth(100);
 		DefaultTableModel modelo = (DefaultTableModel)table.getModel();
 
 
