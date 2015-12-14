@@ -47,6 +47,7 @@ public class ILogin extends JFrame {
 			public void run() {
 				try {
 					ILogin frame = new ILogin();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -104,6 +105,7 @@ public class ILogin extends JFrame {
 				if (ctrolDataBase.LoginDB.login(txUSer.getText(),passwordField.getText()) == true){
 					dispose();
 					ip = new UIPrincipañ();
+					ip.setLocationRelativeTo(null);
 					ip.setVisible(true);}
 				else{
 					Component frame = null;

@@ -5,8 +5,11 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+
+import entity.Sancion;
 
 public class SancionDB {
 
@@ -109,6 +112,57 @@ public class SancionDB {
 		}
 
 	}
+	
+	public static ArrayList<Sancion>  SancionesVigentes() {
+		ConexionDB con = new ConexionDB();
+		String query = ("(select distinct s.dni, s.nombre,sa.fechainicio,sa.fechafin from socio s, sancion sa where(sa.fechafin > now() and sa.dni=s.dni))order by sa.fechainicio asc;"); 
+		con.start();
+		ArrayList <Sancion> lista = new ArrayList<>(0);
+		try{
+			Statement st = con.getConexion().createStatement();
+			System.out.println(query);
+			ResultSet rs = st.executeQuery(query);
+			while (rs.next()){
+				Sancion s = new Sancion();
+				s.setDni(rs.getInt("dni"));
+				s.setFechaInicio(rs.getDate("fechainicio"));
+				s.setFechaFin(rs.getDate("fechafin"));
+				lista.add(s);
+			}
+			con.close();
+			st.close();}
+		catch(Exception e){
+			lista=null;
+			System.out.println("Error al obtener lista de datos");
+		}
+		return lista;
+	}
+	
+	public static ArrayList<Sancion> HistorialSanciones() {
+		ConexionDB con = new ConexionDB();
+		String query = ("(select distinct * from  sancion sa )order by sa.fechainicio asc;"); 
+		con.start();
+		ArrayList <Sancion> lista = new ArrayList<>(0);
+		try{
+			Statement st = con.getConexion().createStatement();
+			System.out.println(query);
+			ResultSet rs = st.executeQuery(query);
+			while (rs.next()){
+				Sancion s = new Sancion();
+				s.setDni(rs.getInt("dni"));
+				s.setFechaInicio(rs.getDate("fechainicio"));
+				s.setFechaFin(rs.getDate("fechafin"));
+				lista.add(s);
+			}
+			con.close();
+			st.close();}
+		catch(Exception e){
+			lista=null;
+			System.out.println("Error al obtener lista de datos");
+		}
+		return lista;
+	}
+	
 
 
 

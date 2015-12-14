@@ -55,6 +55,7 @@ public class INuevoPrestamo extends JDialog {
 	 * Create the dialog.
 	 */
 	public INuevoPrestamo() {
+		setTitle("FCYT BIBLIOTECA - NUEVO PRESTAMO");
 		setBounds(100, 100, 674, 632);
 		getContentPane().setLayout(null);
 
@@ -89,7 +90,7 @@ public class INuevoPrestamo extends JDialog {
 		panel.add(btnBuscarIsbn);
 
 		JScrollPane scrollPane = new JScrollPane();
-		
+
 		scrollPane.setBounds(10, 68, 613, 196);
 		panel.add(scrollPane);
 		scrollPane.setAlignmentX(Component.RIGHT_ALIGNMENT);
@@ -112,7 +113,7 @@ public class INuevoPrestamo extends JDialog {
 				txIDEJemplar.setText(String.valueOf(valorCelda));
 			}
 		});
-		
+
 		scrollPane.setViewportView(table);
 
 
@@ -229,7 +230,7 @@ public class INuevoPrestamo extends JDialog {
 		JLabel lblCTelefono = new JLabel("");
 		lblCTelefono.setBounds(86, 106, 179, 14);
 		panel_2.add(lblCTelefono);
-		
+
 		JLabel lblSocioSancionado = new JLabel("El socio se encuentra sancionado");
 		lblSocioSancionado.setFont(new Font("Thames", Font.PLAIN, 13));
 		lblSocioSancionado.setForeground(new Color(255, 0, 0));
@@ -244,6 +245,7 @@ public class INuevoPrestamo extends JDialog {
 			public void mouseClicked(MouseEvent arg0) {
 
 				if(txDni.getText().length()==0){ISocioNoEncontrado sne = new ISocioNoEncontrado();
+				sne.setLocationRelativeTo(null);
 				sne.setVisible(true);}
 				else{
 					ArrayList<Socio> ls =ctrolDataBase.SociosDB.buscarXDNI(Integer.parseInt(txDni.getText()));
@@ -255,14 +257,15 @@ public class INuevoPrestamo extends JDialog {
 					} catch (Exception e) {
 						// TODO: handle exception
 						ISocioNoEncontrado sne = new ISocioNoEncontrado();
+						sne.setLocationRelativeTo(null);
 						sne.setVisible(true);
 					}
-					
+
 				}
 				int a = SancionDB.SancionVigente(Integer.valueOf(txDni.getText()));
 				if(a!=0){lblSocioSancionado.setVisible(true);}else{lblSocioSancionado.setVisible(false);}
-				
-			
+
+
 			}
 		});
 		btnValidar.setBounds(207, 180, 89, 23);
@@ -290,8 +293,8 @@ public class INuevoPrestamo extends JDialog {
 				System.out.println("----> "+ fechalimite);
 				ctrolDataBase.PrestamoDB.nuevoPrestamo((java.sql.Date) fechaHoy,Integer.parseInt(txIDEJemplar.getText()) , fechalimite, null, Integer.parseInt(txDni.getText()));
 				dispose();
-				
-				
+
+
 				ArrayList<Prestamo> listaPrestamo= PrestamoDB.PrestamosVigentes();
 				int cant=listaPrestamo.size();
 				for (int i = 0; i < UIPrincipañ.table.getRowCount(); i++) {
@@ -309,15 +312,15 @@ public class INuevoPrestamo extends JDialog {
 						Color c= new Color(51,102,0);
 						UIPrincipañ.table.setForeground(c);
 						UIPrincipañ.modelo.addRow(new Object[]{pe.getFechaPrestamo(),pe.getNumEjemplarDB(),pe.getFechaLimite(),pe.getDniSocio()});
-					
+
 					}
 					if(pe.getFechaLimite().before(fechaHoy1))
 					{
-					UIPrincipañ.table.setForeground(Color.red);	
-					UIPrincipañ.modelo.addRow(new Object[]{pe.getFechaPrestamo(),pe.getNumEjemplarDB(),pe.getFechaLimite(),pe.getDniSocio()});
-				
+						UIPrincipañ.table.setForeground(Color.red);	
+						UIPrincipañ.modelo.addRow(new Object[]{pe.getFechaPrestamo(),pe.getNumEjemplarDB(),pe.getFechaLimite(),pe.getDniSocio()});
+
 					}
-					}
+				}
 
 			}
 		});
@@ -341,15 +344,15 @@ public class INuevoPrestamo extends JDialog {
 			public void mouseClicked(MouseEvent e) {
 				IDevolucionPrestamo dp = new IDevolucionPrestamo();
 				dp.setVisible(true);
-				
-				
+
+
 			}
 		});
 		btnRegistrarDevolucin.setForeground(Color.BLUE);
 		btnRegistrarDevolucin.setBounds(156, 547, 175, 23);
 		getContentPane().add(btnRegistrarDevolucin);
 
-		
+
 
 	}
 }
