@@ -294,9 +294,9 @@ public class IBuscarLibro extends JDialog {
 		table.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				int fila=table.getSelectedRow();
-				String valorCelda =  (String) table.getValueAt(fila,0);	
+				String valorCelda =  (String) table.getValueAt(fila,0);
+				System.out.println(valorCelda);
 					INuevoPrestamo.txBuscado.setText(valorCelda);
-					dispose();
 					INuevaReserva.txISBNaBuscar.setText(valorCelda);
 					dispose();
 

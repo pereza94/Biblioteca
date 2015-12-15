@@ -165,6 +165,12 @@ public class INuevaReserva extends JDialog {
 		panel.add(btnBuscarLibro);
 		
 		JButton btnVolver = new JButton("Volver");
+		btnVolver.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+			}
+		});
 		btnVolver.setForeground(Color.RED);
 		btnVolver.setBackground(Color.LIGHT_GRAY);
 		btnVolver.setBounds(437, 276, 93, 23);
