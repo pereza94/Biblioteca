@@ -27,6 +27,7 @@ import java.util.Calendar;
 import java.awt.Choice;
 import org.freixas.jcalendar.JCalendar;
 import org.freixas.jcalendar.JCalendarCombo;
+import javax.swing.DefaultComboBoxModel;
 
 public class INuevoLibro extends JDialog {
 	public static JTextField txISBNNuevoLibro;
@@ -58,17 +59,18 @@ public class INuevoLibro extends JDialog {
 	 */
 	public INuevoLibro() {
 		setTitle("Nuevo Libro");
-		setBounds(100, 100, 529, 384);
+		setBounds(100, 100, 518, 330);
 		getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 25, 493, 306);
+		panel.setBounds(0, 0, 493, 278);
 		getContentPane().add(panel);
 		Border bordejpanel = new TitledBorder(new EtchedBorder(),"Nuevo Libro");
 		panel.setBorder(bordejpanel);
 		panel.setLayout(null);
 
 		JLabel lblIsbn = new JLabel("ISBN");
+		lblIsbn.setForeground(new Color(0, 0, 128));
 		lblIsbn.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblIsbn.setBounds(57, 24, 52, 14);
 		panel.add(lblIsbn);
@@ -79,6 +81,7 @@ public class INuevoLibro extends JDialog {
 		txISBNNuevoLibro.setColumns(10);
 
 		JLabel lblTitulo = new JLabel("Titulo");
+		lblTitulo.setForeground(new Color(0, 0, 128));
 		lblTitulo.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblTitulo.setBounds(10, 79, 59, 14);
 		panel.add(lblTitulo);
@@ -89,11 +92,13 @@ public class INuevoLibro extends JDialog {
 		txTituloNuevoLibro.setColumns(10);
 
 		JLabel lblAo = new JLabel("Fecha Publicaci\u00F3n");
+		lblAo.setForeground(new Color(0, 0, 128));
 		lblAo.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblAo.setBounds(180, 79, 118, 14);
 		panel.add(lblAo);
 
 		JLabel lblIdAutor = new JLabel("ID Autor");
+		lblIdAutor.setForeground(new Color(0, 0, 128));
 		lblIdAutor.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblIdAutor.setBounds(10, 127, 59, 14);
 		panel.add(lblIdAutor);
@@ -104,6 +109,8 @@ public class INuevoLibro extends JDialog {
 		txAutor1NuevoLibro.setColumns(10);
 
 		JButton btnNewButton = new JButton("Buscar Autores");
+		btnNewButton.setForeground(new Color(0, 0, 255));
+		btnNewButton.setBackground(Color.LIGHT_GRAY);
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -128,7 +135,7 @@ public class INuevoLibro extends JDialog {
 		button_1.setForeground(new Color(165, 42, 42));
 		button_1.setFont(new Font("Segoe Print", Font.BOLD, 11));
 		button_1.setBackground(Color.LIGHT_GRAY);
-		button_1.setBounds(301, 238, 105, 23);
+		button_1.setBounds(366, 239, 105, 23);
 		panel.add(button_1);
 
 		txAutor2NuevoLibro = new JTextField();
@@ -160,6 +167,7 @@ public class INuevoLibro extends JDialog {
 
 
 		JButton button_2 = new JButton("+");
+		button_2.setBackground(Color.LIGHT_GRAY);
 		button_2.setForeground(Color.BLUE);
 		button_2.addMouseListener(new MouseAdapter() {
 
@@ -181,6 +189,7 @@ public class INuevoLibro extends JDialog {
 
 
 		JLabel lblEditorial = new JLabel("Editorial");
+		lblEditorial.setForeground(new Color(0, 0, 128));
 		lblEditorial.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblEditorial.setBounds(239, 24, 59, 14);
 		panel.add(lblEditorial);
@@ -191,6 +200,8 @@ public class INuevoLibro extends JDialog {
 		txEditorialNuevoLibro.setColumns(10);
 
 		JCalendarCombo calendarCombo = new JCalendarCombo();
+		calendarCombo.setForeground(new Color(30, 144, 255));
+		calendarCombo.setModel(new DefaultComboBoxModel(new String[] {"Seleccione la fecha"}));
 		calendarCombo.setBounds(300, 76, 183, 20);
 		panel.add(calendarCombo);
 
@@ -232,7 +243,7 @@ public class INuevoLibro extends JDialog {
 		button.setForeground(new Color(0, 100, 0));
 		button.setFont(new Font("Segoe Print", Font.BOLD, 11));
 		button.setBackground(Color.LIGHT_GRAY);
-		button.setBounds(180, 239, 105, 23);
+		button.setBounds(243, 239, 105, 23);
 		panel.add(button);
 
 	}

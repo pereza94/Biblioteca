@@ -61,14 +61,20 @@ public class IListadoSocios extends JDialog {
 			getContentPane().add(scrollPane);
 			{
 				table = new JTable();
-				table.setForeground(Color.BLUE);
+				table.setFont(new Font("Arial", Font.PLAIN, 11));
+				table.setForeground(new Color(0, 0, 128));
 				table.setModel(new DefaultTableModel(
-						new Object[][] {
-						},
-						new String[] {
-								"DNI", "Identidad", "Direcci\u00F3n", "Sexo", "Telefono"
-						}
-						));
+					new Object[][] {
+					},
+					new String[] {
+						"DNI", "Identidad", "Direcci\u00F3n", "Sexo", "Telefono"
+					}
+				));
+				table.getColumnModel().getColumn(0).setPreferredWidth(60);
+				table.getColumnModel().getColumn(1).setPreferredWidth(150);
+				table.getColumnModel().getColumn(2).setPreferredWidth(110);
+				table.getColumnModel().getColumn(3).setPreferredWidth(38);
+				table.getColumnModel().getColumn(4).setPreferredWidth(100);
 				scrollPane.setViewportView(table);
 			}
 

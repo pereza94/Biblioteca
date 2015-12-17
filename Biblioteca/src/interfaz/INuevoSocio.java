@@ -147,6 +147,8 @@ public class INuevoSocio extends JDialog {
 		contentPanel.add(lblSexo);
 
 		JButton btnAceptar = new JButton("Guardar");
+		btnAceptar.setForeground(new Color(0, 100, 0));
+		btnAceptar.setBackground(Color.LIGHT_GRAY);
 		btnAceptar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -180,6 +182,8 @@ public class INuevoSocio extends JDialog {
 		contentPanel.add(btnAceptar);
 
 		JButton btnVolver = new JButton("Volver");
+		btnVolver.setForeground(new Color(220, 20, 60));
+		btnVolver.setBackground(Color.LIGHT_GRAY);
 		btnVolver.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {

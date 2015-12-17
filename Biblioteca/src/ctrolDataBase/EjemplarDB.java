@@ -182,7 +182,6 @@ public class EjemplarDB {
 		ConexionDB con = new ConexionDB();
 		String c = null;
 		String query = ("select distinct l.titulo from ejemplar2 e , libro l where(e.idinventario='"+buscado+"' and e.isbn=l.isbn);"); 
-		System.out.println(query);
 		con.start();
 		try{
 			Statement st = con.getConexion().createStatement();

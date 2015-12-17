@@ -115,7 +115,7 @@ public class SancionDB {
 	
 	public static ArrayList<Sancion>  SancionesVigentes() {
 		ConexionDB con = new ConexionDB();
-		String query = ("(select distinct s.dni, s.nombre,sa.fechainicio,sa.fechafin from socio s, sancion sa where(sa.fechafin > now() and sa.dni=s.dni))order by sa.fechainicio asc;"); 
+		String query = ("(select distinct s.dni, s.nombre,sa.fechainicio,sa.fechafin from socio s, sancion sa where(sa.fechafin > now() and sa.dni=s.dni))order by s.nombre asc;"); 
 		con.start();
 		ArrayList <Sancion> lista = new ArrayList<>(0);
 		try{

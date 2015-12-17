@@ -162,7 +162,7 @@ public class SociosDB {
 	
 	public static ArrayList<Socio>  BusquedaSocio(String s) {
 		ConexionDB con = new ConexionDB();
-		String query = ("(select Distinct l.dni,l.nombre,l.direccion,l.sexo,l.telefono from socio l where (l.nombre like '"+s+"%'));"); 
+		String query = ("(select Distinct l.dni,l.nombre,l.direccion,l.sexo,l.telefono from socio l where (l.nombre like '"+s+"%'))order by l.nombre;"); 
 		con.start();
 		ArrayList <Socio> lista = new ArrayList<>(0);
 		try{

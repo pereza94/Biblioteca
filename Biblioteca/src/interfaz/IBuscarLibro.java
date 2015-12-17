@@ -296,8 +296,25 @@ public class IBuscarLibro extends JDialog {
 				int fila=table.getSelectedRow();
 				String valorCelda =  (String) table.getValueAt(fila,0);
 				System.out.println(valorCelda);
+				try {
 					INuevoPrestamo.txBuscado.setText(valorCelda);
+				} catch (Exception e2) {
+					
+
+					// TODO: handle exception
+				}
+				try {
 					INuevaReserva.txISBNaBuscar.setText(valorCelda);
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+				try {
+					IlibroEjemplarBuscado.txISBN.setText(valorCelda);
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+					//INuevoPrestamo.txBuscado.setText(valorCelda);
+					//INuevaReserva.txISBNaBuscar.setText(valorCelda);
 					dispose();
 
 			}

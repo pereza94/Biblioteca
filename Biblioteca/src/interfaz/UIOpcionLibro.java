@@ -38,10 +38,11 @@ public class UIOpcionLibro extends JDialog{
 	 * Create the dialog.
 	 */
 	public UIOpcionLibro() {
+		setBackground(Color.BLACK);
 		setTitle("FCYT BIBLIOTECA - GESTI\u00D3N LIBROS");
 		setBounds(100, 100, 301, 150);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBackground(Color.GRAY);
+		contentPanel.setBackground(Color.DARK_GRAY);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -78,8 +79,10 @@ public class UIOpcionLibro extends JDialog{
 		btnListarEjemplaresDe.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				IBuscarLibro bl = new IBuscarLibro();
-				bl.setVisible(true);
+				dispose();
+				IlibroEjemplarBuscado ibe = new IlibroEjemplarBuscado();
+				ibe.setLocationRelativeTo(null);
+				ibe.setVisible(true);
 			}
 		});
 		btnListarEjemplaresDe.setBackground(Color.LIGHT_GRAY);

@@ -118,7 +118,6 @@ public class PrestamoDB {
 		ConexionDB con = new ConexionDB();
 		String query = ("select distinct * from prestamo where fechadevolucion is  null;"); 
 		con.start();
-		System.out.println(query);
 		ArrayList <Prestamo> lista = new ArrayList<>(0);
 		try{
 			Statement st = con.getConexion().createStatement();
@@ -173,7 +172,6 @@ public class PrestamoDB {
 		ConexionDB con = new ConexionDB();
 		String query = ("select distinct * from prestamo p where (p.dni="+busc+" and p.fechadevolucion is null);"); 
 		con.start();
-		System.out.println(query);
 		ArrayList <Prestamo> lista = new ArrayList<>(0);
 		try{
 			Statement st = con.getConexion().createStatement();

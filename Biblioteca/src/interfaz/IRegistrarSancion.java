@@ -24,6 +24,8 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.SystemColor;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class IRegistrarSancion extends JDialog {
 	private JTextField txDNI;
@@ -129,10 +131,7 @@ public class IRegistrarSancion extends JDialog {
 		lblCantidadDeDas.setBounds(89, 252, 101, 14);
 		panel.add(lblCantidadDeDas);
 
-		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		spinner.setBounds(189, 249, 55, 20);
-		panel.add(spinner);
+		
 
 		JLabel lblFechaFinDe = new JLabel("Fecha Fin de la Sanci\u00F3n");
 		lblFechaFinDe.setForeground(new Color(153, 0, 0));
@@ -157,32 +156,7 @@ public class IRegistrarSancion extends JDialog {
 		btnVolver.setBounds(557, 335, 89, 23);
 		panel.add(btnVolver);
 
-		DateFormat calendarCombo;
-		JButton btnRegistrarSancin = new JButton("Registrar Sanci\u00F3n");
-		btnRegistrarSancin.setBackground(Color.LIGHT_GRAY);
-		btnRegistrarSancin.setIcon(new ImageIcon(IRegistrarSancion.class.getResource("/Images/Login/checkok.jpg")));
-		btnRegistrarSancin.setForeground(new Color(0, 102, 0));
-		btnRegistrarSancin.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				int a = (int) spinner.getValue(); 
-				int b = ctrolDataBase.SancionDB.obtenerNumeroSancion();
-				System.out.print(b);
-				Calendar calendar = Calendar.getInstance();
-				java.sql.Date date = new java.sql.Date(calendar.getTime().getTime());
-				Date fechaHoy = date;
-				Calendar calendar2 = Calendar.getInstance();
-				calendar2.setTime(date); // Configuramos la fecha que se recibe
-				calendar2.add(Calendar.DAY_OF_YEAR, a);  // numero de días a añadir, o restar en caso de días<0
-				java.sql.Date datefin = new java.sql.Date(calendar2.getTime().getTime());
-				ctrolDataBase.SancionDB.insertarSancion(b, Integer.parseInt(txDNI.getText()),date,  datefin);
-				lblCFechaFin.setText(ctrolDataBase.EjemplarDB.convertirFechaString(datefin));
-
-				JOptionPane.showMessageDialog(null, "Sanción Guardada");
-			}
-		});
-		btnRegistrarSancin.setBounds(351, 335, 186, 23);
-		panel.add(btnRegistrarSancin);
+		
 
 
 
@@ -209,8 +183,53 @@ public class IRegistrarSancion extends JDialog {
 		});
 		btnBuscar.setBounds(313, 21, 115, 23);
 		panel.add(btnBuscar);
+		JSpinner spinner = new JSpinner();
+		spinner.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				int a = (int) spinner.getValue(); 
+				int b = ctrolDataBase.SancionDB.obtenerNumeroSancion();
+				Calendar calendar = Calendar.getInstance();
+				java.sql.Date date = new java.sql.Date(calendar.getTime().getTime());
+				Date fechaHoy = date;
+				Calendar calendar2 = Calendar.getInstance();
+				calendar2.setTime(date); // Configuramos la fecha que se recibe
+				calendar2.add(Calendar.DAY_OF_YEAR, a);  // numero de días a añadir, o restar en caso de días<0
+				java.sql.Date datefin = new java.sql.Date(calendar2.getTime().getTime());
+				lblCFechaFin.setText(ctrolDataBase.EjemplarDB.convertirFechaString(datefin));
+			}
+		});
+		
+		spinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		spinner.setBounds(189, 249, 55, 20);
+		panel.add(spinner);
 
+		DateFormat calendarCombo;
+		JButton btnRegistrarSancin = new JButton("Registrar Sanci\u00F3n");
+		btnRegistrarSancin.setBackground(Color.LIGHT_GRAY);
+		btnRegistrarSancin.setIcon(new ImageIcon(IRegistrarSancion.class.getResource("/Images/Login/checkok.jpg")));
+		btnRegistrarSancin.setForeground(new Color(0, 102, 0));
+		btnRegistrarSancin.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int a = (int) spinner.getValue(); 
+				int b = ctrolDataBase.SancionDB.obtenerNumeroSancion();
+				System.out.print(b);
+				Calendar calendar = Calendar.getInstance();
+				java.sql.Date date = new java.sql.Date(calendar.getTime().getTime());
+				Date fechaHoy = date;
+				Calendar calendar2 = Calendar.getInstance();
+				calendar2.setTime(date); // Configuramos la fecha que se recibe
+				calendar2.add(Calendar.DAY_OF_YEAR, a);  // numero de días a añadir, o restar en caso de días<0
+				java.sql.Date datefin = new java.sql.Date(calendar2.getTime().getTime());
+				ctrolDataBase.SancionDB.insertarSancion(b, Integer.parseInt(txDNI.getText()),date,  datefin);
+				lblCFechaFin.setText(ctrolDataBase.EjemplarDB.convertirFechaString(datefin));
 
+				JOptionPane.showMessageDialog(null, "Sanción Registrada");
+				dispose();
+			}
+		});
+		btnRegistrarSancin.setBounds(351, 335, 186, 23);
+		panel.add(btnRegistrarSancin);
 
 
 

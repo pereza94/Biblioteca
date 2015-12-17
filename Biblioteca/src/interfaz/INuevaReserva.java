@@ -76,7 +76,7 @@ public class INuevaReserva extends JDialog {
 
 			}
 		});
-		btnBuscarLibros.setBounds(228, 26, 156, 23);
+		btnBuscarLibros.setBounds(376, 25, 156, 23);
 		panel.add(btnBuscarLibros);
 
 		JLabel lblFechaInicio = new JLabel("Fecha Inicio");
@@ -161,7 +161,7 @@ public class INuevaReserva extends JDialog {
 
 			}
 		});
-		btnBuscarLibro.setBounds(398, 26, 132, 23);
+		btnBuscarLibro.setBounds(234, 25, 132, 23);
 		panel.add(btnBuscarLibro);
 		
 		JButton btnVolver = new JButton("Volver");

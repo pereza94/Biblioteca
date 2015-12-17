@@ -44,7 +44,7 @@ public class UIOpcionReserva extends JDialog {
 		contentPanel.setLayout(null);
 		
 		JButton btnNuevaReserva = new JButton("Nueva Reserva");
-		btnNuevaReserva.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnNuevaReserva.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnNuevaReserva.setBackground(Color.LIGHT_GRAY);
 		btnNuevaReserva.setForeground(Color.BLUE);
 		btnNuevaReserva.addMouseListener(new MouseAdapter() {
@@ -59,7 +59,7 @@ public class UIOpcionReserva extends JDialog {
 		contentPanel.add(btnNuevaReserva);
 		
 		JButton btnEliminarReserva = new JButton("Listar / Eliminar Reserva");
-		btnEliminarReserva.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnEliminarReserva.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnEliminarReserva.setBackground(Color.LIGHT_GRAY);
 		btnEliminarReserva.setForeground(Color.BLUE);
 		btnEliminarReserva.addMouseListener(new MouseAdapter() {

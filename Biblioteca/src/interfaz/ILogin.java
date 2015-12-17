@@ -101,7 +101,6 @@ public class ILogin extends JFrame {
 		btnAceptar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-					System.out.println("psw --->"+passwordField.getText());
 				if (ctrolDataBase.LoginDB.login(txUSer.getText(),passwordField.getText()) == true){
 					dispose();
 					ip = new UIPrincipañ();
@@ -110,9 +109,10 @@ public class ILogin extends JFrame {
 				else{
 					Component frame = null;
 					JOptionPane.showMessageDialog(frame,
-							"Datos Incorrectos",
+							"Datos Incorrectos. Por favor intente nuevamente",
 							"Error inicio de sesión",
 							JOptionPane.ERROR_MESSAGE);
+					passwordField.setText("");
 				}
 			}
 		});

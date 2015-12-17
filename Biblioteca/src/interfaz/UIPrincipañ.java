@@ -30,6 +30,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowListener;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 
 public class UIPrincipañ extends JDialog {
 
@@ -132,6 +133,9 @@ public class UIPrincipañ extends JDialog {
 		getContentPane().add(lblprestamosVigentes);
 
 		JButton btnGestinSocio = new JButton("Gesti\u00F3n Socio");
+		btnGestinSocio.setToolTipText(" ");
+		btnGestinSocio.setBackground(Color.LIGHT_GRAY);
+		btnGestinSocio.setIcon(new ImageIcon(UIPrincipañ.class.getResource("/Images/Login/userlogo0111 (1) (2).png")));
 		btnGestinSocio.setForeground(Color.BLUE);
 		btnGestinSocio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -154,6 +158,8 @@ public class UIPrincipañ extends JDialog {
 		getContentPane().add(btnGestinSocio);
 
 		JButton btnGLibro = new JButton("Gesti\u00F3n Libro");
+		btnGLibro.setBackground(Color.LIGHT_GRAY);
+		btnGLibro.setIcon(new ImageIcon(UIPrincipañ.class.getResource("/Images/Login/Gu\u00EDa (1).png")));
 		btnGLibro.setForeground(Color.BLUE);
 		buttonGroup.add(btnGLibro);
 		btnGLibro.addActionListener(new ActionListener() {
@@ -170,6 +176,8 @@ public class UIPrincipañ extends JDialog {
 		getContentPane().add(btnGLibro);
 
 		JButton btnGestinReserva = new JButton("Gesti\u00F3n Reserva");
+		btnGestinReserva.setBackground(Color.LIGHT_GRAY);
+		btnGestinReserva.setIcon(new ImageIcon(UIPrincipañ.class.getResource("/Images/Login/icono_calendario (1).png")));
 		btnGestinReserva.setForeground(Color.BLUE);
 		buttonGroup.add(btnGestinReserva);
 		btnGestinReserva.addMouseListener(new MouseAdapter() {
@@ -187,6 +195,8 @@ public class UIPrincipañ extends JDialog {
 		getContentPane().add(btnGestinReserva);
 
 		JButton btnNuevoPrestamo = new JButton("Nuevo Prestamo / Devoluci\u00F3n");
+		btnNuevoPrestamo.setIcon(new ImageIcon(UIPrincipañ.class.getResource("/Images/Login/prestamo (2).png")));
+		btnNuevoPrestamo.setBackground(Color.LIGHT_GRAY);
 		btnNuevoPrestamo.setForeground(Color.BLUE);
 		btnNuevoPrestamo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -198,10 +208,12 @@ public class UIPrincipañ extends JDialog {
 				np.setVisible(true);
 			}
 		});
-		btnNuevoPrestamo.setBounds(25, 462, 775, 33);
+		btnNuevoPrestamo.setBounds(22, 463, 775, 33);
 		getContentPane().add(btnNuevoPrestamo);
 
 		JButton btnGSancion = new JButton("Gesti\u00F3n Sanci\u00F3n");
+		btnGSancion.setBackground(Color.LIGHT_GRAY);
+		btnGSancion.setIcon(new ImageIcon(UIPrincipañ.class.getResource("/Images/Login/Prohibido.png")));
 		btnGSancion.setForeground(Color.BLUE);
 		buttonGroup.add(btnGSancion);
 		btnGSancion.addMouseListener(new MouseAdapter() {
@@ -219,13 +231,14 @@ public class UIPrincipañ extends JDialog {
 		getContentPane().add(btnGSancion);
 
 		JButton btnSalir = new JButton("Salir");
+		btnSalir.setBackground(Color.LIGHT_GRAY);
 		btnSalir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
 			}
 		});
-		btnSalir.setForeground(new Color(128, 0, 0));
+		btnSalir.setForeground(Color.RED);
 		btnSalir.setBounds(904, 488, 89, 23);
 		getContentPane().add(btnSalir);
 
