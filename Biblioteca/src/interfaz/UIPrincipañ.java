@@ -112,12 +112,14 @@ public class UIPrincipañ extends JDialog {
 				modelo.addRow(new Object[]{pe.getFechaPrestamo(),pe.getNumEjemplarDB(),titulo,pe.getFechaLimite(),pe.getDniSocio(),s.getIdentidad()});
 
 			}
-			/*if(pe.getFechaLimite().before(fechaHoy))
+			if(pe.getFechaLimite().before(fechaHoy))
 			{
-			table.setForeground(Color.red);	
-			modelo.addRow(new Object[]{pe.getFechaPrestamo(),pe.getNumEjemplarDB(),pe.getFechaLimite(),pe.getDniSocio()});
+				String titulo = EjemplarDB.ObtenerTitulo(pe.getNumEjemplarDB());
+				ArrayList<Socio> soc = SociosDB.buscarXDNI(pe.getDniSocio());
+				Socio s= soc.get(0);
+				modelo.addRow(new Object[]{pe.getFechaPrestamo(),pe.getNumEjemplarDB(),titulo,pe.getFechaLimite(),pe.getDniSocio(),s.getIdentidad()});
 
-			}*/
+			}
 		}
 
 

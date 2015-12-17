@@ -313,6 +313,11 @@ public class IBuscarLibro extends JDialog {
 				} catch (Exception e2) {
 					// TODO: handle exception
 				}
+				try {
+					INuevoEjemplar.txISBN.setText(valorCelda);
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
 					//INuevoPrestamo.txBuscado.setText(valorCelda);
 					//INuevaReserva.txISBNaBuscar.setText(valorCelda);
 					dispose();

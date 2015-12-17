@@ -15,7 +15,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -27,8 +26,10 @@ import javax.swing.table.DefaultTableModel;
 
 import org.freixas.jcalendar.JCalendarCombo;
 
+import ctrolDataBase.EjemplarDB;
 import ctrolDataBase.PrestamoDB;
 import ctrolDataBase.SancionDB;
+import ctrolDataBase.SociosDB;
 import entity.Ejemplar;
 import entity.Prestamo;
 import entity.Socio;
@@ -295,10 +296,13 @@ public class INuevoPrestamo extends JDialog {
 				calendar2.set(Calendar.MONTH, calendarCombo.getCalendar().get(Calendar.MONTH) ); // Assuming you wanted May 1st
 				java.sql.Date fechalimite = new java.sql.Date(calendar2.getTime().getTime());
 				System.out.println("----> "+ fechalimite);
-				ctrolDataBase.PrestamoDB.nuevoPrestamo((java.sql.Date) fechaHoy,Integer.parseInt(txIDEJemplar.getText()) , fechalimite, null, Integer.parseInt(txDni.getText()));
+				try {
+					ctrolDataBase.PrestamoDB.nuevoPrestamo((java.sql.Date) fechaHoy,Integer.parseInt(txIDEJemplar.getText()) , fechalimite, null, Integer.parseInt(txDni.getText()));
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+				
 				dispose();
-
-
 				ArrayList<Prestamo> listaPrestamo= PrestamoDB.PrestamosVigentes();
 				int cant=listaPrestamo.size();
 				for (int i = 0; i < UIPrincipañ.table.getRowCount(); i++) {
@@ -311,22 +315,15 @@ public class INuevoPrestamo extends JDialog {
 					Calendar calendar1 = Calendar.getInstance();
 					java.sql.Date date1 = new java.sql.Date(calendar1.getTime().getTime());
 					Date fechaHoy1 = date1;
-					if(pe.getFechaLimite().after(fechaHoy1))
-					{
 						Color c= new Color(51,102,0);
-						UIPrincipañ.table.setForeground(c);
-						UIPrincipañ.modelo.addRow(new Object[]{pe.getFechaPrestamo(),pe.getNumEjemplarDB(),pe.getFechaLimite(),pe.getDniSocio()});
-
-					}
-					if(pe.getFechaLimite().before(fechaHoy1))
-					{
-						UIPrincipañ.table.setForeground(Color.red);	
-						UIPrincipañ.modelo.addRow(new Object[]{pe.getFechaPrestamo(),pe.getNumEjemplarDB(),pe.getFechaLimite(),pe.getDniSocio()});
-
+						String titulo = EjemplarDB.ObtenerTitulo(pe.getNumEjemplarDB());
+						ArrayList<Socio> soc = SociosDB.buscarXDNI(pe.getDniSocio());
+						Socio s1= soc.get(0);
+						UIPrincipañ.modelo.addRow(new Object[]{pe.getFechaPrestamo(),pe.getNumEjemplarDB(),titulo,pe.getFechaLimite(),pe.getDniSocio(),s1.getIdentidad()});
+						System.out.println("paso "+x);
 					}
 				}
 
-			}
 		});
 		btnResgitrarprestamo.setBounds(341, 547, 175, 23);
 		getContentPane().add(btnResgitrarprestamo);

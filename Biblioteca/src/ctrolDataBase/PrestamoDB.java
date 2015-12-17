@@ -84,6 +84,31 @@ public class PrestamoDB {
 		}
 		return c;
 	}
+	
+	public static Prestamo ValidarVerificarFechas(Date fechaHoy, int codEje ) {
+		Prestamo c = new entity.Prestamo();
+		ConexionDB con = new ConexionDB();
+		String query = ("select * from prestamo   where (numiden="+codEje+" and  fechaDevolucion is null);" );
+		con.start();
+		System.out.println(query);
+		ArrayList <Ejemplar> lista = new ArrayList<>(0);
+		try{
+			Statement st = con.getConexion().createStatement();
+			ResultSet rs = st.executeQuery(query);
+			while (rs.next()){
+				c.setDniSocio(rs.getInt("dni"));
+				c.setFechaLimite(rs.getDate("fechalimite"));
+			}
+			con.close();
+			st.close();}
+		catch(Exception e){
+			c=null;
+			System.out.println("Error al obtener lista de datos");
+		}
+		return c;
+	}
+
+	
 
 
 	public static ArrayList<Ejemplar>  EjemplaresDisponibles(String isbn ) {
@@ -116,7 +141,8 @@ public class PrestamoDB {
 
 	public static ArrayList<Prestamo>  PrestamosVigentes() {
 		ConexionDB con = new ConexionDB();
-		String query = ("select distinct * from prestamo where fechadevolucion is  null;"); 
+		String query = ("select distinct * from prestamo where (fechadevolucion is  null);");
+		System.out.println(query);
 		con.start();
 		ArrayList <Prestamo> lista = new ArrayList<>(0);
 		try{

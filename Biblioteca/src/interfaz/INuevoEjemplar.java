@@ -34,7 +34,7 @@ import java.awt.SystemColor;
 public class INuevoEjemplar extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txISBN;
+	public static JTextField txISBN;
 	private JTextField txUbicacion;
 
 	/**
