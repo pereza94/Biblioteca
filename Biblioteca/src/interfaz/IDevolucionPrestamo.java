@@ -111,9 +111,11 @@ public class IDevolucionPrestamo extends JDialog {
 
 							}
 							else{
-								JOptionPane.showMessageDialog(null,"La fecha limite ha sido superada");
-								String fecha = ctrolDataBase.EjemplarDB.convertirFechaString((java.sql.Date) p.getFechaLimite());
-								lblfechaCLimite.setText(fecha);
+								String fecha1 = ctrolDataBase.EjemplarDB.convertirFechaString((java.sql.Date) p.getFechaLimite());
+								IDevolucionAtrasada nda = new IDevolucionAtrasada();
+								IDevolucionAtrasada.dias =  fecha1;
+								nda.setVisible(true);
+								
 
 							}
 						}

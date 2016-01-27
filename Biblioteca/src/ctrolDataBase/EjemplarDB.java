@@ -197,6 +197,28 @@ public class EjemplarDB {
 		return c;
 	}
 
-
+	public static ArrayList<Libro>  buscarLibroXEjemplar(int codEjemplar) {
+		ConexionDB con = new ConexionDB();
+		String query = ("select distinct  l.isbn,l.titulo,l.editorial from libro l,ejemplar2 e where(e.isbn= l.isbn and e.idinventario ="+codEjemplar+");"); 
+		con.start();
+		ArrayList <Libro> lista = new ArrayList<>(0);
+		try{
+			Statement st = con.getConexion().createStatement();
+			ResultSet rs = st.executeQuery(query);
+			while (rs.next()){
+				Libro c = new Libro();
+				c.setIsbn( rs.getString("isbn"));
+				c.setTitulo(rs.getString("titulo"));
+				c.setEditorial(rs.getString("editorial"));
+				lista.add(c);
+			}
+			con.close();
+			st.close();}
+		catch(Exception e){
+			lista=null;
+			System.out.println("Error al obtener lista de datos");
+		}
+		return lista;
+	}
 
 }

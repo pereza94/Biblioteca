@@ -40,7 +40,7 @@ public class UIOpcionLibro extends JDialog{
 	public UIOpcionLibro() {
 		setBackground(Color.BLACK);
 		setTitle("FCYT BIBLIOTECA - GESTI\u00D3N LIBROS");
-		setBounds(100, 100, 307, 207);
+		setBounds(100, 100, 308, 227);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(Color.DARK_GRAY);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -102,7 +102,21 @@ public class UIOpcionLibro extends JDialog{
 		});
 		btnNuevoEjemplar.setForeground(Color.BLUE);
 		btnNuevoEjemplar.setBackground(Color.LIGHT_GRAY);
-		btnNuevoEjemplar.setBounds(10, 113, 272, 23);
+		btnNuevoEjemplar.setBounds(10, 147, 272, 23);
 		contentPanel.add(btnNuevoEjemplar);
+		
+		JButton btnInfoEjemplar = new JButton("Datos de un Ejemplar");
+		btnInfoEjemplar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+				IEjemplarLibro iel = new IEjemplarLibro();
+				iel.setVisible(true);
+			}
+		});
+		btnInfoEjemplar.setForeground(Color.BLUE);
+		btnInfoEjemplar.setBackground(Color.LIGHT_GRAY);
+		btnInfoEjemplar.setBounds(10, 113, 272, 23);
+		contentPanel.add(btnInfoEjemplar);
 	}
 }

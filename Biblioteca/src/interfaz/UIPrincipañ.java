@@ -31,6 +31,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowListener;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
+import java.awt.Font;
 
 public class UIPrincipañ extends JDialog {
 
@@ -78,7 +79,7 @@ public class UIPrincipañ extends JDialog {
 		getContentPane().add(scrollPane);
 		{
 			table = new JTable();
-			table.setForeground(Color.BLUE);
+			table.setForeground(new Color(102, 102, 0));
 			table.setModel(new DefaultTableModel(
 				new Object[][] {
 				},
@@ -104,8 +105,6 @@ public class UIPrincipañ extends JDialog {
 			Date fechaHoy = date;
 			if(pe.getFechaLimite().after(fechaHoy))
 			{
-				Color c= new Color(51,102,0);
-				table.setForeground(c);	
 				String titulo = EjemplarDB.ObtenerTitulo(pe.getNumEjemplarDB());
 				ArrayList<Socio> soc = SociosDB.buscarXDNI(pe.getDniSocio());
 				Socio s= soc.get(0);
@@ -123,16 +122,12 @@ public class UIPrincipañ extends JDialog {
 		}
 
 
-		JLabel lblPrestamosVigentes = new JLabel("Prestamos vigentes");
-		lblPrestamosVigentes.setForeground(new Color(0, 128, 0));
+		JLabel lblPrestamosVigentes = new JLabel("Prestamos no devueltos\r\n");
+		lblPrestamosVigentes.setFont(new Font("Yu Gothic UI", Font.BOLD, 13));
+		lblPrestamosVigentes.setForeground(new Color(102, 102, 0));
 		lblPrestamosVigentes.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPrestamosVigentes.setBounds(299, 11, 132, 14);
+		lblPrestamosVigentes.setBounds(299, 11, 177, 14);
 		getContentPane().add(lblPrestamosVigentes);
-
-		JLabel lblprestamosVigentes = new JLabel("*Prestamos vigentes");
-		lblprestamosVigentes.setForeground(new Color(0, 100, 0));
-		lblprestamosVigentes.setBounds(25, 403, 156, 33);
-		getContentPane().add(lblprestamosVigentes);
 
 		JButton btnGestinSocio = new JButton("Gesti\u00F3n Socio");
 		btnGestinSocio.setToolTipText(" ");
@@ -210,7 +205,7 @@ public class UIPrincipañ extends JDialog {
 				np.setVisible(true);
 			}
 		});
-		btnNuevoPrestamo.setBounds(22, 463, 775, 33);
+		btnNuevoPrestamo.setBounds(10, 478, 775, 33);
 		getContentPane().add(btnNuevoPrestamo);
 
 		JButton btnGSancion = new JButton("Gesti\u00F3n Sanci\u00F3n");
