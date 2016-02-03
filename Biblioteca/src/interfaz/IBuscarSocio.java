@@ -260,7 +260,14 @@ public class IBuscarSocio extends JDialog {
 
 				int fila=table.getSelectedRow();
 				Integer valorCelda =  (Integer) table.getValueAt(fila,0);
-				ILibrosPorSocio.txDni.setText(String.valueOf(valorCelda));
+				try {
+					ILibrosPorSocio.txDni.setText(String.valueOf(valorCelda));
+
+				} catch (Exception e2) {
+					IRegistrarSancion.txDNI.setText(String.valueOf(valorCelda));
+
+					// TODO: handle exception
+				}
 				dispose();
 			}
 		});

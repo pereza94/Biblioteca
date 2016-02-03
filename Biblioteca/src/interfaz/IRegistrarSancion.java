@@ -26,6 +26,11 @@ import javax.swing.SwingConstants;
 import java.awt.SystemColor;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
+import java.awt.Font;
 
 public class IRegistrarSancion extends JDialog {
 	public static JTextField txDNI;
@@ -44,6 +49,8 @@ public class IRegistrarSancion extends JDialog {
 		}
 	}
 
+	
+	
 	/**
 	 * Create the dialog.
 	 */
@@ -53,6 +60,11 @@ public class IRegistrarSancion extends JDialog {
 
 
 		JPanel panel = new JPanel();
+		panel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+			}
+		});
 		panel.setBounds(0, 0, 688, 381);
 		getContentPane().add(panel);
 		Border bordejpanel = new TitledBorder(new EtchedBorder(),"Registrar Sanción");
@@ -64,10 +76,7 @@ public class IRegistrarSancion extends JDialog {
 		lblDni.setBounds(139, 25, 46, 14);
 		panel.add(lblDni);
 
-		txDNI = new JTextField();
-		txDNI.setBounds(195, 22, 86, 20);
-		panel.add(txDNI);
-		txDNI.setColumns(10);
+	
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setForeground(new Color(153, 204, 102));
@@ -158,7 +167,14 @@ public class IRegistrarSancion extends JDialog {
 		panel.add(btnVolver);
 
 		
-
+		JLabel lblHacerClickSobre = new JLabel("Hacer click sobre el Dni para verificar datos");
+		lblHacerClickSobre.setEnabled(false);
+		lblHacerClickSobre.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
+		lblHacerClickSobre.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHacerClickSobre.setForeground(new Color(60, 179, 113));
+		lblHacerClickSobre.setBounds(139, 51, 289, 14);
+		panel.add(lblHacerClickSobre);
+		lblHacerClickSobre.setVisible(false);
 
 
 		JButton btnBuscar = new JButton("Buscar");
@@ -168,18 +184,28 @@ public class IRegistrarSancion extends JDialog {
 		btnBuscar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				IBuscarSocio bs = new IBuscarSocio();
+				bs.setVisible(true);
+				lblHacerClickSobre.setVisible(true);
 				entity.Socio socio = new entity.Socio();
-				ArrayList<Socio> ll=ctrolDataBase.SociosDB.buscarXDNI(Integer.parseInt(txDNI.getText()));
-				socio = ll.get(0);
-				lblCIDentidad.setText(socio.getIdentidad());
-				lblCDirección.setText(socio.getDomicilio());
-				lblCTelefono.setText(socio.getTelefono());
-				System.out.println(socio.getSexo());
-				if(socio.getSexo().equals("M") ){lblCSexo.setText("Masculino");}
-				else{lblCSexo.setText("Femenino");}
+				try {
+					ArrayList<Socio> ll=ctrolDataBase.SociosDB.buscarXDNI(Integer.parseInt(txDNI.getText()));
+					socio = ll.get(0);
+					lblCIDentidad.setText(socio.getIdentidad());
+					lblCDirección.setText(socio.getDomicilio());
+					lblCTelefono.setText(socio.getTelefono());
+					System.out.println(socio.getSexo());
+					if(socio.getSexo().equals("M") ){lblCSexo.setText("Masculino");}
+					else{lblCSexo.setText("Femenino");}
 
-				lblCSancionesAnterios.setText(String.valueOf((ctrolDataBase.SancionDB.sancionesAnteriores(Integer.parseInt(txDNI.getText())))));
+					lblCSancionesAnterios.setText(String.valueOf((ctrolDataBase.SancionDB.sancionesAnteriores(Integer.parseInt(txDNI.getText())))));
 
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+				
+				
+				
 			}
 		});
 		btnBuscar.setBounds(313, 21, 115, 23);
@@ -231,9 +257,64 @@ public class IRegistrarSancion extends JDialog {
 		});
 		btnRegistrarSancin.setBounds(351, 335, 186, 23);
 		panel.add(btnRegistrarSancin);
+		
+	
+	
+		txDNI = new JTextField();
+		txDNI.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				entity.Socio socio = new entity.Socio();
+				ArrayList<Socio> ll=ctrolDataBase.SociosDB.buscarXDNI(Integer.parseInt(txDNI.getText()));
+				socio = ll.get(0);
+				lblCIDentidad.setText(socio.getIdentidad());
+				lblCDirección.setText(socio.getDomicilio());
+				lblCTelefono.setText(socio.getTelefono());
+				System.out.println(socio.getSexo());
+				if(socio.getSexo().equals("M") ){lblCSexo.setText("Masculino");}
+				else{lblCSexo.setText("Femenino");}
 
+				lblCSancionesAnterios.setText(String.valueOf((ctrolDataBase.SancionDB.sancionesAnteriores(Integer.parseInt(txDNI.getText())))));
+			}
+		});
+		txDNI.setEditable(false);
+		txDNI.setBounds(195, 22, 86, 20);
+		panel.add(txDNI);
+		txDNI.setColumns(10);
+		
+		
+		
+		
+		
+		
+		
+		
+		/*txDNI.addActionListener(new java.awt.event.ActionListener() {
+		            public void actionPerformed(java.awt.event.ActionEvent evt) {
+		                jTextField1ActionPerformed(evt);
+		            }
+		        });
+		*/
+		
+		
+		
+		
+		/*while (txDNI.getText().length()!= 10){
+			entity.Socio socio = new entity.Socio();
+			ArrayList<Socio> ll=ctrolDataBase.SociosDB.buscarXDNI(Integer.parseInt(txDNI.getText()));
+			socio = ll.get(0);
+			lblCIDentidad.setText(socio.getIdentidad());
+			lblCDirección.setText(socio.getDomicilio());
+			lblCTelefono.setText(socio.getTelefono());
+			System.out.println(socio.getSexo());
+			if(socio.getSexo().equals("M") ){lblCSexo.setText("Masculino");}
+			else{lblCSexo.setText("Femenino");}
 
+			lblCSancionesAnterios.setText(String.valueOf((ctrolDataBase.SancionDB.sancionesAnteriores(Integer.parseInt(txDNI.getText())))));
+	
+		}*/
 
 
 	}
+	
 }
