@@ -25,11 +25,15 @@ import java.util.Calendar;
 import java.util.Date;
 import javax.swing.border.BevelBorder;
 import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class IDevolucionPrestamo extends JDialog {
 
 	protected static final int MILLSECS_PER_DAY = 0;
 	private final JPanel contentPanel = new JPanel();
+	public static String aviso;
+	public static String dni;
 	private JTextField textField;
 
 	/**
@@ -66,12 +70,7 @@ public class IDevolucionPrestamo extends JDialog {
 				lblIdEjemplar.setBounds(12, 27, 72, 14);
 				panel.add(lblIdEjemplar);
 			}
-			{
-				textField = new JTextField();
-				textField.setBounds(94, 24, 86, 20);
-				panel.add(textField);
-				textField.setColumns(10);
-			}
+			
 			{
 				JLabel lblDasDeDemora = new JLabel("Fecha Limite");
 				lblDasDeDemora.setForeground(Color.BLUE);
@@ -103,6 +102,10 @@ public class IDevolucionPrestamo extends JDialog {
 						Date fechaHoy = date;
 						ctrolDataBase.PrestamoDB.RegistarDevolución((java.sql.Date) fechaHoy, Integer.parseInt(textField.getText()));
 						Prestamo p = ctrolDataBase.PrestamoDB.VerificarFechas((java.sql.Date) fechaHoy, Integer.parseInt(textField.getText()));
+						for (int i = 0; i < UIPrincipañ.table.getRowCount(); i++) {
+							UIPrincipañ.modelo.removeRow(i);
+							i-=1;
+						}
 						if(p.getFechaLimite()!=null){
 							if((p.getFechaLimite().after(fechaHoy)) || (p.getFechaLimite().equals(fechaHoy))){
 								JOptionPane.showMessageDialog(null, "Devolución Registrada");
@@ -112,13 +115,16 @@ public class IDevolucionPrestamo extends JDialog {
 							}
 							else{
 								String fecha1 = ctrolDataBase.EjemplarDB.convertirFechaString((java.sql.Date) p.getFechaLimite());
+								aviso =  fecha1;
+							//	dni = String.valueOf(p.getDniSocio());
+							//	System.out.println("el dni del socio es "+dni);
 								IDevolucionAtrasada nda = new IDevolucionAtrasada();
-								IDevolucionAtrasada.dias =  fecha1;
 								nda.setVisible(true);
 								
 
 							}
 						}
+						
 						else{JOptionPane.showMessageDialog(null,"No se encontro el prestamo Solicitado");}
 						ArrayList<Prestamo> listaPrestamo= PrestamoDB.PrestamosVigentes();
 						int cant=listaPrestamo.size();
@@ -191,10 +197,7 @@ public class IDevolucionPrestamo extends JDialog {
 						else{JOptionPane.showMessageDialog(null,"No se encontro el prestamo Solicitado");}
 						ArrayList<Prestamo> listaPrestamo= PrestamoDB.PrestamosVigentes();
 						int cant=listaPrestamo.size();
-						for (int i = 0; i < UIPrincipañ.table.getRowCount(); i++) {
-							UIPrincipañ.modelo.removeRow(i);
-							i-=1;
-						}
+						
 						
 						
 					}
@@ -208,7 +211,49 @@ public class IDevolucionPrestamo extends JDialog {
 			lblNombreSocio.setBounds(12, 105, 86, 14);
 			panel.add(lblNombreSocio);
 			
-			
+			{
+				textField = new JTextField();
+				textField.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyReleased(KeyEvent e) {
+						System.out.println("la cantidad de caracteres del textfield es : "+textField.getText().length());
+						if (textField.getText().length()==4){
+							Calendar calendar = Calendar.getInstance();
+							java.sql.Date date = new java.sql.Date(calendar.getTime().getTime());
+							Date fechaHoy = date;
+							Prestamo p = ctrolDataBase.PrestamoDB.ValidarVerificarFechas(null, Integer.parseInt(textField.getText()));
+							if(p.getFechaLimite()!=null){
+								if((p.getFechaLimite().after(fechaHoy)) || (p.getFechaLimite().equals(fechaHoy))){
+									String fecha = ctrolDataBase.EjemplarDB.convertirFechaString((java.sql.Date) p.getFechaLimite());
+									lblfechaCLimite.setText(fecha);
+									int dni = p.getDniSocio();
+									ArrayList<Socio> ls = SociosDB.buscarXDNI(dni);
+									Socio s=ls.get(0);
+									lbNombreSocio1.setText(s.getIdentidad());
+
+								}
+								else{
+									String fecha = ctrolDataBase.EjemplarDB.convertirFechaString((java.sql.Date) p.getFechaLimite());
+									lblfechaCLimite.setText(fecha);
+									int dni = p.getDniSocio();
+									ArrayList<Socio> ls = SociosDB.buscarXDNI(dni);
+									Socio s=ls.get(0);
+									lbNombreSocio1.setText(s.getIdentidad());
+
+								}
+							}
+							else{JOptionPane.showMessageDialog(null,"No se encontro el prestamo Solicitado");}
+							ArrayList<Prestamo> listaPrestamo= PrestamoDB.PrestamosVigentes();
+							int cant=listaPrestamo.size();
+							
+						}
+						
+					}
+				});
+				textField.setBounds(94, 24, 86, 20);
+				panel.add(textField);
+				textField.setColumns(10);
+			}
 
 
 		}
@@ -224,5 +269,7 @@ public class IDevolucionPrestamo extends JDialog {
 			btnNewButton.setBounds(316, 171, 89, 23);
 			contentPanel.add(btnNewButton);
 		}
+		
+		
 	}
 }

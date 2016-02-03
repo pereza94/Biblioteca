@@ -28,7 +28,8 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 
 public class IRegistrarSancion extends JDialog {
-	private JTextField txDNI;
+	public static JTextField txDNI;
+	
 
 	/**
 	 * Launch the application.

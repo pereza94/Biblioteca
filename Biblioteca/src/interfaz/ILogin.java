@@ -156,7 +156,7 @@ public class ILogin extends JFrame {
 		passwordField.setEchoChar('*');
 		panel.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{txUSer, btnAceptar, btnCerrar}));
 		
-		
+			
 
 
 

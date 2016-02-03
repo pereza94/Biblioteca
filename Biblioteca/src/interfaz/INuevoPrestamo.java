@@ -33,11 +33,18 @@ import ctrolDataBase.SociosDB;
 import entity.Ejemplar;
 import entity.Prestamo;
 import entity.Socio;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.UIManager;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.SoftBevelBorder;
+import java.util.Locale;
 
 public class INuevoPrestamo extends JDialog {
 	public static JTextField txBuscado;
 	private JTextField txDni;
 	private JTextField txIDEJemplar;
+	private JCalendarCombo calendarCombo;
 
 	/**
 	 * Launch the application.
@@ -72,10 +79,8 @@ public class INuevoPrestamo extends JDialog {
 		lblLibro.setBounds(10, 27, 59, 14);
 		panel.add(lblLibro);
 
-		txBuscado = new JTextField();
-		txBuscado.setBounds(79, 24, 86, 20);
-		panel.add(txBuscado);
-		txBuscado.setColumns(10);
+	
+		
 
 
 		JButton btnBuscarIsbn = new JButton("Buscar Libro");
@@ -118,6 +123,9 @@ public class INuevoPrestamo extends JDialog {
 		scrollPane.setViewportView(table);
 
 
+		
+		
+		
 		JButton btnBuscarEjempalr = new JButton("Buscar Ejemplar");
 		btnBuscarEjempalr.setForeground(Color.BLUE);
 		btnBuscarEjempalr.addMouseListener(new MouseAdapter() {
@@ -162,28 +170,32 @@ public class INuevoPrestamo extends JDialog {
 		Border bordejpanel_1 = new TitledBorder(new EtchedBorder(),"Datos prestamo");
 		panel_1.setBorder(bordejpanel_1);
 		panel_1.setLayout(null);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.CYAN, null, null, null));
+		panel_3.setBounds(95, 137, 185, 20);
+		panel_1.add(panel_3);
+		panel_3.setLayout(null);
 
-		JCalendarCombo calendarCombo = new JCalendarCombo();
+		calendarCombo = new JCalendarCombo();
+		calendarCombo.setBounds(0, 0, 185, 20);
+		panel_3.add(calendarCombo);
+		calendarCombo.setTodayFont(UIManager.getFont("ComboBox.font"));
 		calendarCombo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		calendarCombo.setBackground(new Color(0, 153, 255));
 		calendarCombo.setForeground(Color.LIGHT_GRAY);
 		calendarCombo.setDayOfWeekFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
-		calendarCombo.setDayFont(new Font("Britannic Bold", Font.BOLD, 12));
+		calendarCombo.setDayFont(new Font("Century", Font.BOLD | Font.ITALIC, 14));
 		calendarCombo.setEditable(true);
 		calendarCombo.setModel(new DefaultComboBoxModel(new String[] {"Seleccione una fecha"}));
 		calendarCombo.setNullAllowed(false);
-		calendarCombo.setBounds(95, 137, 185, 20);
-		panel_1.add(calendarCombo);
 
 		JLabel lblDni = new JLabel("DNI");
 		lblDni.setForeground(Color.BLUE);
 		lblDni.setBounds(10, 32, 46, 14);
 		panel_1.add(lblDni);
 
-		txDni = new JTextField();
-		txDni.setBounds(131, 26, 86, 20);
-		panel_1.add(txDni);
-		txDni.setColumns(10);
+		
 
 		txIDEJemplar = new JTextField();
 		txIDEJemplar.setBounds(131, 79, 86, 20);
@@ -242,6 +254,21 @@ public class INuevoPrestamo extends JDialog {
 		lblSocioSancionado.setBounds(47, 151, 229, 14);
 		lblSocioSancionado.setVisible(false);
 		panel_2.add(lblSocioSancionado);
+		
+		JCalendarCombo calendarCombo_1 = new JCalendarCombo();
+		calendarCombo_1.setTodayFont(new Font("DFMincho-UB", Font.BOLD, 12));
+		calendarCombo_1.setOpaque(false);
+		calendarCombo_1.setNullAllowed(false);
+		calendarCombo_1.setLocale(new Locale("es", "AR"));
+		calendarCombo_1.setIgnoreRepaint(true);
+		calendarCombo_1.setInheritsPopupMenu(true);
+		calendarCombo_1.setFocusTraversalPolicyProvider(true);
+		calendarCombo_1.setFocusCycleRoot(true);
+		calendarCombo_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		calendarCombo_1.setBounds(86, 62, 163, 20);
+		panel_2.add(calendarCombo_1);
+		calendarCombo_1.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, Color.RED, null, null, null));
+		calendarCombo_1.setAutoscrolls(true);
 
 		JButton btnValidar = new JButton("Validar");
 		btnValidar.setForeground(Color.BLUE);
@@ -353,7 +380,67 @@ public class INuevoPrestamo extends JDialog {
 		btnRegistrarDevolucin.setBounds(156, 547, 175, 23);
 		getContentPane().add(btnRegistrarDevolucin);
 
+		
+		txBuscado = new JTextField();
+		txBuscado.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (txBuscado.getText().length() == 10) {
+					System.out.println("entro..");
+					ArrayList<Ejemplar> le = ctrolDataBase.PrestamoDB.EjemplaresDisponibles(txBuscado.getText());
+					if (le.isEmpty()) {
+						IPreguntaReserva pr = new IPreguntaReserva();
+						pr.setLocationRelativeTo(null);
+						pr.setVisible(true);
+					}
+					for (int x = 0; x < le.size(); x++) {
+						Ejemplar e1 = le.get(x);
+						modelo.addRow(new Object[] { e1.getNumInventario(), e1.getFechaAlta(), e1.getCodUbicaion(),
+								e1.getIsbn() });
 
+					}
+				} else {
+					IBuscarLibro bl = new IBuscarLibro();
+					bl.setVisible(true);
+				}
+			}
+		});
+		txBuscado.setBounds(79, 24, 86, 20);
+		panel.add(txBuscado);
+		txBuscado.setColumns(10);
+		
+		
+		txDni = new JTextField();
+		txDni.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				
+					try {
+						if (txDni.getText().length()> 6 && txDni.getText().length()<9 ){
+						ArrayList<Socio> ls =ctrolDataBase.SociosDB.buscarXDNI(Integer.parseInt(txDni.getText()));
+							Socio s= ls.get(0);
+							lblCIdentidad.setText(s.getIdentidad());
+							lblCTelefono.setText(s.getTelefono());
+							lblCDireccion.setText(s.getDomicilio());
+						}
+					} catch (Exception e2) {
+						// TODO: handle exception
+					}
+					if(txDni.getText().length()> 7 && lblCIdentidad.getText().length()==0){
+						ISocioNoEncontrado sne = new ISocioNoEncontrado();
+						sne.setLocationRelativeTo(null);
+						sne.setVisible(true);
+					}
+						
+				
+			}
+		});
+		txDni.setBounds(131, 26, 86, 20);
+		panel_1.add(txDni);
+		txDni.setColumns(10);
 
+	}
+	public JCalendarCombo getCalendarCombo() {
+		return calendarCombo;
 	}
 }
