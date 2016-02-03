@@ -24,7 +24,6 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
-import org.freixas.jcalendar.JCalendarCombo;
 
 import ctrolDataBase.EjemplarDB;
 import ctrolDataBase.PrestamoDB;
@@ -39,12 +38,12 @@ import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 import java.util.Locale;
+import com.toedter.calendar.JDateChooser;
 
 public class INuevoPrestamo extends JDialog {
 	public static JTextField txBuscado;
 	private JTextField txDni;
 	private JTextField txIDEJemplar;
-	private JCalendarCombo calendarCombo;
 
 	/**
 	 * Launch the application.
@@ -176,8 +175,14 @@ public class INuevoPrestamo extends JDialog {
 		panel_3.setBounds(95, 137, 185, 20);
 		panel_1.add(panel_3);
 		panel_3.setLayout(null);
+		
+		JDateChooser calendarCombo1 = new JDateChooser();
+		calendarCombo1.setBounds(0, 0, 185, 20);
+		calendarCombo1.getJCalendar().setMinSelectableDate(new Date());
+		panel_3.add(calendarCombo1);
+		
 
-		calendarCombo = new JCalendarCombo();
+		/*calendarCombo = new JCalendarCombo();
 		calendarCombo.setBounds(0, 0, 185, 20);
 		panel_3.add(calendarCombo);
 		calendarCombo.setTodayFont(UIManager.getFont("ComboBox.font"));
@@ -189,6 +194,7 @@ public class INuevoPrestamo extends JDialog {
 		calendarCombo.setEditable(true);
 		calendarCombo.setModel(new DefaultComboBoxModel(new String[] {"Seleccione una fecha"}));
 		calendarCombo.setNullAllowed(false);
+		*/
 
 		JLabel lblDni = new JLabel("DNI");
 		lblDni.setForeground(Color.BLUE);
@@ -255,20 +261,6 @@ public class INuevoPrestamo extends JDialog {
 		lblSocioSancionado.setVisible(false);
 		panel_2.add(lblSocioSancionado);
 		
-		JCalendarCombo calendarCombo_1 = new JCalendarCombo();
-		calendarCombo_1.setTodayFont(new Font("DFMincho-UB", Font.BOLD, 12));
-		calendarCombo_1.setOpaque(false);
-		calendarCombo_1.setNullAllowed(false);
-		calendarCombo_1.setLocale(new Locale("es", "AR"));
-		calendarCombo_1.setIgnoreRepaint(true);
-		calendarCombo_1.setInheritsPopupMenu(true);
-		calendarCombo_1.setFocusTraversalPolicyProvider(true);
-		calendarCombo_1.setFocusCycleRoot(true);
-		calendarCombo_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		calendarCombo_1.setBounds(86, 62, 163, 20);
-		panel_2.add(calendarCombo_1);
-		calendarCombo_1.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, Color.RED, null, null, null));
-		calendarCombo_1.setAutoscrolls(true);
 
 		JButton btnValidar = new JButton("Validar");
 		btnValidar.setForeground(Color.BLUE);
@@ -317,10 +309,10 @@ public class INuevoPrestamo extends JDialog {
 				Calendar calendar = Calendar.getInstance();
 				java.sql.Date date = new java.sql.Date(calendar.getTime().getTime());
 				Date fechaHoy = date;
-				Calendar calendar2 = calendarCombo.getCalendar().getInstance();
-				calendar2.set(Calendar.YEAR, calendarCombo.getCalendar().get(calendar.YEAR));
-				calendar2.set(Calendar.DAY_OF_MONTH, calendarCombo.getCalendar().get(Calendar.DAY_OF_MONTH));
-				calendar2.set(Calendar.MONTH, calendarCombo.getCalendar().get(Calendar.MONTH) ); // Assuming you wanted May 1st
+				Calendar calendar2 = calendarCombo1.getCalendar().getInstance();
+				calendar2.set(Calendar.YEAR, calendarCombo1.getCalendar().get(calendar.YEAR));
+				calendar2.set(Calendar.DAY_OF_MONTH, calendarCombo1.getCalendar().get(Calendar.DAY_OF_MONTH));
+				calendar2.set(Calendar.MONTH, calendarCombo1.getCalendar().get(Calendar.MONTH) ); // Assuming you wanted May 1st
 				java.sql.Date fechalimite = new java.sql.Date(calendar2.getTime().getTime());
 				System.out.println("----> "+ fechalimite);
 				try {
@@ -440,7 +432,5 @@ public class INuevoPrestamo extends JDialog {
 		txDni.setColumns(10);
 
 	}
-	public JCalendarCombo getCalendarCombo() {
-		return calendarCombo;
-	}
+	
 }
