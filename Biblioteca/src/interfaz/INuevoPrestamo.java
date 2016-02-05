@@ -83,6 +83,7 @@ public class INuevoPrestamo extends JDialog {
 
 
 		JButton btnBuscarIsbn = new JButton("Buscar Libro");
+		btnBuscarIsbn.setBackground(Color.LIGHT_GRAY);
 		btnBuscarIsbn.setForeground(Color.BLUE);
 		btnBuscarIsbn.addMouseListener(new MouseAdapter() {
 			@Override
@@ -126,6 +127,7 @@ public class INuevoPrestamo extends JDialog {
 		
 		
 		JButton btnBuscarEjempalr = new JButton("Buscar Ejemplar");
+		btnBuscarEjempalr.setBackground(Color.LIGHT_GRAY);
 		btnBuscarEjempalr.setForeground(Color.BLUE);
 		btnBuscarEjempalr.addMouseListener(new MouseAdapter() {
 			@Override
@@ -159,7 +161,7 @@ public class INuevoPrestamo extends JDialog {
 			}
 		});
 		btnLimpiarTabla.setIcon(new ImageIcon(INuevoPrestamo.class.getResource("/Images/Login/8fc03fbe37e8ed0e1e784244c68f3fe8.png")));
-		btnLimpiarTabla.setBackground(Color.WHITE);
+		btnLimpiarTabla.setBackground(Color.LIGHT_GRAY);
 		btnLimpiarTabla.setBounds(478, 44, 142, 23);
 		panel.add(btnLimpiarTabla);
 
@@ -263,6 +265,7 @@ public class INuevoPrestamo extends JDialog {
 		
 
 		JButton btnValidar = new JButton("Validar");
+		btnValidar.setBackground(Color.LIGHT_GRAY);
 		btnValidar.setForeground(Color.BLUE);
 		btnValidar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -296,6 +299,7 @@ public class INuevoPrestamo extends JDialog {
 		panel_1.add(btnValidar);
 
 		JButton btnResgitrarprestamo = new JButton("ResgitrarPrestamo");
+		btnResgitrarprestamo.setBackground(Color.LIGHT_GRAY);
 		btnResgitrarprestamo.setForeground(Color.BLUE);
 		btnResgitrarprestamo.addMouseListener(new MouseAdapter() {
 			@Override
@@ -315,6 +319,7 @@ public class INuevoPrestamo extends JDialog {
 				calendar2.set(Calendar.MONTH, calendarCombo1.getCalendar().get(Calendar.MONTH) ); // Assuming you wanted May 1st
 				java.sql.Date fechalimite = new java.sql.Date(calendar2.getTime().getTime());
 				System.out.println("----> "+ fechalimite);
+				ArrayList<Prestamo> lp1 = ctrolDataBase.PrestamoDB.datosImprimir(Integer.parseInt(txIDEJemplar.getText()), (java.sql.Date)fechaHoy);
 				try {
 					ctrolDataBase.PrestamoDB.nuevoPrestamo((java.sql.Date) fechaHoy,Integer.parseInt(txIDEJemplar.getText()) , fechalimite, null, Integer.parseInt(txDni.getText()));
 				} catch (Exception e) {
@@ -348,6 +353,7 @@ public class INuevoPrestamo extends JDialog {
 		getContentPane().add(btnResgitrarprestamo);
 
 		JButton btnVolver = new JButton("Volver");
+		btnVolver.setBackground(Color.LIGHT_GRAY);
 		btnVolver.setForeground(Color.BLUE);
 		btnVolver.addMouseListener(new MouseAdapter() {
 			@Override
@@ -359,6 +365,7 @@ public class INuevoPrestamo extends JDialog {
 		getContentPane().add(btnVolver);
 
 		JButton btnRegistrarDevolucin = new JButton("Registrar Devoluci\u00F3n");
+		btnRegistrarDevolucin.setBackground(Color.LIGHT_GRAY);
 		btnRegistrarDevolucin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -368,7 +375,7 @@ public class INuevoPrestamo extends JDialog {
 
 			}
 		});
-		btnRegistrarDevolucin.setForeground(Color.BLUE);
+		btnRegistrarDevolucin.setForeground(new Color(0, 128, 0));
 		btnRegistrarDevolucin.setBounds(156, 547, 175, 23);
 		getContentPane().add(btnRegistrarDevolucin);
 

@@ -166,6 +166,62 @@ public class PrestamoDB {
 		return lista;
 	}
 	
+	public static ArrayList<Prestamo>  obtenerDniPrestamo(int niden, Date fprestamo) {
+		ConexionDB con = new ConexionDB();
+		String query = ("select distinct * from prestamo where (numiden="+niden+" and fechadevolucion='"+fprestamo+"');");
+		System.out.println(query);
+		con.start();
+		ArrayList <Prestamo> lista = new ArrayList<>(0);
+		try{
+			Statement st = con.getConexion().createStatement();
+			ResultSet rs = st.executeQuery(query);
+			while (rs.next()){
+				Prestamo c = new Prestamo();
+				c.setDniSocio(rs.getInt("dni"));
+				c.setNumEjemplarDB(rs.getInt("numiden"));
+				c.setFechaPrestamo(rs.getDate("fechaprestamo"));
+				c.setFechaLimite(rs.getDate("fechalimite"));
+				
+				lista.add(c);
+			}
+			con.close();
+			st.close();}
+		catch(Exception e){
+			lista=null;
+			System.out.println("Error al obtener lista de datos");
+		}
+		return lista;
+	}
+	
+	public static ArrayList<Prestamo>  datosImprimir(int niden, Date fhoy) {
+		ConexionDB con = new ConexionDB();
+		String query = ("select distinct * from prestamo where (numiden="+niden+" and fechaprestamo='"+fhoy+"');");
+		System.out.println(query);
+		con.start();
+		ArrayList <Prestamo> lista = new ArrayList<>(0);
+		try{
+			Statement st = con.getConexion().createStatement();
+			ResultSet rs = st.executeQuery(query);
+			while (rs.next()){
+				Prestamo c = new Prestamo();
+				c.setDniSocio(rs.getInt("dni"));
+				c.setNumEjemplarDB(rs.getInt("numiden"));
+				c.setFechaPrestamo(rs.getDate("fechaprestamo"));
+				c.setFechaLimite(rs.getDate("fechalimite"));
+				
+				lista.add(c);
+			}
+			con.close();
+			st.close();}
+		catch(Exception e){
+			lista=null;
+			System.out.println("Error al obtener lista de datos");
+		}
+		return lista;
+	}
+	
+	
+	
 	public static ArrayList<Prestamo>  PrestamosPorSocio(int busc) {
 		ConexionDB con = new ConexionDB();
 		String query = ("select distinct * from prestamo p where (p.dni="+busc+");"); 

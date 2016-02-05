@@ -34,6 +34,7 @@ import java.awt.Font;
 
 public class IRegistrarSancion extends JDialog {
 	public static JTextField txDNI;
+	public static JLabel lblHacerClickSobre = new JLabel("Hacer click sobre el Dni para verificar datos");
 	
 
 	/**
@@ -167,7 +168,7 @@ public class IRegistrarSancion extends JDialog {
 		panel.add(btnVolver);
 
 		
-		JLabel lblHacerClickSobre = new JLabel("Hacer click sobre el Dni para verificar datos");
+		
 		lblHacerClickSobre.setEnabled(false);
 		lblHacerClickSobre.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
 		lblHacerClickSobre.setHorizontalAlignment(SwingConstants.CENTER);
@@ -289,30 +290,7 @@ public class IRegistrarSancion extends JDialog {
 		
 		
 		
-		/*txDNI.addActionListener(new java.awt.event.ActionListener() {
-		            public void actionPerformed(java.awt.event.ActionEvent evt) {
-		                jTextField1ActionPerformed(evt);
-		            }
-		        });
-		*/
 		
-		
-		
-		
-		/*while (txDNI.getText().length()!= 10){
-			entity.Socio socio = new entity.Socio();
-			ArrayList<Socio> ll=ctrolDataBase.SociosDB.buscarXDNI(Integer.parseInt(txDNI.getText()));
-			socio = ll.get(0);
-			lblCIDentidad.setText(socio.getIdentidad());
-			lblCDirección.setText(socio.getDomicilio());
-			lblCTelefono.setText(socio.getTelefono());
-			System.out.println(socio.getSexo());
-			if(socio.getSexo().equals("M") ){lblCSexo.setText("Masculino");}
-			else{lblCSexo.setText("Femenino");}
-
-			lblCSancionesAnterios.setText(String.valueOf((ctrolDataBase.SancionDB.sancionesAnteriores(Integer.parseInt(txDNI.getText())))));
-	
-		}*/
 
 
 	}

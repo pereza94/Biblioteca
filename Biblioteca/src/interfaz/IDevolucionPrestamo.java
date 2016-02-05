@@ -102,6 +102,9 @@ public class IDevolucionPrestamo extends JDialog {
 						Date fechaHoy = date;
 						ctrolDataBase.PrestamoDB.RegistarDevolución((java.sql.Date) fechaHoy, Integer.parseInt(textField.getText()));
 						Prestamo p = ctrolDataBase.PrestamoDB.VerificarFechas((java.sql.Date) fechaHoy, Integer.parseInt(textField.getText()));
+						ArrayList<Prestamo> lp1 = ctrolDataBase.PrestamoDB.obtenerDniPrestamo( Integer.parseInt(textField.getText()), (java.sql.Date) fechaHoy);
+						Prestamo p1= lp1.get(0);
+						//System.out.println("la fecha desde la clase es "+ p1.getDniSocio());
 						for (int i = 0; i < UIPrincipañ.table.getRowCount(); i++) {
 							UIPrincipañ.modelo.removeRow(i);
 							i-=1;
@@ -116,8 +119,8 @@ public class IDevolucionPrestamo extends JDialog {
 							else{
 								String fecha1 = ctrolDataBase.EjemplarDB.convertirFechaString((java.sql.Date) p.getFechaLimite());
 								aviso =  fecha1;
-							//	dni = String.valueOf(p.getDniSocio());
-							//	System.out.println("el dni del socio es "+dni);
+								dni = String.valueOf(p1.getDniSocio());
+							    System.out.println("el dni del socio es :"+ dni);
 								IDevolucionAtrasada nda = new IDevolucionAtrasada();
 								nda.setVisible(true);
 								
