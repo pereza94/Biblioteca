@@ -30,7 +30,7 @@ public class PrestamoDB {
 			stmt.close();
 			c.commit();
 			c.close();
-			JOptionPane.showMessageDialog(null, "Prestamo almacenado");
+			JOptionPane.showMessageDialog(null, "Prestamo almacenado...Imprimiendo Comprobante");
 		} catch (Exception e) {
 			System.err.println( e.getClass().getName()+": "+ e.getMessage() );
 			JOptionPane.showMessageDialog(null, e.getMessage()); 

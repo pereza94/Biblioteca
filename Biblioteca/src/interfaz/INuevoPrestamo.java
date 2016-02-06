@@ -6,6 +6,7 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -32,6 +33,8 @@ import ctrolDataBase.SociosDB;
 import entity.Ejemplar;
 import entity.Prestamo;
 import entity.Socio;
+import impresion.Impresion;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.UIManager;
@@ -321,18 +324,20 @@ public class INuevoPrestamo extends JDialog {
 				System.out.println("----> "+ fechalimite);
 				try {
 					ctrolDataBase.PrestamoDB.nuevoPrestamo((java.sql.Date) fechaHoy,Integer.parseInt(txIDEJemplar.getText()) , fechalimite, null, Integer.parseInt(txDni.getText()));
+					Impresion.imprimirComprobante(Integer.parseInt(txDni.getText()), fechalimite, Integer.parseInt(txIDEJemplar.getText()));
+
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
+				
+				
 				try {
-					impresion.Impresion.imprimirComprobante(Integer.parseInt(txDni.getText()), fechalimite, Integer.parseInt(txIDEJemplar.getText()));
-				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		        	Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+"C:\\Users\\Alejandro\\Google Drive\\Facultad\\3ro\\Biblioteca\\Biblioteca\\reporte_2_Comprobante_PDF.pdf");
+		        	System.out.println("Final");
+		        	} catch (IOException e) {
+		        	// TODO Auto-generated catch block
+		        	e.printStackTrace();
+		        	}
 				dispose();
 				ArrayList<Prestamo> listaPrestamo= PrestamoDB.PrestamosVigentes();
 				int cant=listaPrestamo.size();
