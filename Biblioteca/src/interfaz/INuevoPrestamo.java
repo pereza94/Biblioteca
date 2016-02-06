@@ -319,13 +319,20 @@ public class INuevoPrestamo extends JDialog {
 				calendar2.set(Calendar.MONTH, calendarCombo1.getCalendar().get(Calendar.MONTH) ); // Assuming you wanted May 1st
 				java.sql.Date fechalimite = new java.sql.Date(calendar2.getTime().getTime());
 				System.out.println("----> "+ fechalimite);
-				ArrayList<Prestamo> lp1 = ctrolDataBase.PrestamoDB.datosImprimir(Integer.parseInt(txIDEJemplar.getText()), (java.sql.Date)fechaHoy);
 				try {
 					ctrolDataBase.PrestamoDB.nuevoPrestamo((java.sql.Date) fechaHoy,Integer.parseInt(txIDEJemplar.getText()) , fechalimite, null, Integer.parseInt(txDni.getText()));
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-				
+				try {
+					impresion.Impresion.imprimirComprobante(Integer.parseInt(txDni.getText()), fechalimite, Integer.parseInt(txIDEJemplar.getText()));
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				dispose();
 				ArrayList<Prestamo> listaPrestamo= PrestamoDB.PrestamosVigentes();
 				int cant=listaPrestamo.size();
